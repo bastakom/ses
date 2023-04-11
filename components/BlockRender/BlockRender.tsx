@@ -1,7 +1,6 @@
 import { Heading } from '@/Blocks/Heading/Heading'
 import { Cover } from '@/Blocks/Cover/Cover'
 import { Paragraph } from '@/Blocks/Paragraph/Paragraph'
-import { theme } from 'theme'
 import { ImageBlock } from '../Blocks/Image/Image'
 import { Video } from '../Blocks/Video/Video'
 import { Columns } from '../Blocks/Columns'
@@ -19,7 +18,11 @@ export const BlockRender = ({ blocks }) => {
       case 'core/heading': {
         return (
           <Layout key={block.id}>
-            <Heading textAlign={textAlign} content={content} level={level} />
+            <Heading
+              textAlign={textAlign}
+              content={content}
+              level={level}
+            />
           </Layout>
         )
       }
@@ -53,13 +56,7 @@ export const BlockRender = ({ blocks }) => {
       case 'core/paragraph': {
         return (
           <Layout key={block.id}>
-            <Paragraph
-              textAlign={align}
-              content={content}
-              textColor={
-                theme[textColor] || block.attributes.style?.text?.color
-              }
-            />
+            <Paragraph textAlign={align} content={content} />
           </Layout>
         )
       }

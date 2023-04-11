@@ -31,6 +31,7 @@ const ImageACF = ({
             dangerouslySetInnerHTML={{
               __html: ToAbsoluteUrl(content)
             }}
+            className={styles.content}
           />
           {button && (
             <div className={`mt-10 button`}>

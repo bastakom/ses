@@ -35,7 +35,7 @@ const Footer: FC<Props> = ({ socials, logo }) => {
                   width="150"
                   quality={100}
                   height="100"
-                  alt="test"
+                  alt="alt"
                 />
               </motion.div>
             ) : null}
