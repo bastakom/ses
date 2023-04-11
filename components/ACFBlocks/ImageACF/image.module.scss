@@ -1,0 +1,14 @@
+@import '@/styles/theme';
+
+.__image__content {
+  .__image__ {
+    position: relative !important;
+    object-fit: cover;
+  }
+  h2 {
+    color: $secondary;
+    font-family: $font-family-heading;
+    font-size: $heading;
+  }
+  color: $secondary;
+}

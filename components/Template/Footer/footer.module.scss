@@ -1,0 +1,15 @@
+@import '@/styles/theme';
+
+.footer {
+  font-family: $font-family-heading;
+  background: $bg-footer;
+
+  .socials {
+    color: $socials-footer;
+    background: $bg-socials-footer;
+    svg {
+      font-size: 25px;
+      margin: 10px;
+    }
+  }
+}
