@@ -3,35 +3,28 @@ import { BiDownArrowCircle } from 'react-icons/bi'
 import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 import styles from './accordion.module.scss'
 
-export const Accordion = ({ tables }) => {
-  const links = tables.map((table) => {
-    return table.titleButton.link.map((link) => {
-      return {
-        title: link?.button?.title,
-        url: link?.button?.url
-      }
-    })
-  })
-
+export const Accordion = ({ tables, IconColor }) => {
   return (
     <>
       {tables.map((table, index) => (
         <AccordionItem
           key={index}
           title={
-            table.titleButton.title
-              ? table.titleButton.title
-              : 'title missing'
+            table.titleButton.title ? (
+              table.titleButton.title
+            ) : (
+              <span className="text-red-500">Title is missing</span>
+            )
           }
           content={table.content}
-          links={links[index]}
+          IconColor={IconColor}
         />
       ))}
     </>
   )
 }
 
-const AccordionItem = ({ title, content, links }) => {
+const AccordionItem = ({ title, content, IconColor }) => {
   const [active, setActive] = useState(false)
   const [height, setHeight] = useState('0px')
   const [rotate, setRotate] = useState('transform duration-700 ease')
@@ -60,7 +53,10 @@ const AccordionItem = ({ title, content, links }) => {
             {title}
           </p>
         )}
-        <div className={`${rotate} inline-block`}>
+        <div
+          className={`${rotate} inline-block`}
+          style={{ color: `${IconColor}` }}
+        >
           <BiDownArrowCircle />
         </div>
       </button>
@@ -77,13 +73,6 @@ const AccordionItem = ({ title, content, links }) => {
             className="pb-10 text-sm pt-3"
           />
         )}
-
-        {!links &&
-          links.map((link, index) => (
-            <a key={index} href={link.url} className="button mb-4">
-              {link.title}
-            </a>
-          ))}
       </div>
     </div>
   )

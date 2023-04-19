@@ -16,12 +16,6 @@ export const GET_FLEXIBLE_CONTENT = gql`
                     content
                     titleButton {
                       title
-                      link {
-                        button {
-                          url
-                          title
-                        }
-                      }
                     }
                   }
                 }

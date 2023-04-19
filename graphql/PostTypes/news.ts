@@ -2,15 +2,15 @@ import client from '@/lib/apollo-client'
 import { gql } from '@apollo/client'
 
 const GET_NEWS = gql`
-  query GetQueryNews {
-    news {
-        nodes {
-          title
-          id
-          content
-          slug
-          uri
-        }
+  query GetQueryNews($language: String!) {
+    news(where: { language: $language }) {
+      nodes {
+        title
+        id
+        content
+        slug
+        uri
+      }
     }
   }
 `
@@ -21,5 +21,5 @@ export const getNews = async () => {
   const { data } = await client.query({
     query: GET_NEWS
   })
-  return data.news.nodes
+  return data?.news?.nodes || []
 }

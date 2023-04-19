@@ -1,10 +1,15 @@
 import Logo from 'assets/svg/logo'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { mainMenu } from 'theme'
 import { motion } from 'framer-motion'
 
 const Header = ({ data, ThemeSettings }) => {
+  const { locale: activeLocale, locales, asPath } = useRouter()
+  const availableLocales = locales.filter(
+    (locale) => locale !== activeLocale
+  )
   return (
     <div className="items-center justify-between flex w-full pr-10 pl-10">
       <Link href="/">
@@ -34,12 +39,29 @@ const Header = ({ data, ThemeSettings }) => {
               animate={{ transform: 'translateY(0)' }}
               transition={{ duration: 1, delay: 1.5 }}
             >
-              <Link href={`${ifUrl}`} style={{ color: mainMenu.textColor }}>
+              <Link
+                href={`${ifUrl}`}
+                style={{ color: mainMenu.textColor }}
+              >
                 <span className="px-2">{items.label}</span>
               </Link>
             </motion.div>
           )
         })}
+      </div>
+      <div>
+        this is language
+        <ul>
+          {availableLocales.map((locale) => {
+            return (
+              <li key={locale}>
+                <Link href={asPath} locale={locale}>
+                  {locale.toUpperCase()}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </div>
   )

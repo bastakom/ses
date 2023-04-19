@@ -30,6 +30,15 @@ export const GET_FLEXIBLE_COLUMN = gql`
                           altText
                         }
                       }
+                      ... on Template_Flexible_Builder_ContentBuilder_ColumnBlock_columnfull_ItemColumn_Accordion {
+                        fieldGroupName
+                        tables {
+                          content
+                          titleButton {
+                            title
+                          }
+                        }
+                      }
                     }
                   }
                   columnhalf {
@@ -49,6 +58,15 @@ export const GET_FLEXIBLE_COLUMN = gql`
                           altText
                         }
                       }
+                      ... on Template_Flexible_Builder_ContentBuilder_ColumnBlock_columnhalf_ItemColumn_Accordion {
+                        fieldGroupName
+                        tables {
+                          content
+                          titleButton {
+                            title
+                          }
+                        }
+                      }
                     }
                   }
                   columnthird {
@@ -66,6 +84,15 @@ export const GET_FLEXIBLE_COLUMN = gql`
                         image {
                           sourceUrl
                           altText
+                        }
+                      }
+                      ... on Template_Flexible_Builder_ContentBuilder_ColumnBlock_columnthird_ItemColumn_Accordion {
+                        fieldGroupName
+                        tables {
+                          content
+                          titleButton {
+                            title
+                          }
                         }
                       }
                     }

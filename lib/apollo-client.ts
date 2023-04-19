@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 const client = new ApolloClient({
   uri: process.env.WP_GRAPHQL_URL,
@@ -15,4 +15,4 @@ const client = new ApolloClient({
   }
 });
 
-export default client;
+export default client

@@ -23,11 +23,6 @@ const Footer: FC<Props> = ({ socials, logo }) => {
               <motion.div
                 initial={{ rotateZ: 0 }}
                 animate={{ rotateZ: 360 }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: 'linear'
-                }}
                 style={{ width: '145px' }}
               >
                 <Image

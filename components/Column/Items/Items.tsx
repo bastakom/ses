@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from './items.module.scss'
 import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
+import { Accordion } from '@/components/ACFBlocks/Accordion/Accordion'
 
 export const Items = ({ data, choiceofColumn }) => {
   const choice =
@@ -44,6 +45,12 @@ export const Items = ({ data, choiceofColumn }) => {
                       fill
                     />
                   )
+                }
+
+                case `Template_Flexible_Builder_ContentBuilder_ColumnBlock_${choice}_ItemColumn_Accordion`: {
+                  const { tables } = item
+                  // console.log('', tables)
+                  return <Accordion tables={tables} IconColor='#3a3a3a'/>
                 }
 
                 default: {

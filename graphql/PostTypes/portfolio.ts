@@ -2,15 +2,32 @@ import client from '@/lib/apollo-client'
 import { gql } from '@apollo/client'
 
 const GET_PORTFOLIOS = gql`
-  query GetQueryportfolios {
-    portfolios {
-        nodes {
-          title
-          id
-          content
-          slug
-          uri
+  query GetQueryproducts {
+    products {
+      nodes {
+        title
+        id
+        slug
+        uri
+        products {
+          description
+          marknadsforingsblad {
+            title
+            document {
+              sourceUrl
+            }
+          }
+          productPictures {
+            sourceUrl
+          }
+          produktblad {
+            title
+            document {
+              sourceUrl
+            }
+          }
         }
+      }
     }
   }
 `
@@ -21,5 +38,5 @@ export const getportfolios = async () => {
   const { data } = await client.query({
     query: GET_PORTFOLIOS
   })
-  return data.portfolios.nodes
+  return data.products.nodes
 }

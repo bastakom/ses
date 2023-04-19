@@ -6,27 +6,31 @@ import Link from 'next/link'
 import { getportfolios } from '@/graphql/PostTypes/portfolio'
 
 interface Props {
-  portfolio: Portfolio[]
+  products: Portfolio[]
 }
 
-const Home: React.FC<Props> = ({ portfolio }) => {
+const Home: React.FC<Props> = ({ products }) => {
   return (
     <div className="bg-white py-24 sm:py-32 mt-3">
-      {portfolio.map((data) => {
-        return <Link href={data.uri}>{data.title}</Link>
+      {products.map((data, index) => {
+        return (
+          <div key={index}>
+            <Link href={data.uri}>{data.title}</Link>
+          </div>
+        )
       })}
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const portfolio = await getportfolios()
+  const products = await getportfolios()
   const mainMenu = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
 
   return {
     props: {
-      portfolio,
+      products,
       mainMenu,
       ThemeSettings: ThemeSettings.props
     }
