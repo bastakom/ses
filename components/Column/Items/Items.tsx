@@ -49,7 +49,6 @@ export const Items = ({ data, choiceofColumn }) => {
 
                 case `Template_Flexible_Builder_ContentBuilder_ColumnBlock_${choice}_ItemColumn_Accordion`: {
                   const { tables } = item
-                  // console.log('', tables)
                   return <Accordion tables={tables} IconColor='#3a3a3a'/>
                 }
 

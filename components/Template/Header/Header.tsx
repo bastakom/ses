@@ -56,7 +56,7 @@ const Header = ({ data, ThemeSettings }) => {
             return (
               <li key={locale}>
                 <Link href={asPath} locale={locale}>
-                  {locale.toUpperCase()}
+                  {locale}
                 </Link>
               </li>
             )

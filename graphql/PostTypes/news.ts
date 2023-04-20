@@ -3,13 +3,16 @@ import { gql } from '@apollo/client'
 
 const GET_NEWS = gql`
   query GetQueryNews($language: String!) {
-    news(where: { language: $language }) {
+    news(where: { wpmlLanguage: $language }) {
       nodes {
         title
         id
         content
         slug
         uri
+        locale {
+          locale
+        }
       }
     }
   }
@@ -17,9 +20,11 @@ const GET_NEWS = gql`
 
 export default GET_NEWS
 
-export const getNews = async () => {
+export const getNews = async (language) => {
   const { data } = await client.query({
-    query: GET_NEWS
+    query: GET_NEWS,
+    variables: { language }
   })
+
   return data?.news?.nodes || []
 }

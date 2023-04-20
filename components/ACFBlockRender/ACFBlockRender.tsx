@@ -62,7 +62,6 @@ const ACFBlockRender = ({ Builder, Columns }) => {
           }
           case 'Template_Flexible_Builder_ContentBuilder_Accordion': {
             const { id, tables } = build
-            console.log('acftables', tables)
             return (
               <Layout key={id}>
                 <Accordion tables={tables} IconColor="#3a3a3a" />

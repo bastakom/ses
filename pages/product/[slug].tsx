@@ -26,7 +26,6 @@ const PortfolioPage = ({ products }) => {
   // const fileUrl = data.source_url
 
   const documents = produktblad?.map((document, index) => {
-    console.log('product', document.document.mediaItemUrl)
     return (
       <div key={index}>
         <ul>
@@ -72,7 +71,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false }
 }
 export const getStaticProps = async ({ params }) => {
-  console.log(params)
   const mainMenu = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
   const { data } = await client.query({
