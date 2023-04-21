@@ -20,9 +20,10 @@ export const getStaticPaths = async () => {
         }
       }
     `
+    // variables: { language: locale }
   })
 
-  const paths = data.pages.nodes
+  const paths = data?.pages?.nodes
     .filter((page) => page.uri !== '/')
     .map((page) => ({
       params: {

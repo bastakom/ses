@@ -7,20 +7,18 @@ const ACFBlockRender = dynamic(
     ssr: false,
     loading: () => <div>Loading...</div>
   }
-)
+) as FC<any>
 
-interface Props {
-  Builder
-  blocks
-  Columns
-}
-
-const Page: FC<Props> = ({ Builder, blocks, Columns }) => {
+const Page = ({ Builder, blocks, Columns, flexibleContent }) => {
   return (
     <>
       <BlockRender blocks={blocks} />
       <Suspense fallback={<div>Loading...</div>}>
-        <ACFBlockRender Builder={Builder} Columns={Columns} />
+        <ACFBlockRender
+          Builder={Builder}
+          Columns={Columns}
+          flexibleContent={flexibleContent}
+        />
       </Suspense>
     </>
   )

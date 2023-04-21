@@ -7,9 +7,11 @@ import { motion } from 'framer-motion'
 
 const Header = ({ data, ThemeSettings }) => {
   const { locale: activeLocale, locales, asPath } = useRouter()
+  const router = useRouter()
   const availableLocales = locales.filter(
     (locale) => locale !== activeLocale
   )
+
   return (
     <div className="items-center justify-between flex w-full pr-10 pl-10">
       <Link href="/">
@@ -50,7 +52,6 @@ const Header = ({ data, ThemeSettings }) => {
         })}
       </div>
       <div>
-        this is language
         <ul>
           {availableLocales.map((locale) => {
             return (

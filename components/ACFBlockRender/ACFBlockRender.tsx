@@ -4,38 +4,75 @@ import ImageACF from '../ACFBlocks/ImageACF/ImageACF'
 import Column from '../Column/Column'
 import Layout from '../Template/Layout/Layout'
 
-const ACFBlockRender = ({ Builder, Columns }) => {
-  const grouped = [...Builder, ...Columns]
+const ACFBlockRender = ({ Builder, Columns, flexibleContent }) => {
+  const grouped = [...Builder, ...Columns, ...flexibleContent]
 
   return (
     <div>
+      {flexibleContent.map((flexible) => {
+        return flexible.acf.content_builder.map((data, index) => {
+          switch (data.acf_fc_layout) {
+            case 'hero': {
+              const {
+                id,
+                image,
+                title,
+                sub_title,
+                presentation_info,
+                settings,
+                video
+              } = data
+              return (
+                <>
+                  <Hero
+                    height={settings.cover_height}
+                    key={id}
+                    noContent={settings.content__no_content}
+                    imageVideo={settings.image__video}
+                    image={image}
+                    video={video}
+                    title={title}
+                    content={presentation_info}
+                    subtitle={sub_title}
+                    justify={settings.justify_content_}
+                  />
+                </>
+              )
+            }
+
+            default: {
+              return <div>NULL</div>
+            }
+          }
+        })
+      })}
       {grouped.map((build, index) => {
         switch (build.__typename) {
-          case 'Template_Flexible_Builder_ContentBuilder_Hero': {
-            const {
-              id,
-              image,
-              title,
-              subtitle,
-              presentationInfo,
-              settings,
-              video
-            } = build
-            return (
-              <Hero
-                height={settings.coverHeight}
-                key={id}
-                noContent={settings.contentNoContent}
-                imageVideo={settings.imageVideo}
-                image={image?.sourceUrl}
-                video={video?.mediaItemUrl}
-                title={title}
-                content={presentationInfo}
-                subtitle={subtitle}
-                justify={settings.justifyContent}
-              />
-            )
-          }
+          // case 'Template_Flexible_Builder_ContentBuilder_Hero': {
+          //   const {
+          //     id,
+          //     image,
+          //     title,
+          //     subtitle,
+          //     presentationInfo,
+          //     settings,
+          //     video
+          //   } = build
+          //   return (
+          //     <Hero
+          //       height={settings.coverHeight}
+          //       key={id}
+          //       noContent={settings.contentNoContent}
+          //       imageVideo={settings.imageVideo}
+          //       image={image?.sourceUrl}
+          //       video={video?.mediaItemUrl}
+          //       title={title}
+          //       content={presentationInfo}
+          //       subtitle={subtitle}
+          //       justify={settings.justifyContent}
+          //     />
+          //   )
+          // }
 
           case 'Template_Flexible_Builder_ContentBuilder_ImageText': {
             const {

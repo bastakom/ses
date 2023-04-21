@@ -1,30 +1,9 @@
-import client from '@/lib/apollo-client'
-import { gql } from '@apollo/client'
+export const getNyheter = async (locale) => {
+  const correctLocale = locale === 'sv' ? [] : locale
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/nyheter`
+  )
+  const response = await data.json()
 
-const GET_NEWS = gql`
-  query GetQueryNews($language: String!) {
-    news(where: { wpmlLanguage: $language }) {
-      nodes {
-        title
-        id
-        content
-        slug
-        uri
-        locale {
-          locale
-        }
-      }
-    }
-  }
-`
-
-export default GET_NEWS
-
-export const getNews = async (language) => {
-  const { data } = await client.query({
-    query: GET_NEWS,
-    variables: { language }
-  })
-
-  return data?.news?.nodes || []
+  return response
 }

@@ -24,7 +24,7 @@ const Hero = ({
 
   return (
     <div className={`${styles.cover} justify-${justify}`}>
-      {!imageVideo ? (
+      {imageVideo === '0' ? (
         <div
           style={{
             height: `${height}vh`,
