@@ -3,13 +3,13 @@ import ColumnThird from './ColumnThird/ColumnThird'
 import ColumnFull from './Columnfull/ColumnFull'
 
 const Column = ({ columns }) => {
-  switch (columns.howManyColumn) {
+  switch (columns.how_many_column) {
     case '1': {
       return (
         <div>
           <ColumnFull
             props={columns}
-            columnChoice={columns.howManyColumn}
+            columnChoice={columns.how_many_column}
           />
         </div>
       )
@@ -19,7 +19,7 @@ const Column = ({ columns }) => {
         <div>
           <ColumnHalf
             props={columns}
-            columnChoice={columns.howManyColumn}
+            columnChoice={columns.how_many_column}
           />
         </div>
       )
@@ -29,7 +29,7 @@ const Column = ({ columns }) => {
         <div>
           <ColumnThird
             props={columns}
-            columnChoice={columns.howManyColumn}
+            columnChoice={columns.how_many_column}
           />
         </div>
       )

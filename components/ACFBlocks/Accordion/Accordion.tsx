@@ -10,8 +10,8 @@ export const Accordion = ({ tables, IconColor }) => {
         <AccordionItem
           key={index}
           title={
-            table.titleButton.title ? (
-              table.titleButton.title
+            table.title__button.title ? (
+              table.title__button.title
             ) : (
               <span className="text-red-500">Title is missing</span>
             )

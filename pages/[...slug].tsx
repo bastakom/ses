@@ -6,33 +6,23 @@ import Page from '../components/Page/page'
 export default Page
 
 export const getStaticProps = getPageStaticProps
-export const getStaticPaths = async () => {
-  const { data } = await client.query({
-    query: gql`
-      query AllPagesQuery {
-        pages {
-          nodes {
-            id
-            slug
-            uri
-            title
-          }
-        }
-      }
-    `
-    // variables: { language: locale }
-  })
+export const getStaticPaths = async (context) => {
+  const { locale } = context
 
-  const paths = data?.pages?.nodes
-    .filter((page) => page.uri !== '/')
-    .map((page) => ({
-      params: {
-        slug: page.uri.substring(1, page.uri.length - 1).split('/')
-      }
-    }))
+  const currentLang = locale === 'sv' ? '' : locale
+
+  const flexibleContentData = await fetch(
+    `${process.env.NEXT_PUBLIC_WP_URL}${currentLang}/wp-json/wp/v2/pages?&_fields=slug`
+  )
+
+  let slugData = []
+
+  const paths = slugData.map((item) => ({
+    params: { slug: item.slug }
+  }))
 
   return {
-    paths,
-    fallback: false
+    paths: paths,
+    fallback: 'blocking'
   }
 }

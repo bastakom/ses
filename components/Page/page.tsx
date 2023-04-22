@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { FC, Suspense } from 'react'
-import { BlockRender } from '../BlockRender/BlockRender'
+
 const ACFBlockRender = dynamic(
   () => import('../ACFBlockRender/ACFBlockRender'),
   {
@@ -9,16 +9,11 @@ const ACFBlockRender = dynamic(
   }
 ) as FC<any>
 
-const Page = ({ Builder, blocks, Columns, flexibleContent }) => {
+const Page = ({ flexibleContent }) => {
   return (
     <>
-      <BlockRender blocks={blocks} />
       <Suspense fallback={<div>Loading...</div>}>
-        <ACFBlockRender
-          Builder={Builder}
-          Columns={Columns}
-          flexibleContent={flexibleContent}
-        />
+        <ACFBlockRender flexibleContent={flexibleContent} />
       </Suspense>
     </>
   )

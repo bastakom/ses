@@ -4,9 +4,7 @@ import ImageACF from '../ACFBlocks/ImageACF/ImageACF'
 import Column from '../Column/Column'
 import Layout from '../Template/Layout/Layout'
 
-const ACFBlockRender = ({ Builder, Columns, flexibleContent }) => {
-  const grouped = [...Builder, ...Columns, ...flexibleContent]
-
+const ACFBlockRender = ({ flexibleContent }) => {
   return (
     <div>
       {flexibleContent.map((flexible) => {
@@ -40,84 +38,52 @@ const ACFBlockRender = ({ Builder, Columns, flexibleContent }) => {
               )
             }
 
+            case 'image__text': {
+              const {
+                id,
+                image,
+                text,
+                settings__image_text,
+                altText,
+                context: { title, button }
+              } = data
+
+              return (
+                <Layout key={id}>
+                  <ImageACF
+                    sourceUrl={image}
+                    alt={altText}
+                    content={text}
+                    title={title}
+                    rowReverse={settings__image_text}
+                    button={button}
+                  />
+                </Layout>
+              )
+            }
+
+            case 'accordion': {
+              const { id, tables } = data
+              return (
+                <Layout key={id}>
+                  <Accordion tables={tables} IconColor="#3a3a3a" />
+                </Layout>
+              )
+            }
+
+            case 'column_block': {
+              return (
+                <Layout key={index}>
+                  <Column columns={data} />
+                </Layout>
+              )
+            }
+
             default: {
-              return <div>NULL</div>
+              return null
             }
           }
         })
-      })}
-      {grouped.map((build, index) => {
-        switch (build.__typename) {
-          // case 'Template_Flexible_Builder_ContentBuilder_Hero': {
-          //   const {
-          //     id,
-          //     image,
-          //     title,
-          //     subtitle,
-          //     presentationInfo,
-          //     settings,
-          //     video
-          //   } = build
-          //   return (
-          //     <Hero
-          //       height={settings.coverHeight}
-          //       key={id}
-          //       noContent={settings.contentNoContent}
-          //       imageVideo={settings.imageVideo}
-          //       image={image?.sourceUrl}
-          //       video={video?.mediaItemUrl}
-          //       title={title}
-          //       content={presentationInfo}
-          //       subtitle={subtitle}
-          //       justify={settings.justifyContent}
-          //     />
-          //   )
-          // }
-
-          case 'Template_Flexible_Builder_ContentBuilder_ImageText': {
-            const {
-              id,
-              image,
-              text,
-              settingsImageText,
-              altText,
-              context: { title, button }
-            } = build
-
-            return (
-              <Layout key={id}>
-                <ImageACF
-                  sourceUrl={image?.sourceUrl}
-                  alt={altText}
-                  content={text}
-                  title={title}
-                  rowReverse={settingsImageText}
-                  button={button}
-                />
-              </Layout>
-            )
-          }
-          case 'Template_Flexible_Builder_ContentBuilder_Accordion': {
-            const { id, tables } = build
-            return (
-              <Layout key={id}>
-                <Accordion tables={tables} IconColor="#3a3a3a" />
-              </Layout>
-            )
-          }
-
-          case 'Template_Flexible_Builder_ContentBuilder_ColumnBlock': {
-            return (
-              <Layout key={index}>
-                <Column columns={build} />
-              </Layout>
-            )
-          }
-
-          default: {
-            return null
-          }
-        }
       })}
     </div>
   )

@@ -1,7 +1,3 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { gql } from '@apollo/client'
-import client from '@/lib/apollo-client'
-import { useRouter } from 'next/router'
 import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getMainMenu } from '@/graphql/Templates/mainMenu'
 import Link from 'next/link'
@@ -9,7 +5,6 @@ import Image from 'next/image'
 
 const NewsPage = ({ response }) => {
   const data = response.map((data) => data)
-  console.log(data)
   return (
     <div>
       {...data.map((data, index) => {

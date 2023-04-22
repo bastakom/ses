@@ -21,12 +21,12 @@ export const Items = ({ data, choiceofColumn }) => {
             key={index}
             className={`${styles.column_choice} ${choice} flex flex-col`}
           >
-            {el.itemColumn.map((item, index) => {
-              switch (item.__typename) {
-                case `Template_Flexible_Builder_ContentBuilder_ColumnBlock_${choice}_ItemColumn_Title`: {
+            {el.item_column.map((item, index) => {
+              switch (item.acf_fc_layout) {
+                case `Title`: {
                   return <h1 key={index}>{item.title}</h1>
                 }
-                case `Template_Flexible_Builder_ContentBuilder_ColumnBlock_${choice}_ItemColumn_Text`: {
+                case `text`: {
                   return (
                     <p
                       key={index}
@@ -36,20 +36,22 @@ export const Items = ({ data, choiceofColumn }) => {
                     />
                   )
                 }
-                case `Template_Flexible_Builder_ContentBuilder_ColumnBlock_${choice}_ItemColumn_Image`: {
+                case `image`: {
                   return (
                     <Image
                       key={index}
-                      src={item.image.sourceUrl}
+                      src={item.image}
                       alt={item.alt}
                       fill
                     />
                   )
                 }
 
-                case `Template_Flexible_Builder_ContentBuilder_ColumnBlock_${choice}_ItemColumn_Accordion`: {
+                case `accordion`: {
                   const { tables } = item
-                  return <Accordion tables={tables} IconColor='#3a3a3a'/>
+                  return (
+                    <Accordion tables={tables} IconColor="#3a3a3a" />
+                  )
                 }
 
                 default: {

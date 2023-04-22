@@ -1,24 +1,9 @@
-import client from '@/lib/apollo-client'
-import { gql } from '@apollo/client'
+export const getProdukter = async (locale) => {
+  const correctLocale = locale === 'sv' ? [] : locale
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/produkter`
+  )
+  const response = await data.json()
 
-const GET_PRODUKTER = gql`
-  query GetQueryNews($language: String!) {
-    produkter(where: { wpmlLanguage: $language }) {
-      nodes {
-        title
-        slug
-      }
-    }
-  }
-`
-
-export default GET_PRODUKTER
-
-export const getProdukter = async (language) => {
-  const { data } = await client.query({
-    query: GET_PRODUKTER,
-    variables: { language }
-  })
-
-  return data?.produkter?.nodes || []
+  return response
 }

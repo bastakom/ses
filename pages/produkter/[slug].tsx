@@ -1,19 +1,14 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { gql } from '@apollo/client'
-import client from '@/lib/apollo-client'
 import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getMainMenu } from '@/graphql/Templates/mainMenu'
 import Link from 'next/link'
 import Image from 'next/image'
 
 const NewsPage = ({ response }) => {
-  console.log(response)
   const data = response.map((data) => data)
   return (
     <div>
       {...data.map((data, index) => {
         const { products } = data
-        console.log(products)
         return (
           <div className="m-5 w-8/12" key={index}>
             <h2 className="text-4xl mb-5">{data.title.rendered}</h2>
@@ -81,43 +76,29 @@ const NewsPage = ({ response }) => {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await client.query({
-    query: gql`
-      query GetProduktSlugs {
-        produkter {
-          nodes {
-            slug
-            id
-            wpmlLanguage
-          }
-        }
-      }
-    `
-  })
+export const getStaticPaths = async () => {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/produkter?_fields=slug`
+  )
+  const slugData = await data.json()
 
-  const paths = []
-  const languages = ['en', 'sv'] // add any other languages here
-  data?.produkter?.nodes?.forEach((produkt) => {
-    languages.forEach((lang) => {
-      paths.push({
-        params: { slug: produkt?.slug || produkt?.translated.slug },
-        locale: lang
-      })
-    })
-  })
+  const paths = slugData.map((item) => ({
+    params: { slug: item.slug }
+  }))
 
-  return { paths, fallback: 'blocking' }
+  return {
+    paths: paths,
+    fallback: 'blocking'
+  }
 }
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  locale
-}) => {
+export const getStaticProps = async ({ params, locale }) => {
   const mainMenu = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
+  const correctLocale = locale === 'sv' ? [] : locale
+
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}wp-json/wp/v2/produkter?lang=${locale}&slug=${params.slug}`
+    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/produkter?slug=${params.slug}`
   )
   const response = await data.json()
 
@@ -125,9 +106,7 @@ export const getStaticProps: GetStaticProps = async ({
     props: {
       response,
       mainMenu,
-      locale,
-      ThemeSettings: ThemeSettings?.props.ThemeSettings,
-      allSettings: ThemeSettings?.props
+      ThemeSettings: ThemeSettings.props
     }
   }
 }

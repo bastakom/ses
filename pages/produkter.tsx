@@ -7,10 +7,9 @@ const Home = ({ produkter }) => {
   return (
     <div className="bg-white py-24 sm:py-32 mt-3 flex flex-col m-3">
       {produkter.map((data, index) => {
-        console.log(data.slug)
         return (
           <Link key={index} href={`produkter/${data.slug}`}>
-            {data.title}
+            {data.title.rendered}
           </Link>
         )
       })}
