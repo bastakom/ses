@@ -54,7 +54,8 @@ export const getStaticProps = async ({ params, locale }) => {
       response,
       menuItems,
       ThemeSettings: ThemeSettings.props
-    }
+    },
+    revalidate: 10
   }
 }
 
