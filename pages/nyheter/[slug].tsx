@@ -1,3 +1,4 @@
+import Layout from '@/components/Template/Layout/Layout'
 import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getMainMenu } from '@/graphql/Templates/mainMenu'
 
@@ -5,7 +6,7 @@ const NewsPage = ({ response, mainMenu }) => {
   console.log(mainMenu)
   const data = response.map((data) => data)
   return (
-    <div>
+    <Layout>
       {...data.map((data, index) => {
         return (
           <div className="m-5 w-8/12" key={index}>
@@ -18,7 +19,7 @@ const NewsPage = ({ response, mainMenu }) => {
           </div>
         )
       })}
-    </div>
+    </Layout>
   )
 }
 export const getStaticPaths = async () => {

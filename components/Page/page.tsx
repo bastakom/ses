@@ -10,6 +10,7 @@ const ACFBlockRender = dynamic(
 ) as FC<any>
 
 const Page = ({ flexibleContent }) => {
+
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>

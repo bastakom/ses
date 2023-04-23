@@ -12,7 +12,6 @@ export const getPageStaticProps = async (context) => {
   const ThemeSettings = await getThemeSettings()
   const allSettings = await getAllSettings()
   const Builder = await getBuilder(uri)
-  const pageQuery = await getPageQuery(uri)
 
   const builder = cleanAndTransformACFBlocks(
     Builder.nodeByUri?.template?.builder?.contentBuilder

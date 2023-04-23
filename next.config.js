@@ -4,8 +4,10 @@ const nextConfig = {
   reactStrictMode: true,
   i18n: {
     locales: ['sv', 'en'],
-    defaultLocale: 'sv'
+    defaultLocale: 'sv',
+    localeDetection: false
   },
+  trailingSlash: true,
   images: {
     domains: [process.env.WP_IMAGES_URL]
   },

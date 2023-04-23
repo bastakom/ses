@@ -25,6 +25,6 @@
       "@/Blocks/*": ["components/Blocks/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/mapMainMenuItems.js", "components/ACFBlocks/Hero"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/mapMainMenuItems.js", "components/ACFBlocks/Hero", "pages/404.js"],
   "exclude": ["node_modules"]
 }

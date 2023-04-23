@@ -1,5 +1,3 @@
-import client from '@/lib/apollo-client'
-import { gql } from '@apollo/client'
 import { getPageStaticProps } from 'utils/getPageStaticProps'
 import Page from '../components/Page/page'
 
@@ -17,9 +15,11 @@ export const getStaticPaths = async (context) => {
 
   let slugData = []
 
+
   const paths = slugData.map((item) => ({
     params: { slug: item.slug }
   }))
+
 
   return {
     paths: paths,
