@@ -11,7 +11,7 @@ export const getFlexibleContent = async (
 
 export const getACFmenu = async () => {
   const menuData = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}wp-json/acf/v1/menu`
+    `${process.env.NEXT_PUBLIC_WP_URL}wp-json/acf/v1/menu?_=${Date.now()}`
   )
   const menuItems = await menuData.json()
   return menuItems
