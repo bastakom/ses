@@ -1,6 +1,28 @@
 const path = require('path')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  headers: async () => {
+    return [
+      {
+        // Set the cache-control header to disable caching
+        source: '/wp-json/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate'
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache'
+          },
+          {
+            key: 'Expires',
+            value: '0'
+          }
+        ]
+      }
+    ]
+  },
   reactStrictMode: true,
   i18n: {
     locales: ['sv', 'en'],
