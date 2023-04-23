@@ -1,3 +1,12 @@
+export const getMainMenu = async () => {
+  const menuData = await fetch(
+    `${process.env.NEXT_PUBLIC_WP_URL}wp-json/acf/v1/menu`
+  )
+  const menuItems = await menuData.json()
+  return menuItems
+}
+
+
 import client from '@/lib/apollo-client'
 import { gql } from '@apollo/client'
 import { mapMainMenuItems } from 'utils/mapMainMenuItems'
@@ -33,7 +42,7 @@ const GET_MAINMENU = gql`
 `
 export default GET_MAINMENU
 
-export const getMainMenu = async () => {
+export const getMainMenutest = async () => {
   const { data } = await client.query({ query: GET_MAINMENU })
   return mapMainMenuItems(data.acfOptionsMenu.mainMenu.menuItems)
 }

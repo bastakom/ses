@@ -18,15 +18,15 @@ const Home = ({ response }) => {
 }
 
 export const getStaticProps = async ({ locale }) => {
-  const mainMenu = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
+  const menuItems = await getMainMenu()
   const response = await getNyheter(locale)
 
   return {
     props: {
       response,
-      mainMenu,
-      ThemeSettings: ThemeSettings.props
+      ThemeSettings: ThemeSettings.props,
+      menuItems
     }
   }
 }

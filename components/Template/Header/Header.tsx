@@ -5,12 +5,20 @@ import { useRouter } from 'next/router'
 import { mainMenu } from 'theme'
 import { motion } from 'framer-motion'
 
-const Header = ({ data, ThemeSettings }) => {
-  const { locale: activeLocale, locales, asPath } = useRouter()
+const Header = ({ ThemeSettings, newMenu }) => {
+  const {
+    locale: activeLocale,
+    locales,
+    asPath,
+    locale
+  } = useRouter()
   const router = useRouter()
   const availableLocales = locales.filter(
     (locale) => locale !== activeLocale
   )
+
+  const menuToMap =
+    locale === 'en' ? newMenu.menu__english_ : newMenu.menu_items
 
   return (
     <div className="items-center justify-between flex w-full pr-10 pl-10">
@@ -31,23 +39,24 @@ const Header = ({ data, ThemeSettings }) => {
         )}
       </Link>
       <div className="flex z-50 items-center">
-        {data?.map((items, index) => {
-          const ifUrl = items.page ? `${items.page}` : `${items.url}`
-          typeof ifUrl !== 'undefined' && null
+        {menuToMap?.map((items, index) => {
+          const {
+            menu_item: {
+              url: { url, target },
+              label
+            }
+          } = items
+
           return (
-            <motion.div
-              key={index}
-              initial={{ transform: 'translateY(-100px)' }}
-              animate={{ transform: 'translateY(0)' }}
-              transition={{ duration: 1, delay: 1.5 }}
-            >
+            <div key={index}>
               <Link
-                href={`${ifUrl}`}
+                href={url}
                 style={{ color: mainMenu.textColor }}
+                target={target}
               >
-                <span className="px-2">{items.label}</span>
+                <span className="px-2">{label}</span>
               </Link>
-            </motion.div>
+            </div>
           )
         })}
       </div>

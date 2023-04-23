@@ -93,7 +93,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params, locale }) => {
-  const mainMenu = await getMainMenu()
+  const menuItems = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
   const correctLocale = locale === 'sv' ? [] : locale
 
@@ -105,7 +105,7 @@ export const getStaticProps = async ({ params, locale }) => {
   return {
     props: {
       response,
-      mainMenu,
+      menuItems,
       ThemeSettings: ThemeSettings.props
     }
   }

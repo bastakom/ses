@@ -72,13 +72,13 @@ const Home: React.FC<Props> = ({ teams }) => {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const teams = await getTeams()
-  const mainMenu = await getMainMenu()
+  const menuItems = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
 
   return {
     props: {
       teams,
-      mainMenu,
+      menuItems,
       ThemeSettings: ThemeSettings.props
     }
   }

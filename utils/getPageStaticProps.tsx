@@ -1,10 +1,8 @@
 import { cleanAndTransformACFBlocks } from './cleanAndTransformBlocks'
-import { mapMainMenuItems } from './mapMainMenuItems'
 import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getAllSettings } from '@/graphql/Settings/allSettings'
 import { getBuilder } from '@/graphql/Templates/contentBuilder'
 import { getPageQuery } from '@/graphql/Pages/pageQuery'
-import { getColumnBuilder } from '@/graphql/Templates/columnBuilder'
 
 export const getPageStaticProps = async (context) => {
   const { locale } = context
@@ -26,21 +24,23 @@ export const getPageStaticProps = async (context) => {
   const flexibleContentData = await fetch(
     `${process.env.NEXT_PUBLIC_WP_URL}${currentLang}/wp-json/wp/v2/pages?template=flexible&slug=${uriWithSlash}`
   )
+  const flexibleContent = await flexibleContentData.json()
 
-  const flexibleContentBlocks = await flexibleContentData.json()
-  const flexibleContent = flexibleContentBlocks
+  const menuData = await fetch(
+    `${process.env.NEXT_PUBLIC_WP_URL}wp-json/acf/v1/menu`
+  )
+  const menuItems = await menuData.json()
 
   return {
     props: {
-      mainMenu: mapMainMenuItems(
-        pageQuery.acfOptionsMenu.mainMenu.menuItems
-      ),
       allSettings: allSettings,
       ThemeSettings: ThemeSettings?.props,
       Builder: builder,
       flexibleContent,
-      socials: ThemeSettings.props?.socials
+      socials: ThemeSettings.props?.socials,
+      menuItems
     },
     revalidate: 10
   }
 }
+

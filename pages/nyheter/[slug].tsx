@@ -1,9 +1,8 @@
 import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getMainMenu } from '@/graphql/Templates/mainMenu'
-import Link from 'next/link'
-import Image from 'next/image'
 
-const NewsPage = ({ response }) => {
+const NewsPage = ({ response, mainMenu }) => {
+  console.log(mainMenu)
   const data = response.map((data) => data)
   return (
     <div>
@@ -39,7 +38,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params, locale }) => {
-  const mainMenu = await getMainMenu()
+  const menuItems = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
   const correctLocale = locale === 'sv' ? [] : locale
 
@@ -47,11 +46,10 @@ export const getStaticProps = async ({ params, locale }) => {
     `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/nyheter?slug=${params.slug}`
   )
   const response = await data.json()
-
   return {
     props: {
       response,
-      mainMenu,
+      menuItems,
       ThemeSettings: ThemeSettings.props
     }
   }

@@ -54,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props> = async ({
   params
 }) => {
-  const mainMenu = await getMainMenu()
+  const menuItems = await getMainMenu()
   const ThemeSettings = await getThemeSettings()
   const { data } = await client.query({
     query: gql`
@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   return {
     props: {
       team: data?.teamBy,
-      mainMenu,
+      menuItems,
       ThemeSettings: ThemeSettings?.props?.ThemeSettings,
       allSettings: ThemeSettings?.props,
       socials: ThemeSettings.props?.socials
