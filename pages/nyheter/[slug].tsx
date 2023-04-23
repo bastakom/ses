@@ -46,7 +46,7 @@ export const getStaticProps = async ({ params, locale }) => {
 
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/nyheter?slug=${params.slug}`,
-    { headers: { 'cache-control': 'no-cache' } }
+    { next: { revalidate: 10 } }
   )
   const response = await data.json()
   return {
