@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         // Set the cache-control header to disable caching
-        source: '/wp-json/(.*)',
+        source: '/(.*)',
         headers: [
           {
             key: 'Cache-Control',
