@@ -3,7 +3,7 @@ export const getFlexibleContent = async (
   uriWithSlash
 ) => {
   const flexibleContentData = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}${currentLang}/wp-json/wp/v2/pages?template=flexible&slug=${uriWithSlash}`
+    `${process.env.NEXT_PUBLIC_WP_URL}${currentLang}/wp-json/wp/v2/pages?template=flexible&slug=${uriWithSlash}&_=${Date.now()}`
   )
   const flexibleContent = await flexibleContentData.json()
   return flexibleContent

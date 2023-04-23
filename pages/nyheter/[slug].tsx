@@ -24,7 +24,7 @@ const NewsPage = ({ response, mainMenu }) => {
 }
 export const getStaticPaths = async () => {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/nyheter?_fields=slug`,
+    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/nyheter?_fields=slug&_=${Date.now()}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
   const slugData = await data.json()

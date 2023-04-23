@@ -78,7 +78,7 @@ const NewsPage = ({ response }) => {
 
 export const getStaticPaths = async () => {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/produkter?_fields=slug`
+    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/produkter?_fields=slug&_=${Date.now()}`
   )
   const slugData = await data.json()
 
@@ -98,7 +98,7 @@ export const getStaticProps = async ({ params, locale }) => {
   const correctLocale = locale === 'sv' ? [] : locale
 
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/produkter?slug=${params.slug}`
+    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/produkter?slug=${params.slug}&_=${Date.now()}`
   )
   const response = await data.json()
 

@@ -10,7 +10,7 @@ export const getStaticPaths = async (context) => {
   const currentLang = locale === 'sv' ? '' : locale
 
   const flexibleContentData = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}${currentLang}/wp-json/wp/v2/pages?&_fields=slug`
+    `${process.env.NEXT_PUBLIC_WP_URL}${currentLang}/wp-json/wp/v2/pages?&_fields=slug&_=${Date.now()}`
   )
 
   let slugData = []
