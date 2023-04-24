@@ -12,6 +12,5 @@ export const getNyheter = async (locale) => {
       Pragma: 'no-cache'
     }
   })
-
   return response.data
 }

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getNyheter } from '@/graphql/PostTypes/news'
 
 const Home = ({ response }) => {
+  console.log(response)
   return (
     <div className="bg-white py-24 sm:py-32 mt-3 flex flex-col m-3">
       {response.map((data, index) => {
