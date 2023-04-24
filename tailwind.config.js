@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['Exo 2', 'sans-serif'],
-        body: ['Poppins', 'sans-serif'],
-        a: ['Climate Crisise', 'cursive']
+        heading: ['EB Garamond', 'sans-serif'],
+        body: ['Montserrat', 'sans-serif'],
+        a: ['Montserrat', 'sans-serif']
       }
     }
   },

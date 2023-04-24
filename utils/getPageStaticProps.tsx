@@ -1,12 +1,10 @@
-import { cleanAndTransformACFBlocks } from './cleanAndTransformBlocks'
-import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getAllSettings } from '@/graphql/Settings/allSettings'
-import { getBuilder } from '@/graphql/Templates/contentBuilder'
 import {
   getACFmenu,
   getFlexibleContent
 } from '@/pages/api/RESTAPI/fetch'
 import { revalidate } from '@/pages/nyheter'
+import { getOptions } from '@/graphql/Templates/FETCHOptions'
 
 revalidate
 
@@ -19,27 +17,20 @@ export const getPageStaticProps = async (context) => {
   const currentLang = locale === 'sv' ? '' : locale
   const uriWithSlash = uri === '/' ? 'hem' : uri
 
-  const ThemeSettings = await getThemeSettings()
   const allSettings = await getAllSettings()
-  const Builder = await getBuilder(uri)
   const menuItems = await getACFmenu()
+  const options = await getOptions()
   const flexibleContent = await getFlexibleContent(
     currentLang,
     uriWithSlash
   )
 
-  const builder = cleanAndTransformACFBlocks(
-    Builder.nodeByUri?.template?.builder?.contentBuilder
-  )
-
   return {
     props: {
       allSettings: allSettings,
-      ThemeSettings: ThemeSettings?.props,
-      Builder: builder,
       flexibleContent,
-      socials: ThemeSettings.props?.socials,
-      menuItems
+      menuItems,
+      options: options
     },
     revalidate: 10
   }

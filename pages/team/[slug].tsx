@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 import client from '@/lib/apollo-client'
 import { Team } from 'interfaces/team'
 import { getThemeSettings } from '@/graphql/Settings/themeSettings'
-import { getMainMenu } from '@/graphql/Templates/mainMenu'
+import { getOptions } from '@/graphql/Templates/FETCHOptions'
 
 type Props = {
   team?: Team
@@ -54,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props> = async ({
   params
 }) => {
-  const menuItems = await getMainMenu()
+  const options = await getOptions()
   const ThemeSettings = await getThemeSettings()
   const { data } = await client.query({
     query: gql`
@@ -77,10 +77,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   return {
     props: {
       team: data?.teamBy,
-      menuItems,
-      ThemeSettings: ThemeSettings?.props?.ThemeSettings,
-      allSettings: ThemeSettings?.props,
-      socials: ThemeSettings.props?.socials
+      options,
+      allSettings: ThemeSettings?.props
     }
   }
 }

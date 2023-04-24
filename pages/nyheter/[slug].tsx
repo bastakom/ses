@@ -1,11 +1,9 @@
 import Layout from '@/components/Template/Layout/Layout'
-import { getThemeSettings } from '@/graphql/Settings/themeSettings'
-import { getMainMenu } from '@/graphql/Templates/mainMenu'
+import { getOptions } from '@/graphql/Templates/FETCHOptions'
 
 export const revalidate = 10
 
-const NewsPage = ({ response, mainMenu }) => {
-  console.log(mainMenu)
+const NewsPage = ({ response }) => {
   const data = response.map((data) => data)
   return (
     <Layout>
@@ -44,8 +42,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params, locale }) => {
-  const menuItems = await getMainMenu()
-  const ThemeSettings = await getThemeSettings()
+  const options = await getOptions()
   const correctLocale = locale === 'sv' ? [] : locale
 
   const data = await fetch(
@@ -60,8 +57,7 @@ export const getStaticProps = async ({ params, locale }) => {
   return {
     props: {
       response,
-      menuItems,
-      ThemeSettings: ThemeSettings.props
+      options
     },
     revalidate: 10
   }

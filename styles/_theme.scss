@@ -1,9 +1,12 @@
 // Theme Palettes
 $background: #fefefe;
 $secondary__background: #0a0a0a;
-$primary: #3a3a3a;
-$secondary: #3a3a3a;
-$font-family-heading: 'Exo 2', sans-serif;
+$primary: #000000;
+$secondary: #000000;
+$font-family-heading: 'EB Garamond', sans-serif;
+$font-family-nav: 'EB Garamond', sans-serif;
+$font-family-href: 'Montserrat', sans-serif;
+$font-family-paragraph: 'Montserrat', sans-serif;
 
 // Size
 
@@ -12,20 +15,26 @@ $heading: 30px;
 $small_header: 25px;
 $smallest_header: 18px;
 $paragraph: 16px;
+$socialSize: 18px;
 
 // Main Menu
-$textColor: '#3a3a3a';
-$textHover: '#3a3a3a';
+$textColor: '#000000';
+$textHover: '#000000';
 
 // blocks
 $overlay: rgba(0, 0, 0, 0.2);
 
 // Link
-$link: #fefefe;
+$link: #000000;
 
 // footer
 
-$bg-footer: #3a3a3a;
-$text-footer: #fefefe;
+$bg-footer: #fff;
+$text-footer: #000000;
 $socials-footer: #fefefe;
 $bg-socials-footer: #121212;
+
+// hero
+
+$bg-hero-text: #fff;
+$bg-hero-text-size: 22px;

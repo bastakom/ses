@@ -1,5 +1,3 @@
-import { Socials } from 'interfaces/themeSettings'
-import React, { FC } from 'react'
 import {
   FaInstagram,
   FaTwitter,
@@ -9,16 +7,16 @@ import {
 } from 'react-icons/fa'
 import { MdFacebook } from 'react-icons/md'
 
-interface SocialsProps {
-  icons?: Socials
-}
-
-const Socials: FC<SocialsProps> = ({ icons }) => {
+const Socials = ({ socials }) => {
+  const icons = socials.Socials
   return (
     <ul className="flex socials">
       {icons?.facebook && (
         <li>
-          <a href={`${icons?.facebook}`} className="hover:text-blue-600">
+          <a
+            href={`${icons?.facebook}`}
+            className="hover:text-blue-600"
+          >
             <MdFacebook />
           </a>
         </li>
@@ -26,13 +24,16 @@ const Socials: FC<SocialsProps> = ({ icons }) => {
       {icons?.linkedin && (
         <li>
           <a href={`${icons?.linkedin}`}>
-            <FaLinkedinIn />
+            LinkedIn
           </a>
         </li>
       )}
       {icons?.instagram && (
         <li>
-          <a href={`${icons?.instagram}`} className="hover:text-orange-600">
+          <a
+            href={`${icons?.instagram}`}
+            className="hover:text-orange-600"
+          >
             <FaInstagram />
           </a>
         </li>

@@ -2,10 +2,9 @@ import Image from 'next/image'
 import { GetStaticProps } from 'next'
 import { Team } from 'interfaces/team'
 import { getTeams } from '@/graphql/PostTypes/teams'
-import { getMainMenu } from '@/graphql/Templates/mainMenu'
-import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import placeholder from '../assets/images/placeholder.jpeg'
 import Link from 'next/link'
+import { getOptions } from '@/graphql/Templates/FETCHOptions'
 
 type Props = {
   teams?: Team[]
@@ -20,8 +19,8 @@ const Home: React.FC<Props> = ({ teams }) => {
             Meet our leadership
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae
-            elementum enim vitae ullamcorper suspendisse.
+            Libero fames augue nisl porttitor nisi, quis. Id ac elit
+            odio vitae elementum enim vitae ullamcorper suspendisse.
           </p>
         </div>
         <ul
@@ -71,15 +70,13 @@ const Home: React.FC<Props> = ({ teams }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
+  const options = await getOptions()
   const teams = await getTeams()
-  const menuItems = await getMainMenu()
-  const ThemeSettings = await getThemeSettings()
 
   return {
     props: {
       teams,
-      menuItems,
-      ThemeSettings: ThemeSettings.props
+      options
     }
   }
 }

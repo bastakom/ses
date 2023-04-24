@@ -32,11 +32,6 @@ export default GET_THEMESETTINGS
 export const getThemeSettings = async () => {
   const { data } = await client.query({ query: GET_THEMESETTINGS })
   return {
-    props: {
-      ThemeSettings: data.acfOptionsThemeSettings?.ThemeSettings,
-      socials:
-        data.acfOptionsThemeSettings?.ThemeSettings?.contactInfo?.socials,
-      logo: data.acfOptionsThemeSettings?.ThemeSettings?.logotype.sourceUrl
-    }
+    props: {}
   }
 }

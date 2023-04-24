@@ -23,6 +23,7 @@
       "@/types/*": ["types/*"],
       "@/styles/*": ["styles/*"],
       "@/Blocks/*": ["components/Blocks/*"],
+      "@/assets/*": ["assets/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/mapMainMenuItems.js", "components/ACFBlocks/Hero", "pages/404.js"],

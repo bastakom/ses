@@ -18,8 +18,10 @@ const ACFBlockRender = ({ flexibleContent }) => {
                 sub_title,
                 presentation_info,
                 settings,
-                video
+                video,
+                padding
               } = data
+
               return (
                 <>
                   <Hero
@@ -33,6 +35,7 @@ const ACFBlockRender = ({ flexibleContent }) => {
                     content={presentation_info}
                     subtitle={sub_title}
                     justify={settings.justify_content_}
+                    padding={padding}
                   />
                 </>
               )

@@ -4,12 +4,71 @@
   font-family: $font-family-heading;
   background: $bg-footer;
 
+  .navigator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      color: $text-footer;
+      font-size: 12px;
+      padding: 20px 30px 0 30px;
+      margin-top: 20px;
+      text-transform: uppercase;
+      font-weight: normal;
+      letter-spacing: 1.2px;
+    }
+  }
+
+  .header__line {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    h3 {
+      font-size: 15px;
+      letter-spacing: 2.1px;
+      font-weight: 500;
+    }
+    .line {
+      width: 32px;
+      height: 0;
+      border: 1px solid $text-footer;
+    }
+  }
+
+  h2 {
+    letter-spacing: 3.92px;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
   .socials {
-    color: $socials-footer;
-    background: $bg-socials-footer;
+    font-size: $socialSize;
+    a {
+      color: $text-footer;
+      font-family: $font-family-heading;
+      border-bottom: 1px solid gold;
+      padding-bottom: 5px;
+      font-style: italic;
+    }
+
+    p {
+      color: $text-footer;
+      font-family: $font-family-heading;
+      font-style: italic;
+    }
     svg {
       font-size: 25px;
       margin: 10px;
     }
+  }
+
+  .copywrite__ {
+    letter-spacing: 1px;
+    color: $text-footer;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0px 50px 20px 0;
   }
 }

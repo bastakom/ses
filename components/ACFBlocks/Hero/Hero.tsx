@@ -11,7 +11,8 @@ const Hero = ({
   height,
   justify,
   noContent,
-  imageVideo
+  imageVideo,
+  padding
 }) => {
   const textAlign =
     justify === 'start'
@@ -23,12 +24,18 @@ const Hero = ({
       : null
 
   return (
-    <div className={`${styles.cover} justify-${justify}`}>
+    <div
+      className={`${styles.cover} justify-${justify}`}
+      style={{
+        paddingLeft: `${padding.p_left}px`,
+        paddingRight: `${padding.p_right}px`,
+      }}
+    >
       {imageVideo === '0' ? (
         <div
           style={{
             height: `${height}vh`,
-            width: '100vw',
+            width: '100%',
             position: 'relative'
           }}
         >

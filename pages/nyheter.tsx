@@ -1,12 +1,10 @@
-import { getMainMenu } from '@/graphql/Templates/mainMenu'
-import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import Link from 'next/link'
 import { getNyheter } from '@/graphql/PostTypes/news'
+import { getOptions } from '@/graphql/Templates/FETCHOptions'
 
 export const revalidate = 10
 
 const Home = ({ response }) => {
-  console.log(response)
   return (
     <div className="bg-white py-24 sm:py-32 mt-3 flex flex-col m-3">
       {response.map((data, index) => {
@@ -21,15 +19,13 @@ const Home = ({ response }) => {
 }
 
 export const getStaticProps = async ({ locale }) => {
-  const ThemeSettings = await getThemeSettings()
-  const menuItems = await getMainMenu()
+  const options = await getOptions()
   const response = await getNyheter(locale)
 
   return {
     props: {
       response,
-      ThemeSettings: ThemeSettings.props,
-      menuItems
+      options
     },
     revalidate: 10
   }

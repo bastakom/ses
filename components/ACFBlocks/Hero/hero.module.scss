@@ -22,5 +22,20 @@
   .image__info {
     max-width: 50%;
     padding: 20px;
+
+    h1 {
+      font-family: $font-family-paragraph;
+      font-weight: bolder;
+      font-size: 42px;
+      letter-spacing: 5.88px;
+      color: $bg-hero-text;
+    }
+
+    p,
+    h2 {
+      font-family: $font-family-heading;
+      color: $bg-hero-text;
+      font-size: $bg-hero-text-size;
+    }
   }
 }

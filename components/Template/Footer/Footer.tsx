@@ -1,50 +1,45 @@
-import React, { FC } from 'react'
-import { ThemeSettings } from 'interfaces/themeSettings'
-import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import Socials from './Socials'
 import styles from './footer.module.scss'
+import Logo from 'assets/svg/logo'
 
-interface Props {
-  ThemeSettings?: ThemeSettings
-  data?: any
-  socials?: any
-  logo: string
-}
-
-const Footer: FC<Props> = ({ socials, logo }) => {
+const Footer = ({ options }) => {
   return (
-    <footer className={styles.footer}>
-      <div className={`h-72 w-full flex flex-col justify-center`}>
-        <div className="flex flex-wrap text-white w-full p-10">
-          <div className="w-2/5">
-            {logo ? (
-              <motion.div
-                initial={{ rotateZ: 0 }}
-                animate={{ rotateZ: 360 }}
-                style={{ width: '145px' }}
-              >
-                <Image
-                  src={logo}
-                  width="150"
-                  quality={100}
-                  height="100"
-                  alt="alt"
-                />
-              </motion.div>
-            ) : null}
+    <footer className={`${styles.footer} pt-7`}>
+      <div className={` w-full flex flex-col justify-around`}>
+        <div className="flex justify-around text-white gap-10 w-full p-10 flex-col items-center">
+          <div className={styles.header__line}>
+            <div className={styles.line} />
+            <h3 className="text-black pl-3 pr-3">
+              SAFETY IS OUR CAPABILITY.
+            </h3>
+            <div className={styles.line} />
           </div>
-          <div className="w-1/5"> Menu </div>
-          <div className="w-1/5"> Menu </div>
-          <div className="w-1/5"> Menu </div>
+          <Logo width="55" height="55" />
+          <h2 className="">{options.site__title}</h2>
+          <div className={`${styles.navigator}`}>
+            {options.menu.map((item, index) => {
+              const {
+                menu_item: { title, url, target }
+              } = item
+              return (
+                <Link href={url} target={target} key={index}>
+                  {title}
+                </Link>
+              )
+            })}
+          </div>
+          <div className={`${styles.socials} flex gap-2`}>
+            <p>Följ oss</p>
+            <Socials socials={options.contact_info} />
+          </div>
         </div>
       </div>
-      <div
-        className={`pr-20 flex justify-between items-center p-3 ${styles.socials}`}
-      >
-        <div>Copy right All rights reserved</div>
-        {socials && <Socials icons={socials} />}
+
+      <div className={`flex justify-end items-center`}>
+        <p className={`${styles.copywrite__}`}>
+          © 2023 SES PROTECTION/SES GROUP
+        </p>
       </div>
     </footer>
   )

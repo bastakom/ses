@@ -1,7 +1,6 @@
-import { getMainMenu } from '@/graphql/Templates/mainMenu'
-import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getProdukter } from '@/graphql/PostTypes/produkter'
 import Link from 'next/link'
+import { getOptions } from '@/graphql/Templates/FETCHOptions'
 
 const Home = ({ response }) => {
   return (
@@ -18,15 +17,13 @@ const Home = ({ response }) => {
 }
 
 export const getStaticProps = async ({ locale }) => {
+  const options = await getOptions()
   const response = await getProdukter(locale)
-  const menuItems = await getMainMenu()
-  const ThemeSettings = await getThemeSettings()
 
   return {
     props: {
       response,
-      ThemeSettings: ThemeSettings.props,
-      menuItems
+      options
     },
     revalidate: 10
   }

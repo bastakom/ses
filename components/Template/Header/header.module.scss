@@ -1,0 +1,38 @@
+@import '@/styles/theme';
+
+.navigator {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+
+  .logo__type {
+    font-family: $font-family-paragraph;
+    letter-spacing: 1.4px;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  .href {
+    font-family: $font-family-nav;
+    border-left: 1px solid black;
+    padding: 16px 15px;
+    color: #000000;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .lang {
+    font-family: $font-family-nav;
+    padding: 14px 0 14px 5px;
+    color: #000000;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  .image__lang {
+    border-left: 1px solid #000000;
+    padding-left: 10px;
+    min-width: 120px;
+    img {
+      padding-right: 10px;
+    }
+  }
+}
