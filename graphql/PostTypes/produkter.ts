@@ -11,9 +11,5 @@ export const getProdukter = async (locale) => {
   )
   const response = await data.json()
 
-  return {
-    props: {
-      response
-    }
-  }
+  return response
 }
