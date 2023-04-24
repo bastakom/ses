@@ -16,19 +16,21 @@ const Footer = ({ options }) => {
             <div className={styles.line} />
           </div>
           <Logo width="55" height="55" />
-          <h2 className="">{options.site__title}</h2>
-          <div className={`${styles.navigator}`}>
-            {options.menu.map((item, index) => {
-              const {
-                menu_item: { title, url, target }
-              } = item
-              return (
-                <Link href={url} target={target} key={index}>
-                  {title}
-                </Link>
-              )
-            })}
-          </div>
+          <h2 className="">{options?.site__title || null}</h2>
+          {options.menu ? (
+            <div className={`${styles.navigator}`}>
+              {options?.menu.map((item, index) => {
+                const {
+                  menu_item: { title, url, target }
+                } = item
+                return (
+                  <Link href={url} target={target} key={index}>
+                    {title}
+                  </Link>
+                )
+              })}
+            </div>
+          ) : null}
           <div className={`${styles.socials} flex gap-2`}>
             <p>Följ oss</p>
             <Socials socials={options.contact_info} />

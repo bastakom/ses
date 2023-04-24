@@ -9,11 +9,11 @@ const ErrorPage = () => {
 }
 
 export const getServersideProps = async () => {
-  const menuItems = await getMainMenu()
+  const options = await getOptions()
 
   return {
     props: {
-      menuItems
+      options
     }
   }
 }

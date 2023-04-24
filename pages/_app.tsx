@@ -11,13 +11,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       {pageProps?.options ? (
         <Header
-          options={pageProps.options}
+          options={pageProps?.options}
           newMenu={pageProps?.options}
         />
       ) : null}
       <PageTransition />
       <Component {...pageProps} key={router.pathname} />
-      <Footer options={pageProps.options} />
+      {pageProps?.options ? (
+        <Footer options={pageProps?.options} />
+      ) : null}
     </>
   )
 }

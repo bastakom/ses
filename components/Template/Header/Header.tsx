@@ -30,7 +30,7 @@ const Header = ({ options, newMenu }) => {
             className={`p-1 flex justify-center items-center ${styles.logo__type}`}
           >
             <Logo height="45" />
-            <h3 className="ml-2">{options.site__title}</h3>
+            <h3 className="ml-2">{options.site__title || ''}</h3>
           </div>
         </Link>
         <div className={`flex z-50 items-center`}>
@@ -65,9 +65,10 @@ const Header = ({ options, newMenu }) => {
           <div
             className={`${styles.image__lang} flex items-center justify-center`}
           >
-            {availableLocales.map((locale) => {
+            {availableLocales.map((locale, index) => {
               return (
                 <Link
+                  key={index}
                   href={asPath}
                   locale={locale}
                   className={styles.lang}
