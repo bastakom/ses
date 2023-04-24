@@ -4,6 +4,9 @@ import PageTransition from '@/components/Template/PageTransition/PageTransition'
 import { AppProps } from 'next/app'
 import '@/styles/global.scss'
 import { useRouter } from 'next/router'
+import { revalidate } from './nyheter'
+
+revalidate
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

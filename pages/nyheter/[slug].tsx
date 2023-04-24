@@ -2,6 +2,8 @@ import Layout from '@/components/Template/Layout/Layout'
 import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getMainMenu } from '@/graphql/Templates/mainMenu'
 
+export const revalidate = 10
+
 const NewsPage = ({ response, mainMenu }) => {
   console.log(mainMenu)
   const data = response.map((data) => data)
@@ -24,7 +26,9 @@ const NewsPage = ({ response, mainMenu }) => {
 }
 export const getStaticPaths = async () => {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/nyheter?_fields=slug&_=${Date.now()}`,
+    `${
+      process.env.NEXT_PUBLIC_WP_URL
+    }/wp-json/wp/v2/nyheter?_fields=slug&_=${Date.now()}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
   const slugData = await data.json()

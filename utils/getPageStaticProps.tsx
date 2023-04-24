@@ -6,6 +6,9 @@ import {
   getACFmenu,
   getFlexibleContent
 } from '@/pages/api/RESTAPI/fetch'
+import { revalidate } from '@/pages/nyheter'
+
+revalidate
 
 export const getPageStaticProps = async (context) => {
   const { locale } = context

@@ -2,8 +2,10 @@ import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import { getMainMenu } from '@/graphql/Templates/mainMenu'
 import Link from 'next/link'
 import Image from 'next/image'
+import { revalidate } from '../nyheter'
 
 const NewsPage = ({ response }) => {
+  revalidate
   const data = response.map((data) => data)
   return (
     <div>
@@ -78,7 +80,9 @@ const NewsPage = ({ response }) => {
 
 export const getStaticPaths = async () => {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/produkter?_fields=slug&_=${Date.now()}`,
+    `${
+      process.env.NEXT_PUBLIC_WP_URL
+    }/wp-json/wp/v2/produkter?_fields=slug&_=${Date.now()}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
   const slugData = await data.json()
@@ -99,7 +103,11 @@ export const getStaticProps = async ({ params, locale }) => {
   const correctLocale = locale === 'sv' ? [] : locale
 
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/produkter?slug=${params.slug}&_=${Date.now()}`,
+    `${
+      process.env.NEXT_PUBLIC_WP_URL
+    }${correctLocale}/wp-json/wp/v2/produkter?slug=${
+      params.slug
+    }&_=${Date.now()}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
   const response = await data.json()
@@ -109,7 +117,8 @@ export const getStaticProps = async ({ params, locale }) => {
       response,
       menuItems,
       ThemeSettings: ThemeSettings.props
-    }
+    },
+    revalidate: 10
   }
 }
 

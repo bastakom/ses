@@ -1,3 +1,4 @@
+import { revalidate } from '@/pages/nyheter'
 import dynamic from 'next/dynamic'
 import { FC, Suspense } from 'react'
 
@@ -9,8 +10,9 @@ const ACFBlockRender = dynamic(
   }
 ) as FC<any>
 
-const Page = ({ flexibleContent }) => {
+revalidate
 
+const Page = ({ flexibleContent }) => {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
