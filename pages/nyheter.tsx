@@ -3,6 +3,8 @@ import { getThemeSettings } from '@/graphql/Settings/themeSettings'
 import Link from 'next/link'
 import { getNyheter } from '@/graphql/PostTypes/news'
 
+export const revalidate = 10
+
 const Home = ({ response }) => {
   console.log(response)
   return (
@@ -28,7 +30,8 @@ export const getStaticProps = async ({ locale }) => {
       response,
       ThemeSettings: ThemeSettings.props,
       menuItems
-    }
+    },
+    revalidate: 10
   }
 }
 
