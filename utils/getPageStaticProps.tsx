@@ -6,7 +6,7 @@ import { getProdukter } from '@/graphql/PostTypes/produkter'
 
 revalidate
 
-export const getServerSideProps = async (context) => {
+export const getPageStaticProps = async (context) => {
   const { locale } = context
   const uri = context.params?.slug
     ? `/${context.params.slug.join('/')}/`
@@ -27,8 +27,7 @@ export const getServerSideProps = async (context) => {
     props: {
       flexibleContent,
       options: options ? options : null,
-      nyheter,
-      response
+      nyheter
     },
     revalidate: 5
   }

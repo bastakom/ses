@@ -1,6 +1,6 @@
 import Page from '@/components/Page/page'
-import { getServerSideProps } from '../utils/getPageStaticProps'
+import { getPageStaticProps } from '../utils/getPageStaticProps'
 
 export default Page
 
-export const getStaticProps = getServerSideProps
+export const getStaticProps = getPageStaticProps
