@@ -106,6 +106,9 @@ body {
 }
 
 #nprogress .spinner-icon {
-  border-top-color: black !important;
-  border-left-color: black !important;
+  border-top-color: $subtitle !important;
+  border-left-color: $subtitle !important;
+  position: fixed;
+  bottom: 30px;
+  right: 25px;
 }
