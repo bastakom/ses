@@ -46,11 +46,7 @@ export const getStaticProps = async ({ params, locale }) => {
   const correctLocale = locale === 'sv' ? [] : locale
 
   const data = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_WP_URL
-    }${correctLocale}/wp-json/wp/v2/nyheter?slug=${
-      params.slug
-    }&_=${Date.now()}`,
+    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/nyheter?slug=${params.slug}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
   const response = await data.json()
@@ -59,7 +55,7 @@ export const getStaticProps = async ({ params, locale }) => {
       response,
       options
     },
-    revalidate: 10
+    revalidate: 5
   }
 }
 

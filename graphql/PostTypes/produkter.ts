@@ -7,7 +7,7 @@ export const getProdukter = async (locale) => {
       headers: {
         'cache-control': 'no-cache',
         'x-vercel-cache': 'pass',
-        revalidate: '10'
+        revalidate: '1'
       }
     }
   )

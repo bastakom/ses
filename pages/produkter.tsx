@@ -25,7 +25,7 @@ export const getStaticProps = async ({ locale }) => {
       response,
       options
     },
-    revalidate: 10
+    revalidate: 5
   }
 }
 

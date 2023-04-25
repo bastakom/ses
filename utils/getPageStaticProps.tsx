@@ -1,6 +1,7 @@
 import { getFlexibleContent } from '@/pages/api/RESTAPI/fetch'
-import { revalidate } from '@/pages/nyheter'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
+import { revalidate } from '@/pages/nyheter'
+import { getNyheter } from '@/graphql/PostTypes/news'
 
 revalidate
 
@@ -14,6 +15,7 @@ export const getPageStaticProps = async (context) => {
   const uriWithSlash = uri === '/' ? 'hem' : uri
 
   const options = await getOptions()
+  const nyheter = await getNyheter(locale)
   const flexibleContent = await getFlexibleContent(
     currentLang,
     uriWithSlash
@@ -22,8 +24,9 @@ export const getPageStaticProps = async (context) => {
   return {
     props: {
       flexibleContent,
-      options: options ? options : null
+      options: options ? options : null,
+      nyheter
     },
-    revalidate: 10
+    revalidate: 5
   }
 }
