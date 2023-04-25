@@ -6,7 +6,7 @@ import { getFlexibleContent } from './api/RESTAPI/fetch'
 
 export default Page
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const { locale } = context
   const uri = context.params?.slug
     ? `/${context.params.slug.join('/')}/`
@@ -29,6 +29,7 @@ export const getServerSideProps = async (context) => {
       options: options ? options : null,
       nyheter,
       response
-    }
+    },
+    revalidate: 5
   }
 }
