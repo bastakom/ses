@@ -6,7 +6,7 @@ import { getProdukter } from '@/graphql/PostTypes/produkter'
 
 revalidate
 
-export const getPageStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { locale } = context
   const uri = context.params?.slug
     ? `/${context.params.slug.join('/')}/`

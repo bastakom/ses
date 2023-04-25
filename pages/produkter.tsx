@@ -16,7 +16,7 @@ const Home = ({ response }) => {
   )
 }
 
-export const getStaticProps = async ({ locale }) => {
+export const getServerSideProps = async ({ locale }) => {
   const options = await getOptions()
   const response = await getProdukter(locale)
 
@@ -24,8 +24,7 @@ export const getStaticProps = async ({ locale }) => {
     props: {
       response,
       options
-    },
-    revalidate: 5
+    }
   }
 }
 
