@@ -15,7 +15,9 @@ const NewsPage = ({ response }) => {
         const { products } = data
         return (
           <div className="m-5 flex gap-10" key={index}>
-            <div className={`${styles.carousel} w-5/12 uniq__carousel`}>
+            <div
+              className={`${styles.carousel} w-5/12 uniq__carousel`}
+            >
               <Carousel
                 showStatus={false}
                 showArrows={false}
@@ -27,7 +29,7 @@ const NewsPage = ({ response }) => {
                   ? data.products.product_pictures.map(
                       (doc, index) => {
                         return (
-                          <div>
+                          <div key={index}>
                             <img
                               className={styles.image}
                               src={doc.url}

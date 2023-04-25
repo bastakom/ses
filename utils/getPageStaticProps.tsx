@@ -4,7 +4,7 @@ import { getOptions } from '@/graphql/Templates/FETCHOptions'
 
 revalidate
 
-export const getServerPageProps = async (context) => {
+export const getPageStaticProps = async (context) => {
   const { locale } = context
   const uri = context.params?.slug
     ? `/${context.params.slug.join('/')}/`
