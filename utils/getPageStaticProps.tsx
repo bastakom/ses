@@ -27,7 +27,8 @@ export const getPageStaticProps = async (context) => {
     props: {
       flexibleContent,
       options: options ? options : null,
-      nyheter
+      nyheter,
+      response
     },
     revalidate: 5
   }

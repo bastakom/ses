@@ -1,35 +1,20 @@
+import { getPageStaticProps } from 'utils/getPageStaticProps'
 import Page from '../components/Page/page'
-import { getOptions } from '@/graphql/Templates/FETCHOptions'
-import { getNyheter } from '@/graphql/PostTypes/news'
-import { getProdukter } from '@/graphql/PostTypes/produkter'
-import { getFlexibleContent } from './api/RESTAPI/fetch'
 
 export default Page
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = getPageStaticProps
+export const getStaticPaths = async (context) => {
   const { locale } = context
-  const uri = context.params?.slug
-    ? `/${context.params.slug.join('/')}/`
-    : '/'
 
-  const currentLang = locale === 'sv' ? '' : locale
-  const uriWithSlash = uri === '/' ? 'hem' : uri
+  let slugData = []
 
-  const options = await getOptions()
-  const nyheter = await getNyheter(locale)
-  const response = await getProdukter(locale)
-  const flexibleContent = await getFlexibleContent(
-    currentLang,
-    uriWithSlash
-  )
+  const paths = slugData.map((item) => ({
+    params: { slug: item.slug }
+  }))
 
   return {
-    props: {
-      flexibleContent,
-      options: options ? options : null,
-      nyheter,
-      response
-    },
-    revalidate: 5
+    paths: paths,
+    fallback: 'blocking'
   }
 }
