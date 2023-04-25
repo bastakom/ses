@@ -4,9 +4,12 @@ import PageTransition from '@/components/Template/PageTransition/PageTransition'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import '@/styles/global.scss'
+import { Progress } from '@/components/Template/NProgress/Progress'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
+
+  Progress()
 
   return (
     <>
