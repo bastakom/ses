@@ -4,6 +4,17 @@ import styles from './footer.module.scss'
 import Logo from 'assets/svg/logo'
 
 const Footer = ({ options }) => {
+  const {
+    contact_info: {
+      president: {
+        email: presidentEmail,
+        name: presidentName,
+        phone: presidentPhone
+      },
+      technical_information: { email, name, phone }
+    }
+  } = options
+
   return (
     <footer className={`${styles.footer} pt-7`}>
       <div className={` w-full flex flex-col justify-around`}>
@@ -34,6 +45,28 @@ const Footer = ({ options }) => {
           <div className={`${styles.socials} flex gap-2`}>
             <p>Följ oss</p>
             <Socials socials={options.contact_info} />
+          </div>
+        </div>
+        <div className="flex flex-wrap justify-center gap-20 h-32">
+          <div
+            className={`${styles.footer__info} flex justify-center flex-col items-center`}
+          >
+            <h2 className="pb-2">TECHNICAL INFORMATION</h2>
+            <div className={`${styles.contanct__info} flex gap-2`}>
+              <h3>{email}</h3>
+              <h3>{name}</h3>
+              <h3>{phone}</h3>
+            </div>
+          </div>
+          <div
+            className={`${styles.footer__info} flex justify-center flex-col items-center `}
+          >
+            <h2 className="pb-2">PRESIDENT</h2>
+            <div className={`${styles.contanct__info} flex gap-2`}>
+              <h3>{presidentEmail}</h3>
+              <h3>{presidentName}</h3>
+              <h3>{presidentPhone}</h3>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,35 @@
 @import '@/styles/theme';
 
 .__image__content {
+  .title__overhead {
+    min-width: 150px;
+    max-width: 250px;
+    .title__ {
+      color: $secondary;
+      font-family: $font-family-heading;
+      padding: 8px 10px;
+      border: 2px solid $text-footer;
+      text-align: center;
+      letter-spacing: 1.5px;
+      font-size: $footerContact;
+      h3 {
+        background: #e8d49e;
+        padding: 0px 5px;
+      }
+    }
+    .sub__title {
+      color: $secondary;
+      font-family: $font-family-heading;
+      padding: 8px 10px;
+      border: 2px solid $text-footer;
+      border-bottom: none;
+      text-align: center;
+      width: 100%;
+      &:nth-child(1) {
+        border-right: none;
+      }
+    }
+  }
   .__image__ {
     position: relative !important;
     object-fit: cover;
@@ -12,7 +41,13 @@
   }
   color: $secondary;
 
-  &__content {
-    color: $secondary;
+  .content {
+    h2 {
+      letter-spacing: 3px;
+      font-family: $font-family-paragraph;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
   }
 }

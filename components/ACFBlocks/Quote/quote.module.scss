@@ -1,0 +1,16 @@
+@import '@/styles/theme';
+
+.quote {
+  font-size: 32px;
+  font-family: $font-family-nav;
+  p {
+    font-family: $font-family-nav;
+    font-style: italic;
+    letter-spacing: 4.48px;
+  }
+}
+
+.quote__person {
+  font-family: $font-family-nav;
+  font-size: $smallest_header;
+}

@@ -43,21 +43,16 @@ body {
 
 .button {
   a {
-    background: $primary;
-    color: $link;
-    border-radius: 5px;
+    background: $bg-button;
+    color: $bg-button-text;
     padding: 10px 20px;
     max-width: 150px;
     text-align: center;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: normal;
     text-transform: uppercase;
     transition: all 0.3s ease-in-out;
-    &:hover {
-      background: $link;
-      border: 2px solid $primary;
-      color: $primary;
-    }
+    font-family: $font-family-href;
   }
 }
 

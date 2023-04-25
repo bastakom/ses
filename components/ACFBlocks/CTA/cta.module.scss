@@ -1,0 +1,34 @@
+@import '@/styles/theme';
+
+.content {
+  h2 {
+    font-size: $h2;
+    letter-spacing: 4.48px;
+    color: $accent;
+    font-weight: bold;
+    max-width: 500px;
+  }
+
+  h3 {
+    color: $subtitle;
+    font-family: $font-family-paragraph;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    font-size: $footerContact;
+    margin-bottom: 10px;
+  }
+
+  .repeater {
+    p {
+      color: $accent;
+      font-family: $font-family-heading;
+      font-size: 22px;
+      font-weight: normal;
+    }
+    h4 {
+      color: $accent;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -9,24 +9,43 @@ const ImageACF = ({
   content,
   title,
   rowReverse,
-  button
+  button,
+  subtitle
 }) => {
-  const arr = rowReverse ? 'flex-row-reverse' : 'flex-row'
   return (
     <>
       <div
-        className={`${styles.__image__content} md:flex items-center gap-5 mt-10 mb-10 ${rowReverse}`}
+        className={`${styles.__image__content}  md:flex items-center gap-10 pt-10 pb-10`}
+        style={{
+          flexDirection: rowReverse === '1' ? 'row-reverse' : 'row'
+        }}
       >
         <div className={`md:w-1/2 ${styles.__image__}`}>
           <Image
             src={sourceUrl}
-            width={700}
+            width={800}
             height={500}
             alt={alt || 'image'}
+            quality={100}
           />
         </div>
-        <div className={`${styles.__content} md:w-1/2`}>
-          <h2>{title}</h2>
+        <div className={`${styles.__content} md:w-1/2 pr-20`}>
+          <div className={styles.title__overhead}>
+            {subtitle ? (
+              <div className="flex">
+                {subtitle.map((item) => {
+                  return (
+                    <h3 className={`${styles.sub__title}`}>
+                      {item.title}
+                    </h3>
+                  )
+                })}
+              </div>
+            ) : null}
+            <div className={styles.title__}>
+              <h3>{title}</h3>
+            </div>
+          </div>
           <p
             dangerouslySetInnerHTML={{
               __html: ToAbsoluteUrl(content)

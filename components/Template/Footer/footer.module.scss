@@ -64,6 +64,31 @@
     }
   }
 
+  .footer__info {
+
+    h2 {
+      font-family: $font-family-heading;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+    }
+    .contanct__info {
+      border: 1px solid black;
+      h3 {
+        border-left: 1px solid $text-footer;
+        font-family: $font-family-heading;
+        padding: 5px 10px;
+        font-size: $footerContact;
+        &:nth-child(1) {
+          border-left: none;
+        }
+        &:nth-child(3) {
+          letter-spacing: 1.5px;
+          font-family: $font-family-paragraph;
+        }
+      }
+    }
+  }
+
   .copywrite__ {
     letter-spacing: 1px;
     color: $text-footer;

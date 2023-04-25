@@ -1,6 +1,8 @@
 import { Accordion } from '../ACFBlocks/Accordion/Accordion'
+import CTA from '../ACFBlocks/CTA/CTA'
 import Hero from '../ACFBlocks/Hero/Hero'
 import ImageACF from '../ACFBlocks/ImageACF/ImageACF'
+import Quote from '../ACFBlocks/Quote/Quote'
 import Column from '../Column/Column'
 import Layout from '../Template/Layout/Layout'
 
@@ -47,21 +49,30 @@ const ACFBlockRender = ({ flexibleContent }) => {
                 image,
                 text,
                 settings__image_text,
+                full_width,
                 altText,
-                context: { title, button }
+                context: { button, bg },
+                sub_title,
+                title
               } = data
 
               return (
-                <Layout key={id}>
-                  <ImageACF
-                    sourceUrl={image}
-                    alt={altText}
-                    content={text}
-                    title={title}
-                    rowReverse={settings__image_text}
-                    button={button}
-                  />
-                </Layout>
+                <div
+                  className="w-full pt-10 pb-10"
+                  style={{ background: `${bg}` }}
+                >
+                  <Layout key={id} full={full_width}>
+                    <ImageACF
+                      sourceUrl={image}
+                      alt={altText}
+                      content={text}
+                      title={title}
+                      subtitle={sub_title}
+                      rowReverse={settings__image_text}
+                      button={button}
+                    />
+                  </Layout>
+                </div>
               )
             }
 
@@ -79,6 +90,37 @@ const ACFBlockRender = ({ flexibleContent }) => {
                 <Layout key={index}>
                   <Column columns={data} />
                 </Layout>
+              )
+            }
+
+            case 'quote': {
+              const { quote_person, Content, button } = data
+              return (
+                <Layout key={index}>
+                  <Quote
+                    person={quote_person}
+                    content={Content}
+                    button={button}
+                  />
+                </Layout>
+              )
+            }
+
+            case 'cta': {
+              const {
+                sub_title,
+                title,
+                bg,
+                text_with_title__button
+              } = data
+
+              return (
+                <CTA
+                  subtitle={sub_title}
+                  title={title}
+                  bg={bg}
+                  repeater={text_with_title__button}
+                />
               )
             }
 
