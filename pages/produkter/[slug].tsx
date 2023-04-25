@@ -2,6 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { revalidate } from '../nyheter'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { Carousel } from 'react-responsive-carousel'
+import styles from './slugprodukter.module.scss'
 
 const NewsPage = ({ response }) => {
   revalidate
@@ -11,65 +14,76 @@ const NewsPage = ({ response }) => {
       {...data.map((data, index) => {
         const { products } = data
         return (
-          <div className="m-5 w-8/12" key={index}>
-            <h2 className="text-4xl mb-5">{data.title.rendered}</h2>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: products.description
-              }}
-            />
-            {products.marknadsforingsblad
-              ? products.marknadsforingsblad.map((doc, index) => {
-                  return (
-                    <div
-                      className="flex flex-wrap items-center mt-4"
-                      key={index}
-                    >
-                      <h2 className="text-1xl mr-2">{doc.title}</h2>
-                      <Link
-                        href={`${doc.document.url}`}
-                        target="_blank"
+          <div className="m-5 flex gap-10" key={index}>
+            <div className={`${styles.carousel} w-5/12 uniq__carousel`}>
+              <Carousel
+                showStatus={false}
+                showArrows={false}
+                showIndicators={false}
+                dynamicHeight={false}
+                thumbWidth={200}
+              >
+                {data.products.product_pictures
+                  ? data.products.product_pictures.map(
+                      (doc, index) => {
+                        return (
+                          <div>
+                            <img
+                              className={styles.image}
+                              src={doc.url}
+                            />
+                          </div>
+                        )
+                      }
+                    )
+                  : null}
+              </Carousel>
+            </div>
+            <div className="w-7/12 p-5">
+              <h2 className="text-4xl mb-5">{data.title.rendered}</h2>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: products.description
+                }}
+              />
+              {products.marknadsforingsblad
+                ? products.marknadsforingsblad.map((doc, index) => {
+                    return (
+                      <div
+                        className="flex flex-wrap items-center mt-4"
+                        key={index}
                       >
-                        Document
-                      </Link>
-                    </div>
-                  )
-                })
-              : null}
+                        <h2 className="text-1xl mr-2">{doc.title}</h2>
+                        <Link
+                          href={`${doc.document.url}`}
+                          target="_blank"
+                        >
+                          Document
+                        </Link>
+                      </div>
+                    )
+                  })
+                : null}
 
-            {products?.produktblad
-              ? products.produktblad.map((doc, index) => {
-                  return (
-                    <div
-                      className="flex flex-wrap items-center mt-4"
-                      key={index}
-                    >
-                      <h2 className="text-1xl mr-2">{doc.title}</h2>
-                      <Link href={`${doc.document}`} target="_blank">
-                        Document
-                      </Link>
-                    </div>
-                  )
-                })
-              : null}
-
-            {products.product_pictures
-              ? products.product_pictures.map((doc, index) => {
-                  return (
-                    <div
-                      className="flex flex-wrap items-center mt-4"
-                      key={index}
-                    >
-                      <Image
-                        src={doc.url}
-                        width={450}
-                        height={450}
-                        alt={`${doc.alt}` || 'image'}
-                      />
-                    </div>
-                  )
-                })
-              : null}
+              {products?.produktblad
+                ? products.produktblad.map((doc, index) => {
+                    return (
+                      <div
+                        className="flex flex-wrap items-center mt-4"
+                        key={index}
+                      >
+                        <h2 className="text-1xl mr-2">{doc.title}</h2>
+                        <Link
+                          href={`${doc.document}`}
+                          target="_blank"
+                        >
+                          Document
+                        </Link>
+                      </div>
+                    )
+                  })
+                : null}
+            </div>
           </div>
         )
       })}
@@ -113,7 +127,7 @@ export const getStaticProps = async ({ params, locale }) => {
   return {
     props: {
       response,
-      options,
+      options
     },
     revalidate: 10
   }

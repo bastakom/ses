@@ -68,3 +68,27 @@ body {
 .columnthird {
   width: 30%;
 }
+
+// Carousel
+.uniq__carousel {
+  .carousel {
+    .thumbs-wrapper {
+      margin: 20px 0 !important;
+    }
+
+    ul.thumbs.animated {
+      display: flex;
+      gap: 5px;
+    }
+
+    .thumb {
+      margin-right: 0 !important;
+      border: none !important;
+      display: flex;
+      gap: 10px;
+      .selected {
+        border: none !important;
+      }
+    }
+  }
+}
