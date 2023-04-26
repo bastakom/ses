@@ -24,16 +24,10 @@
     letter-spacing: 1.2px;
     font-weight: normal;
     padding: 10px 20px;
-    background: linear-gradient(
-      to right,
-      $bg-button-hover 50%,
-      $bg-button 50%
-    );
-    background-size: 200% 100%;
-    background-position: right bottom;
+    background: $bg-button;
 
     &:hover {
-      background-position: 0 top;
+      background: $bg-button-hover;
     }
   }
 }

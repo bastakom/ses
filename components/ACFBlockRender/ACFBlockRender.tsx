@@ -3,6 +3,7 @@ import CTA from '../ACFBlocks/CTA/CTA'
 import Hero from '../ACFBlocks/Hero/Hero'
 import ImageACF from '../ACFBlocks/ImageACF/ImageACF'
 import Quote from '../ACFBlocks/Quote/Quote'
+import Sponsors from '../ACFBlocks/Sponsors/Sponsors'
 import Column from '../Column/Column'
 import Layout from '../Template/Layout/Layout'
 
@@ -114,7 +115,6 @@ const ACFBlockRender = ({ flexibleContent }) => {
                 text_with_title__button,
                 center
               } = data
-              console.log(data)
               return (
                 <CTA
                   center={center}
@@ -124,6 +124,18 @@ const ACFBlockRender = ({ flexibleContent }) => {
                   bg={bg}
                   repeater={text_with_title__button}
                 />
+              )
+            }
+
+            case 'sponsor': {
+              const { cooperation_partners, title } = data
+              return (
+                <Layout key={index}>
+                  <Sponsors
+                    galleri={cooperation_partners}
+                    title={title}
+                  />
+                </Layout>
               )
             }
 

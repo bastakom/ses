@@ -12,7 +12,6 @@ import Image from 'next/image'
 const NewsPage = ({ response, locale }) => {
   revalidate
   const data = response.map((data) => data)
-  console.log('data', data)
   return (
     <div>
       {...data.map((data, index) => {
