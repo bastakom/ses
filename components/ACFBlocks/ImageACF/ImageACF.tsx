@@ -29,7 +29,7 @@ const ImageACF = ({
             quality={100}
           />
         </div>
-        <div className={`${styles.__content} md:w-1/2 pr-20`}>
+        <div className={`${styles.__content} md:w-1/2 pr-10 pl-10`}>
           <div className={styles.title__overhead}>
             {subtitle ? (
               <div className="flex">

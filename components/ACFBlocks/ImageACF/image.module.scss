@@ -38,10 +38,13 @@
     color: $secondary;
     font-family: $font-family-heading;
     font-size: $heading;
+    max-width: 800px;
   }
-  color: $secondary;
 
   .content {
+    p {
+      max-width: 650px;
+    }
     h2 {
       letter-spacing: 3px;
       font-family: $font-family-paragraph;

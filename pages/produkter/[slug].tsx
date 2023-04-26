@@ -5,12 +5,14 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
 import { Accordion, Table } from '@mantine/core'
 import { AiOutlinePlus } from 'react-icons/ai'
+import placeholder from '@/assets/images/placeholder.jpeg'
 import styles from './slugprodukter.module.scss'
+import Image from 'next/image'
 
 const NewsPage = ({ response, locale }) => {
   revalidate
   const data = response.map((data) => data)
-
+  console.log('data', data)
   return (
     <div>
       {...data.map((data, index) => {
@@ -26,17 +28,19 @@ const NewsPage = ({ response, locale }) => {
         } = data
         return (
           <>
-            <div className={`${styles.pagination} ml-10 mt-1 flex gap-2`}>
+            <div
+              className={`${styles.pagination} ml-10 mt-1 flex gap-2`}
+            >
               <Link href="/produkter">
                 {locale === 'sv' ? 'Produkter' : 'Products'}
               </Link>
               {'>'}
-              <Link href="/produkter">{cat}</Link>
+              <Link href={`/produkter/#${cat}`}>{cat}</Link>
               {'>'}
               <a>{data.title.rendered}</a>
             </div>
             <div
-              className="m-5 flex gap-10 max-w-7xl justify-center"
+              className="m-3 ml-auto mr-auto flex gap-10 max-w-7xl justify-center"
               key={index}
             >
               <div
@@ -49,20 +53,28 @@ const NewsPage = ({ response, locale }) => {
                   dynamicHeight={false}
                   transitionTime={1000}
                 >
-                  {data.products.product_pictures
-                    ? data.products.product_pictures.map(
-                        (doc, index) => {
-                          return (
-                            <div key={index}>
-                              <img
-                                className={styles.image}
-                                src={doc.url}
-                              />
-                            </div>
-                          )
-                        }
-                      )
-                    : null}
+                  {data.products.product_pictures ? (
+                    data.products.product_pictures.map(
+                      (doc, index) => {
+                        return (
+                          <div key={index}>
+                            <img
+                              className={styles.image}
+                              src={doc.url}
+                            />
+                          </div>
+                        )
+                      }
+                    )
+                  ) : (
+                    <Image
+                      src={`${placeholder.src}`}
+                      className={styles.image}
+                      width={500}
+                      height={500}
+                      alt={'placeholder'}
+                    />
+                  )}
                 </Carousel>
               </div>
 
@@ -84,111 +96,113 @@ const NewsPage = ({ response, locale }) => {
                 </div>
 
                 <div className={styles.accordion}>
-                  <Accordion
-                    chevron={<AiOutlinePlus size="1rem" />}
-                    styles={{
-                      chevron: {
-                        '&[data-rotate]': {
-                          transform: 'rotate(45deg)'
+                  {table ? (
+                    <Accordion
+                      chevron={<AiOutlinePlus size="1rem" />}
+                      styles={{
+                        chevron: {
+                          '&[data-rotate]': {
+                            transform: 'rotate(45deg)'
+                          }
                         }
-                      }
-                    }}
-                  >
-                    <Accordion.Item value="TEKNISK">
-                      <Accordion.Control>
-                        {locale === 'sv'
-                          ? 'TEKNISK SPECIFIKATION'
-                          : 'TECHNICAL SPECIFICATION'}
-                      </Accordion.Control>
-                      <Accordion.Panel>
-                        <Table withColumnBorders withBorder>
-                          <tbody>
-                            {table.map((item, index) => {
-                              return (
-                                <tr
-                                  key={index}
-                                  style={{ width: '50%' }}
-                                >
-                                  <td>{item.title}</td>
-
-                                  {item.sub_information ? (
-                                    <td>{item.sub_information}</td>
-                                  ) : (
-                                    <td
-                                      dangerouslySetInnerHTML={{
-                                        __html: item.information
-                                      }}
-                                    />
-                                  )}
-                                </tr>
-                              )
-                            })}
-                          </tbody>
-                        </Table>
-                      </Accordion.Panel>
-                    </Accordion.Item>
-                    <Accordion.Item value="BESTÄLLNINGSINFORMATION">
-                      <Accordion.Control>
-                        {locale === 'sv'
-                          ? 'BESTÄLLNINGSINFORMATION'
-                          : 'ORDERING INFORMATION'}
-                      </Accordion.Control>
-                      <Accordion.Panel>
-                        <div
-                          className={styles.ordering__information}
-                          dangerouslySetInnerHTML={{
-                            __html: ordering_information
-                          }}
-                        />
-                      </Accordion.Panel>
-                    </Accordion.Item>
-                    <Accordion.Item value="MANUALER">
-                      <Accordion.Control>
-                        {locale === 'sv' ? 'MANUALER' : 'MANUALS'}
-                      </Accordion.Control>
-                      <Accordion.Panel>
-                        <div>
-                          {produktblad
-                            ? produktblad.map((doc, index) => {
+                      }}
+                    >
+                      <Accordion.Item value="TEKNISK">
+                        <Accordion.Control>
+                          {locale === 'sv'
+                            ? 'TEKNISK SPECIFIKATION'
+                            : 'TECHNICAL SPECIFICATION'}
+                        </Accordion.Control>
+                        <Accordion.Panel>
+                          <Table withColumnBorders withBorder>
+                            <tbody>
+                              {table.map((item, index) => {
                                 return (
-                                  <div
-                                    className={`flex flex-wrap items-center ${styles.links}`}
+                                  <tr
                                     key={index}
+                                    style={{ width: '50%' }}
                                   >
-                                    <Link
-                                      href={`${doc.document}`}
-                                      target="_blank"
-                                    >
-                                      {doc.title}
-                                    </Link>
-                                  </div>
-                                )
-                              })
-                            : null}
+                                    <td>{item.title}</td>
 
-                          {marknadsforingsblad
-                            ? marknadsforingsblad.map(
-                                (doc, index) => {
+                                    {item.sub_information ? (
+                                      <td>{item.sub_information}</td>
+                                    ) : (
+                                      <td
+                                        dangerouslySetInnerHTML={{
+                                          __html: item.information
+                                        }}
+                                      />
+                                    )}
+                                  </tr>
+                                )
+                              })}
+                            </tbody>
+                          </Table>
+                        </Accordion.Panel>
+                      </Accordion.Item>
+                      <Accordion.Item value="BESTÄLLNINGSINFORMATION">
+                        <Accordion.Control>
+                          {locale === 'sv'
+                            ? 'BESTÄLLNINGSINFORMATION'
+                            : 'ORDERING INFORMATION'}
+                        </Accordion.Control>
+                        <Accordion.Panel>
+                          <div
+                            className={styles.ordering__information}
+                            dangerouslySetInnerHTML={{
+                              __html: ordering_information
+                            }}
+                          />
+                        </Accordion.Panel>
+                      </Accordion.Item>
+                      <Accordion.Item value="MANUALER">
+                        <Accordion.Control>
+                          {locale === 'sv' ? 'MANUALER' : 'MANUALS'}
+                        </Accordion.Control>
+                        <Accordion.Panel>
+                          <div>
+                            {produktblad
+                              ? produktblad.map((doc, index) => {
                                   return (
                                     <div
                                       className={`flex flex-wrap items-center ${styles.links}`}
                                       key={index}
                                     >
                                       <Link
-                                        href={`${doc.document.url}`}
+                                        href={`${doc.document}`}
                                         target="_blank"
                                       >
                                         {doc.title}
                                       </Link>
                                     </div>
                                   )
-                                }
-                              )
-                            : null}
-                        </div>
-                      </Accordion.Panel>
-                    </Accordion.Item>
-                  </Accordion>
+                                })
+                              : null}
+
+                            {marknadsforingsblad
+                              ? marknadsforingsblad.map(
+                                  (doc, index) => {
+                                    return (
+                                      <div
+                                        className={`flex flex-wrap items-center ${styles.links}`}
+                                        key={index}
+                                      >
+                                        <Link
+                                          href={`${doc.document.url}`}
+                                          target="_blank"
+                                        >
+                                          {doc.title}
+                                        </Link>
+                                      </div>
+                                    )
+                                  }
+                                )
+                              : null}
+                          </div>
+                        </Accordion.Panel>
+                      </Accordion.Item>
+                    </Accordion>
+                  ) : null}
                 </div>
               </div>
             </div>

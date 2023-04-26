@@ -1,34 +1,98 @@
 @import '@/styles/theme';
+@import '@/styles/mixins.scss';
 
-.content {
-  h2 {
-    font-size: $h2;
-    letter-spacing: 4.48px;
+.url__link {
+  a {
     color: $accent;
-    font-weight: bold;
-    max-width: 500px;
+    font-family: 'EB Garamond', sans-serif;
+    border-bottom: 1px solid gold;
+    padding-bottom: 5px;
+    font-style: italic;
   }
+}
 
-  h3 {
-    color: $subtitle;
-    font-family: $font-family-paragraph;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    font-size: $footerContact;
-    margin-bottom: 10px;
-  }
-
-  .repeater {
-    p {
-      color: $accent;
-      font-family: $font-family-heading;
-      font-size: 22px;
-      font-weight: normal;
-    }
-    h4 {
+.with__background {
+  .content {
+    h2 {
+      font-size: $h2;
+      letter-spacing: 4.48px;
       color: $accent;
       font-weight: bold;
+      max-width: 500px;
+    }
+
+    h3 {
+      color: $subtitle;
+      font-family: $font-family-paragraph;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      font-size: $footerContact;
       margin-bottom: 10px;
     }
+
+    .repeater {
+      p {
+        color: $accent;
+        font-family: $font-family-heading;
+        font-size: 22px;
+        font-weight: normal;
+      }
+      h4 {
+        color: $accent;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.without__background {
+  height: 40vh;
+  margin-bottom: 80px;
+
+  .content {
+    .repeater {
+      p {
+        color: $primary;
+        font-family: $font-family-heading;
+        font-size: 22px;
+        font-weight: normal;
+        letter-spacing: 0px;
+        max-width: 600px;
+      }
+
+      h4 {
+        color: $primary;
+        font-weight: normal;
+        margin-bottom: 10px;
+        letter-spacing: 1.5px;
+      }
+    }
+  }
+}
+
+.mixins {
+  @include breakpoint(large) {
+    align-items: center;
+  }
+}
+
+.content__center {
+  max-width: 80rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  h2 {
+    max-width: 400px !important;
+  }
+
+  p {
+    max-width: 700px;
+  }
+
+  .url__link {
+    margin-top: 50px;
   }
 }
