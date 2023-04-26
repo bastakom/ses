@@ -33,9 +33,9 @@ const ImageACF = ({
           <div className={styles.title__overhead}>
             {subtitle ? (
               <div className="flex">
-                {subtitle.map((item) => {
+                {subtitle.map((item, index) => {
                   return (
-                    <h3 className={`${styles.sub__title}`}>
+                    <h3 key={index} className={`${styles.sub__title}`}>
                       {item.title}
                     </h3>
                   )
@@ -46,7 +46,7 @@ const ImageACF = ({
               <h3>{title}</h3>
             </div>
           </div>
-          <p
+          <div
             dangerouslySetInnerHTML={{
               __html: ToAbsoluteUrl(content)
             }}

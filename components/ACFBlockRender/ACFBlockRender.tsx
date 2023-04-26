@@ -116,6 +116,7 @@ const ACFBlockRender = ({ flexibleContent }) => {
 
               return (
                 <CTA
+                  key={index}
                   subtitle={sub_title}
                   title={title}
                   bg={bg}

@@ -74,7 +74,7 @@ const Header = ({ options, newMenu }) => {
                   className={styles.lang}
                 >
                   <div className={`flex `}>
-                    {locale === 'sv' ? (
+                    {locale === 'en' ? (
                       <div>
                         <Image
                           src={sweden}
@@ -89,11 +89,11 @@ const Header = ({ options, newMenu }) => {
                           src={english}
                           width="35"
                           height="35"
-                          alt="sweden"
+                          alt="english"
                         />
                       </div>
                     )}
-                    {locale}
+                    {locale === 'en' ? 'SV' : 'EN'}
                   </div>
                 </Link>
               )

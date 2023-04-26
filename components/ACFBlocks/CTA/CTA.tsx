@@ -1,7 +1,6 @@
 import styles from './cta.module.scss'
 
 const CTA = ({ repeater, title, subtitle, bg }) => {
-  console.log(repeater)
   return (
     <div
       className="h-screen flex flex-col justify-center bg-cover items-center"

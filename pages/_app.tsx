@@ -1,10 +1,10 @@
 import Footer from '@/components/Template/Footer/Footer'
 import Header from '@/components/Template/Header/Header'
 import PageTransition from '@/components/Template/PageTransition/PageTransition'
+import { Progress } from '@/components/Template/NProgress/Progress'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import '@/styles/global.scss'
-import { Progress } from '@/components/Template/NProgress/Progress'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

@@ -42,16 +42,16 @@ body {
 
 .button {
   a {
-    background: $bg-button;
+    font-family: $font-family-href;
+    text-transform: uppercase;
     color: $bg-button-text;
-    padding: 10px 20px;
+    background: $bg-button;
     max-width: 150px;
+    transition: all 0.3s ease-in-out;
     text-align: center;
     font-size: 12px;
     font-weight: normal;
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-    font-family: $font-family-href;
+    padding: 10px 20px;
   }
 }
 
@@ -68,6 +68,8 @@ body {
 .columnthird {
   width: 30%;
 }
+
+/* Custom CSS */
 
 // Carousel
 .uniq__carousel {
@@ -111,4 +113,54 @@ body {
   position: fixed;
   bottom: 30px;
   right: 25px;
+}
+
+// Matine Accordion Component
+
+.mantine-Accordion-itemTitle,
+.mantine-Accordion-label,
+.mantine-Accordion-content {
+  font-family: $font-family-heading;
+  padding-left: 0;
+}
+
+.mantine-Accordion-label {
+  font-weight: normal;
+  letter-spacing: 1.2px;
+  font-size: $smallLink;
+}
+
+.mantine-Accordion-item {
+  border-bottom: 0.3 solid #000000;
+
+  button {
+    padding-left: 0;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .mantine-Accordion-chevron {
+    font-size: 20px;
+    svg {
+      stroke-width: 30px;
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  svg {
+    color: $subtitle;
+  }
+}
+
+// Matrine Table
+
+tr,
+td {
+  font-family: $font-family-heading;
+
+  p {
+    font-family: $font-family-heading;
+  }
 }
