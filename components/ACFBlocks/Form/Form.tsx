@@ -13,14 +13,21 @@ export default function Contact({ locale, bg }) {
     surname: '',
     phone: '',
     foretag: '',
+    agree: false,
+    ovrigt: false,
+    karriar: false,
+    produkter: false,
+    samarbete: false,
     bestallning: false
   })
 
   const handleChange = (e) => {
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    console.log(e.target.checked)
-    setFormData({ ...formData, [e.target.name]: value })
+    const { name, checked } = e.target
+    if (e.target.type === 'checkbox') {
+      setFormData({ ...formData, [name]: checked })
+    } else {
+      setFormData({ ...formData, [name]: e.target.value })
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -33,8 +40,22 @@ export default function Contact({ locale, bg }) {
       phone,
       surname,
       foretag,
+      agree,
+      ovrigt,
+      karriar,
+      produkter,
+      samarbete,
       bestallning
     } = formData
+
+    notifications.show({
+      title: 'Skickar meddelande',
+      message: 'Var god vänta...',
+      color: 'blue',
+      autoClose: false,
+      loading: true,
+      id: 'loading'
+    })
 
     try {
       const res = await fetch('/api/contact', {
@@ -47,6 +68,11 @@ export default function Contact({ locale, bg }) {
           surname,
           phone,
           foretag,
+          agree,
+          ovrigt,
+          karriar,
+          produkter,
+          samarbete,
           bestallning
         })
       })
@@ -59,7 +85,12 @@ export default function Contact({ locale, bg }) {
           surname: '',
           phone: '',
           foretag: '',
-          bestallning: false
+          bestallning: false,
+          agree: false,
+          ovrigt: false,
+          karriar: false,
+          produkter: false,
+          samarbete: false
         })
         notifications.show({
           title: 'Tack för ditt meddelande',
@@ -109,7 +140,7 @@ export default function Contact({ locale, bg }) {
       console.error(err)
       notifications.show({
         title: 'Meddelandet kunde inte skickas',
-        message: 'Konkta oss på telefon istället.',
+        message: 'Kontakta oss på telefon istället.',
         icon: <MdErrorOutline />,
         color: 'red',
         styles: (theme) => ({
@@ -128,6 +159,10 @@ export default function Contact({ locale, bg }) {
           }
         })
       })
+    } finally {
+      setTimeout(() => {
+        notifications.hide('loading')
+      }, 500)
     }
   }
 
@@ -210,6 +245,7 @@ export default function Contact({ locale, bg }) {
               value={`${formData.bestallning}`}
               name="bestallning"
               radius="none"
+              checked={formData.bestallning}
               size="xs"
               onChange={handleChange}
             />
@@ -217,45 +253,51 @@ export default function Contact({ locale, bg }) {
               labelPosition="left"
               label="PRODUKTER"
               color="dark"
-              value={`${formData.bestallning}`}
+              value={`${formData.produkter}`}
+              checked={formData.produkter}
               name="produkter"
               radius="none"
               size="xs"
+              onChange={handleChange}
             />
             <Checkbox
               labelPosition="left"
               label="SAMARBETE"
               color="dark"
-              value={`${formData.bestallning}`}
+              value={`${formData.samarbete}`}
+              checked={formData.samarbete}
               name="samarbete"
               radius="none"
               size="xs"
+              onChange={handleChange}
             />
             <Checkbox
               label="KARRIÄR"
               labelPosition="left"
               color="dark"
-              value={`${formData.bestallning}`}
+              value={`${formData.karriar}`}
+              checked={formData.karriar}
               name="karriar"
               radius="none"
               size="xs"
+              onChange={handleChange}
             />
             <Checkbox
               label="ÖVRIGT"
               labelPosition="left"
               color="dark"
-              value={`${formData.bestallning}`}
+              value={`${formData.ovrigt}`}
+              checked={formData.ovrigt}
               name="ovrigt"
               radius="none"
               size="xs"
+              onChange={handleChange}
             />
           </div>
         </div>
 
         <div className={styles.message}>
-          <label htmlFor="message">
-            BESKRIV KORTFATTAT DITT ÄRENDE.
-          </label>
+          <label htmlFor="message">BESKRIV KORTFATTAT DITT ÄRENDE.</label>
           <textarea
             id="message"
             name="message"
@@ -269,16 +311,16 @@ export default function Contact({ locale, bg }) {
             label="JAG GODKÄNNER ATT MINA PERSONUPPGIFTER SPARAS PÅ ETT
               LAGENLIGT SÄTT"
             color="dark"
-            value={`${formData.bestallning}`}
+            defaultChecked={formData.agree}
+            checked={formData.agree}
             name="agree"
             radius="none"
             size="xs"
+            onChange={handleChange}
           />
         </div>
 
-        <button type="submit">
-          {locale === 'sv' ? 'Skicka' : 'Send'}
-        </button>
+        <button type="submit">{locale === 'sv' ? 'Skicka' : 'Send'}</button>
       </form>
     </div>
   )

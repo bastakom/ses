@@ -6,6 +6,7 @@ import ImageACF from '../ACFBlocks/ImageACF/ImageACF'
 import Quote from '../ACFBlocks/Quote/Quote'
 import Sponsors from '../ACFBlocks/Sponsors/Sponsors'
 import Column from '../Column/Column'
+import HeaderText from '../Template/HeaderText/HeaderText'
 import Layout from '../Template/Layout/Layout'
 
 const ACFBlockRender = ({ flexibleContent, locale }) => {
@@ -55,7 +56,8 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 altText,
                 context: { button, bg },
                 sub_title,
-                title
+                title,
+                p_size
               } = data
 
               return (
@@ -65,6 +67,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 >
                   <Layout key={id} full={full_width}>
                     <ImageACF
+                      p_size={p_size}
                       sourceUrl={image}
                       alt={altText}
                       content={text}
@@ -109,13 +112,8 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
             }
 
             case 'cta': {
-              const {
-                sub_title,
-                title,
-                bg,
-                text_with_title__button,
-                center
-              } = data
+              const { sub_title, title, bg, text_with_title__button, center } =
+                data
               return (
                 <CTA
                   center={center}
@@ -132,16 +130,19 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
               const { cooperation_partners, title } = data
               return (
                 <Layout key={index}>
-                  <Sponsors
-                    galleri={cooperation_partners}
-                    title={title}
-                  />
+                  <Sponsors galleri={cooperation_partners} title={title} />
                 </Layout>
               )
             }
 
             case 'contact_form': {
-              return <Form locale={locale} bg={data.bg} />
+              const { title, content } = data
+              return (
+                <>
+                  <HeaderText title={title} content={content || null} />
+                  <Form locale={locale} bg={data.bg} />
+                </>
+              )
             }
 
             default: {

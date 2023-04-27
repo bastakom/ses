@@ -29,6 +29,7 @@ const Hero = ({
       style={{
         paddingLeft: `${padding.p_left}px`,
         paddingRight: `${padding.p_right}px`,
+        paddingTop: `${padding.p_top}px`
       }}
     >
       {imageVideo === '0' ? (

@@ -90,6 +90,9 @@ body {
     ul.thumbs.animated {
       display: flex;
       gap: 5px;
+      @media screen and (max-width: 768px) {
+        display: inline-block;
+      }
     }
 
     .thumb {
@@ -97,6 +100,9 @@ body {
       border: none !important;
       display: flex;
       gap: 10px;
+      @media screen and (max-width: 768px) {
+        display: inline-block;
+      }
       .selected {
         border: none !important;
       }
@@ -173,5 +179,3 @@ td {
     font-family: $font-family-heading;
   }
 }
-
-// Form Test

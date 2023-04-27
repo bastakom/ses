@@ -1,7 +1,20 @@
 import nodemailer from 'nodemailer'
 
 export default async function handler(req, res) {
-  const { name, email, message, surname, phone } = req.body
+  const {
+    name,
+    email,
+    message,
+    surname,
+    phone,
+    foretag,
+    agree,
+    ovrigt,
+    karriar,
+    produkter,
+    samarbete,
+    bestallning
+  } = req.body
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -15,8 +28,28 @@ export default async function handler(req, res) {
   <div style="background-color: #f9f9f9; padding: 20px;">
     <h3 style="color: #333;">Nytt meddelande från ${name} ${surname} (${email})</h3>
 
-    <p style="color: #555;">${phone && `Telefon:`} ${phone}</p>
+    <p style="color: #555;">${
+      foretag && `<strong>Företag:</strong>`
+    } ${foretag}</p>
+    <p style="color: #555;">${phone && `<strong>Telefon:</strong>`} ${phone}</p>
+
+    <h3>Ärendet gäller: </h3>
+
+    ${ovrigt === true ? `<p style="color: #555;">Övrigt</p>` : ''}
+    ${karriar === true ? `<p style="color: #555;">Kärriar</p>` : ''}
+    ${produkter === true ? `<p style="color: #555;">Produkter</p>` : ''}
+    ${samarbete === true ? `<p style="color: #555;">Samarbete</p>` : ''}
+    ${bestallning === true && `<p style="color: #555;">Bestallning</p>`}
+
+    <h3>Meddelande</h3>
     <p style="color: #555;">${message}</p>
+    <br />
+    <br />
+    ${
+      agree === true
+        ? `<p style="color: #555;">${name} har godkänt att personuppgiftera spara på ett lagenligt sätt</p>`
+        : ''
+    }
   </div>
 `
 

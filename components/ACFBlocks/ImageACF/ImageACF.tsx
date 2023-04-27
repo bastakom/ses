@@ -10,7 +10,8 @@ const ImageACF = ({
   title,
   rowReverse,
   button,
-  subtitle
+  subtitle,
+  p_size
 }) => {
   return (
     <>
@@ -47,6 +48,7 @@ const ImageACF = ({
             </div>
           </div>
           <div
+            style={{ fontSize: `${p_size}px` }}
             dangerouslySetInnerHTML={{
               __html: ToAbsoluteUrl(content)
             }}
