@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  gap: 20px;
+  color: black;
+  input {
+    border: 1px solid black;
+  }
+  textarea {
+    border: 1px solid black;
+  }
+}

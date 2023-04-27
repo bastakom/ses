@@ -1,5 +1,6 @@
 import { Accordion } from '../ACFBlocks/Accordion/Accordion'
 import CTA from '../ACFBlocks/CTA/CTA'
+import Form from '../ACFBlocks/Form/Form'
 import Hero from '../ACFBlocks/Hero/Hero'
 import ImageACF from '../ACFBlocks/ImageACF/ImageACF'
 import Quote from '../ACFBlocks/Quote/Quote'
@@ -135,6 +136,15 @@ const ACFBlockRender = ({ flexibleContent }) => {
                     galleri={cooperation_partners}
                     title={title}
                   />
+                </Layout>
+              )
+            }
+
+            case 'contact_form': {
+              return (
+                <Layout key={index}>
+                  <h1>Form</h1>
+                 <Form />
                 </Layout>
               )
             }

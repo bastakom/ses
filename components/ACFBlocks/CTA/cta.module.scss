@@ -4,6 +4,7 @@
 .url__link {
   a {
     color: $accent;
+    font-size: 18px;
     font-family: 'EB Garamond', sans-serif;
     border-bottom: 1px solid gold;
     padding-bottom: 5px;
@@ -47,8 +48,12 @@
 }
 
 .without__background {
-  height: 40vh;
-  margin-bottom: 80px;
+  height: 100%;
+  margin-bottom: 110px;
+  margin-top: -30px;
+  @include breakpoint(small) {
+    margin-top: 0;
+  }
 
   .content {
     .repeater {
@@ -94,5 +99,8 @@
 
   .url__link {
     margin-top: 50px;
+    a {
+      font-size: 18px;
+    }
   }
 }

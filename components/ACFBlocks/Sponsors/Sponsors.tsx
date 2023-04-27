@@ -12,8 +12,8 @@ const Sponsors = ({ title, galleri }) => {
           return (
             <Image
               src={item}
-              width={119}
-              quality={100}
+              width={118}
+              quality={79}
               height={100}
               alt={''}
               key={index}

@@ -9,7 +9,7 @@ import placeholder from '@/assets/images/placeholder.jpeg'
 import styles from './slugprodukter.module.scss'
 import Image from 'next/image'
 
-const NewsPage = ({ response, locale }) => {
+const NewsPage = ({ response, locale, resProducts }) => {
   revalidate
   const data = response.map((data) => data)
   return (
@@ -25,6 +25,7 @@ const NewsPage = ({ response, locale }) => {
             ordering_information
           }
         } = data
+
         return (
           <>
             <div
@@ -43,14 +44,14 @@ const NewsPage = ({ response, locale }) => {
               key={index}
             >
               <div
-                className={`${styles.carousel} w-5/12 uniq__carousel`}
+                className={`${styles.carousel} w-6/12 uniq__carousel`}
               >
                 <Carousel
                   showStatus={false}
                   showArrows={false}
                   showIndicators={false}
                   dynamicHeight={false}
-                  transitionTime={1000}
+                  transitionTime={600}
                 >
                   {data.products.product_pictures ? (
                     data.products.product_pictures.map(
@@ -77,7 +78,7 @@ const NewsPage = ({ response, locale }) => {
                 </Carousel>
               </div>
 
-              <div className={`${styles.content} w-5/12 p-5`}>
+              <div className={`${styles.content} w-6/12 p-5`}>
                 <h4>{cat}</h4>
                 <h2 className="text-4xl mb-5">
                   {data.title.rendered}
@@ -97,6 +98,7 @@ const NewsPage = ({ response, locale }) => {
                 <div className={styles.accordion}>
                   {table ? (
                     <Accordion
+                    defaultValue='TEKNISK'
                       chevron={<AiOutlinePlus size="1rem" />}
                       styles={{
                         chevron: {
@@ -205,6 +207,35 @@ const NewsPage = ({ response, locale }) => {
                 </div>
               </div>
             </div>
+            <div
+              className={`flex max-w-7xl m-auto flex-col mt-10 ${styles.related__products}`}
+            >
+              {locale === 'sv' ? (
+                <h3>RELATERADE PRODUKTER</h3>
+              ) : (
+                <h3>RELATED PRODUCTS</h3>
+              )}
+              <div className="md:flex gap-10">
+                {resProducts &&
+                  resProducts
+                    .filter((item) => item.products.cat === cat)
+                    .map((item, index) => {
+                      return (
+                        <Link href={item.slug} key={index}>
+                          <Image
+                            src={
+                              item.products?.product_pictures?.[0]
+                                ?.url
+                            }
+                            width={400}
+                            height={400}
+                            alt={'Produktbild'}
+                          />
+                        </Link>
+                      )
+                    })}
+              </div>
+            </div>
           </>
         )
       })}
@@ -243,13 +274,19 @@ export const getStaticProps = async ({ params, locale }) => {
     }&_=${Date.now()}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
+
+  const resAllProducts = await fetch(
+    `${process.env.NEXT_PUBLIC_WP_URL}${correctLocale}/wp-json/wp/v2/produkter?slug`
+  )
   const response = await data.json()
+  const resProducts = await resAllProducts.json()
 
   return {
     props: {
       response,
       options,
-      locale
+      locale,
+      resProducts
     },
     revalidate: 5
   }
