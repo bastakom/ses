@@ -28,7 +28,8 @@ export const getPageStaticProps = async (context) => {
       flexibleContent,
       options: options ? options : null,
       nyheter,
-      response
+      response,
+      locale
     },
     revalidate: 5
   }

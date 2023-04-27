@@ -4,6 +4,8 @@ import PageTransition from '@/components/Template/PageTransition/PageTransition'
 import { Progress } from '@/components/Template/NProgress/Progress'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import { MantineProvider } from '@mantine/core'
+import { Notifications } from '@mantine/notifications'
 import '@/styles/global.scss'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -12,7 +14,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   Progress()
 
   return (
-    <>
+    <MantineProvider>
+      <Notifications />
       {pageProps?.options ? (
         <Header
           options={pageProps?.options}
@@ -24,6 +27,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       {pageProps?.options ? (
         <Footer options={pageProps?.options} />
       ) : null}
-    </>
+    </MantineProvider>
   )
 }

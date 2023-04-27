@@ -8,7 +8,7 @@ import Sponsors from '../ACFBlocks/Sponsors/Sponsors'
 import Column from '../Column/Column'
 import Layout from '../Template/Layout/Layout'
 
-const ACFBlockRender = ({ flexibleContent }) => {
+const ACFBlockRender = ({ flexibleContent, locale }) => {
   return (
     <div>
       {flexibleContent.map((flexible) => {
@@ -141,12 +141,7 @@ const ACFBlockRender = ({ flexibleContent }) => {
             }
 
             case 'contact_form': {
-              return (
-                <Layout key={index}>
-                  <h1>Form</h1>
-                 <Form />
-                </Layout>
-              )
+              return <Form locale={locale} bg={data.bg} />
             }
 
             default: {

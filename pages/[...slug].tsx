@@ -5,8 +5,6 @@ export default Page
 
 export const getStaticProps = getPageStaticProps
 export const getStaticPaths = async (context) => {
-  const { locale } = context
-
   let slugData = []
 
   const paths = slugData.map((item) => ({

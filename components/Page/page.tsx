@@ -12,11 +12,14 @@ const ACFBlockRender = dynamic(
 
 revalidate
 
-const Page = ({ flexibleContent }) => {
+const Page = ({ flexibleContent, locale }) => {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        <ACFBlockRender flexibleContent={flexibleContent} />
+        <ACFBlockRender
+          flexibleContent={flexibleContent}
+          locale={locale}
+        />
       </Suspense>
     </>
   )
