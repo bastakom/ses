@@ -4,9 +4,7 @@
 .quote {
   font-size: 32px;
   font-family: $font-family-nav;
-  @include breakpoint(small) {
-    margin: 0;
-  }
+
   p {
     font-family: $font-family-nav;
     font-style: italic;

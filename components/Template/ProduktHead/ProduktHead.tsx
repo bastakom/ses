@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import styles from './headertext.module.scss'
+import styles from './produkthead.module.scss'
 
 interface Props {
   title: string
   content?: string
 }
 
-const HeaderText: FC<Props> = ({ title, content }) => {
+const ProduktHead: FC<Props> = ({ title, content }) => {
   return (
     <div className={`${styles.container} flex flex-col items-center gap-10`}>
       <div className={`${styles.title}`}>
@@ -20,4 +20,4 @@ const HeaderText: FC<Props> = ({ title, content }) => {
   )
 }
 
-export default HeaderText
+export default ProduktHead

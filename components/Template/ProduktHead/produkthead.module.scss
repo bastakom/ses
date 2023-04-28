@@ -1,0 +1,18 @@
+@import '@/styles/theme';
+
+.container {
+  .title {
+    color: $secondary;
+    font-family: $font-family-heading;
+    padding: 8px 10px;
+    border: 2px solid $text-footer;
+    text-align: center;
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    margin-bottom: 50px;
+    h3 {
+      background: #e8d49e;
+      padding: 0px 5px;
+    }
+  }
+}

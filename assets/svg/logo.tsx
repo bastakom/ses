@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { motion } from 'framer-motion'
 
 interface Props {
   width?: string
@@ -7,6 +6,18 @@ interface Props {
 }
 
 export const Logo: FC<Props> = ({ width, height }) => {
+  const pathVariants = {
+    hidden: {
+      pathLength: 0
+    },
+    visible: {
+      pathLength: 1,
+      transition: {
+        duration: 2,
+        ease: 'easeInOut'
+      }
+    }
+  }
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

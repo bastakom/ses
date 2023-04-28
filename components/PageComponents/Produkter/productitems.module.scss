@@ -1,0 +1,62 @@
+@import '@/styles/theme';
+@import '@/styles/mixins';
+
+.container {
+  margin-top: 100px;
+
+  .inner_container {
+    .inner_container_head {
+      margin-left: 20px;
+      @include breakpoint(small) {
+        margin-left: 0px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: $h2;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 4.48px;
+        @include breakpoint(small) {
+          font-size: 25px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      }
+      p {
+        color: #4d4d4d;
+        font-size: 18px;
+        max-width: 800px;
+        @include breakpoint(small) {
+          font-size: 16px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  .item_container {
+    h2 {
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      font-weight: normal;
+      text-transform: uppercase;
+      margin: 20px 0 10px 0;
+    }
+
+    p {
+      color: #4d4d4d;
+      font-size: 18px;
+      letter-spacing: 0px;
+      font-family: $font-family-heading;
+      font-weight: normal;
+    }
+  }
+
+  .pagination {
+    @include breakpoint(small) {
+      font-size: 25px;
+      flex-direction: column;
+    }
+  }
+}

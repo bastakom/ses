@@ -33,7 +33,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           ) : null}
         </>
       ) : null}
-      <PageTransition />
+      {/* <PageTransition /> */}
       <Component {...pageProps} key={router.pathname} />
       {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
     </MantineProvider>
