@@ -16,7 +16,7 @@ const ImageACF = ({
   return (
     <>
       <div
-        className={`${styles.__image__content}  md:flex items-center gap-10 pt-10 pb-10`}
+        className={`${styles.__image__content}  md:flex items-center gap-10 md:pt-10 md:pb-10`}
         style={{
           flexDirection: rowReverse === '1' ? 'row-reverse' : 'row'
         }}

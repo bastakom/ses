@@ -10,7 +10,7 @@ const CTA = ({ repeater, title, subtitle, bg, center }) => {
       style={{ backgroundImage: `url(${bg})` }}
     >
       <div
-        className={`${bg ? 'max-w-7xl' : 'ml-10'} ${styles.content} ${
+        className={`${bg ? 'max-w-7xl' : 'md:ml-10'} ${styles.content} ${
           center === '1' ? `${styles.content__center}` : null
         }`}
       >

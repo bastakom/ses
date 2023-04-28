@@ -1,4 +1,5 @@
 @import '@/styles/theme';
+@import '@/styles/mixins';
 
 .accordion {
   max-width: 650px;
@@ -61,6 +62,10 @@
     max-width: 450px;
     text-transform: uppercase;
     font-weight: bold;
+
+    @include breakpoint(small) {
+      font-size: 20px;
+    }
   }
   .paragrah {
     p {
@@ -74,6 +79,10 @@
 
 .pagination {
   margin-top: 20px;
+  @include breakpoint(small) {
+    justify-content: center;
+  }
+
   a {
     font-size: $paragraph;
     letter-spacing: 0px;
@@ -84,11 +93,20 @@
 }
 
 .related__products {
+  img {
+    @include breakpoint(small) {
+      margin-bottom: 10px;
+    }
+  }
   h3 {
     margin-bottom: 20px;
     text-transform: uppercase;
     font-size: 15px;
     letter-spacing: 1.5px;
     font-weight: normal;
+  }
+
+  @include breakpoint(small) {
+    padding: 20px;
   }
 }

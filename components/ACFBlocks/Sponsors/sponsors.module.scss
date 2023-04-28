@@ -1,9 +1,20 @@
+@import '@/styles/mixins';
+
 .sponsor__ {
   border-bottom: 0.5px solid#000000;
+  .content {
+    @include breakpoint(small) {
+      flex-direction: column;
+    }
+  }
 
   .title {
     letter-spacing: 1.5px;
     color: #4d4d4d;
     font-size: 15px;
+  }
+
+  @include breakpoint(small) {
+    padding-bottom: 50px;
   }
 }

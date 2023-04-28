@@ -1,9 +1,13 @@
 @import '@/styles/theme';
+@import '@/styles/mixins';
 
 .__image__content {
   .title__overhead {
     min-width: 150px;
     max-width: 250px;
+    @include breakpoint(small) {
+      margin-top: 25px;
+    }
     .title__ {
       color: $secondary;
       font-family: $font-family-heading;
@@ -34,6 +38,7 @@
     position: relative !important;
     object-fit: cover;
   }
+
   h2 {
     color: $secondary;
     font-family: $font-family-heading;
@@ -53,6 +58,18 @@
       font-size: 32px;
       font-weight: bold;
       margin: 20px 0;
+      @include breakpoint(small) {
+        font-size: 18px;
+      }
     }
+  }
+}
+
+.__content {
+  @include breakpoint(small) {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
   }
 }

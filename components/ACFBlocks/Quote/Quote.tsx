@@ -3,7 +3,7 @@ import styles from './quote.module.scss'
 
 const Quote = ({ person, content, button }) => {
   return (
-    <div className="flex flex-col justify-center items-center text-center md:mt-28 mb-28">
+    <div className="flex flex-col justify-center items-center text-center md:mt-28 md:mb-28">
       <p
         className={styles.quote}
         dangerouslySetInnerHTML={{ __html: ToAbsoluteUrl(content) }}

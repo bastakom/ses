@@ -13,13 +13,23 @@
 }
 
 .with__background {
+  @include breakpoint(small) {
+    height: 100%;
+    padding: 100px 20px;
+  }
   .content {
+    @include breakpoint(small) {
+      text-align: center;
+    }
     h2 {
       font-size: $h2;
       letter-spacing: 4.48px;
       color: $accent;
       font-weight: bold;
       max-width: 500px;
+      @include breakpoint(small) {
+       max-width: 100%;
+      }
     }
 
     h3 {
@@ -32,6 +42,11 @@
     }
 
     .repeater {
+      @include breakpoint(small) {
+        flex-direction: column;
+        gap: 20px;
+      }
+
       p {
         color: $accent;
         font-family: $font-family-heading;
@@ -56,7 +71,16 @@
   }
 
   .content {
+    @include breakpoint(small) {
+      text-align: center;
+      padding: 0 20px;
+    }
     .repeater {
+      @include breakpoint(small) {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
       p {
         color: $primary;
         font-family: $font-family-heading;

@@ -6,10 +6,14 @@ import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
+import { useMediaQuery } from '@mantine/hooks'
+import DrawerHeader from '@/components/Template/Header/Drawer'
 import '@/styles/global.scss'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
+
+  const matches = useMediaQuery('(min-width: 56.25em)')
 
   Progress()
 
@@ -17,16 +21,21 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <MantineProvider>
       <Notifications />
       {pageProps?.options ? (
-        <Header
-          options={pageProps?.options}
-          newMenu={pageProps?.options}
-        />
+        <>
+          {matches ? (
+            <Header options={pageProps?.options} newMenu={pageProps?.options} />
+          ) : null}
+          {!matches ? (
+            <DrawerHeader
+              options={pageProps?.options}
+              newMenu={pageProps?.options}
+            />
+          ) : null}
+        </>
       ) : null}
       <PageTransition />
       <Component {...pageProps} key={router.pathname} />
-      {pageProps?.options ? (
-        <Footer options={pageProps?.options} />
-      ) : null}
+      {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
     </MantineProvider>
   )
 }

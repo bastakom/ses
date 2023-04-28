@@ -34,6 +34,7 @@ const Hero = ({
     >
       {imageVideo === '0' ? (
         <div
+          className={styles.hero__container}
           style={{
             height: `${height}vh`,
             width: '100%',

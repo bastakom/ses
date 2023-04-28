@@ -14,7 +14,7 @@ const Header = ({ options, newMenu }) => {
     locale === 'en' ? newMenu.menu__english_ : newMenu.menu_items
 
   return (
-    <div className="pt-6">
+    <div className={`${styles.navigation} pt-6`}>
       <div
         className={`items-center justify-between flex w-full pr-5 pl-5 ${styles.navigator}`}
       >

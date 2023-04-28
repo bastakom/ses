@@ -29,7 +29,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
         return (
           <>
             <div
-              className={`${styles.pagination} ml-10 mt-1 flex gap-2`}
+              className={`${styles.pagination} md:ml-10 mt-1 flex gap-2`}
             >
               <Link href="/produkter">
                 {locale === 'sv' ? 'Produkter' : 'Products'}
@@ -40,11 +40,11 @@ const NewsPage = ({ response, locale, resProducts }) => {
               <a>{data.title.rendered}</a>
             </div>
             <div
-              className="m-3 ml-auto mr-auto flex gap-10 max-w-7xl justify-center"
+              className="m-3 ml-auto mr-auto md:flex gap-10 max-w-7xl justify-center"
               key={index}
             >
               <div
-                className={`${styles.carousel} w-6/12 uniq__carousel`}
+                className={`${styles.carousel} md:w-6/12 uniq__carousel`}
               >
                 <Carousel
                   showStatus={false}
@@ -78,9 +78,9 @@ const NewsPage = ({ response, locale, resProducts }) => {
                 </Carousel>
               </div>
 
-              <div className={`${styles.content} w-6/12 p-5`}>
+              <div className={`${styles.content} md:w-6/12 p-5`}>
                 <h4>{cat}</h4>
-                <h2 className="text-4xl mb-5">
+                <h2 className="md:text-4xl mb-5">
                   {data.title.rendered}
                 </h2>
                 <div

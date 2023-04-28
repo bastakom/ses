@@ -1,4 +1,5 @@
 @import '@/styles/theme';
+@import '@/styles/mixins';
 
 .footer {
   font-family: $font-family-heading;
@@ -8,6 +9,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include breakpoint(small) {
+      flex-direction: column;
+    }
 
     a {
       color: $text-footer;
@@ -17,6 +21,9 @@
       text-transform: uppercase;
       font-weight: normal;
       letter-spacing: 1.2px;
+      @include breakpoint(small) {
+        margin-top: 10px;
+      }
     }
   }
 
@@ -29,7 +36,12 @@
       font-size: 15px;
       letter-spacing: 2.1px;
       font-weight: 500;
+      @include breakpoint(small) {
+        font-size: 12px;
+        padding: 0 2px;
+      }
     }
+
     .line {
       width: 32px;
       height: 0;
@@ -41,6 +53,9 @@
     letter-spacing: 3.92px;
     font-size: 28px;
     font-weight: 500;
+    @include breakpoint(small) {
+      font-size: 20px;
+     }
   }
 
   .socials {
@@ -65,7 +80,6 @@
   }
 
   .footer__info {
-
     h2 {
       font-family: $font-family-heading;
       font-size: 12px;
@@ -73,14 +87,24 @@
     }
     .contanct__info {
       border: 1px solid black;
+      @include breakpoint(small) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
       h3 {
         border-left: 1px solid $text-footer;
         font-family: $font-family-heading;
         padding: 5px 10px;
         font-size: $footerContact;
+
+        @include breakpoint(small) {
+          border: none;
+        }
+
         &:nth-child(1) {
           border-left: none;
         }
+
         &:nth-child(3) {
           letter-spacing: 1.5px;
           font-family: $font-family-paragraph;
@@ -95,5 +119,8 @@
     font-size: 10px;
     font-weight: 500;
     padding: 0px 50px 20px 0;
+    @include breakpoint(small) {
+      padding: 50px 0;
+    }
   }
 }

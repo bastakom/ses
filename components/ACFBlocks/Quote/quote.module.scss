@@ -1,12 +1,20 @@
 @import '@/styles/theme';
+@import '@/styles/mixins';
 
 .quote {
   font-size: 32px;
   font-family: $font-family-nav;
+  @include breakpoint(small) {
+    margin: 0;
+  }
   p {
     font-family: $font-family-nav;
     font-style: italic;
     letter-spacing: 4.48px;
+
+    @include breakpoint(small) {
+      padding: 20px;
+    }
   }
 }
 
