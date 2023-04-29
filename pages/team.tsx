@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { GetStaticProps } from 'next'
 import { Team } from 'interfaces/team'
 import { getTeams } from '@/graphql/PostTypes/teams'
-import placeholder from '../assets/images/placeholder.jpeg'
+import placeholder from '../assets/images/placeholder.png'
 import Link from 'next/link'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
 

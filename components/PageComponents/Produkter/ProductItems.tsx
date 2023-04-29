@@ -2,10 +2,17 @@ import ProduktHead from '@/components/Template/ProduktHead/ProduktHead'
 import Link from 'next/link'
 import styles from './productitems.module.scss'
 import Image from 'next/image'
-import placeholder from '@/assets/images/placeholder.jpeg'
+import placeholder from '@/assets/images/placeholder.png'
 import Layout from '@/components/Template/Layout/Layout'
+import { useState } from 'react'
+import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 
 const ProductItems = ({ response, options }) => {
+  const [loading, isLoaded] = useState(false)
+  setTimeout(() => {
+    isLoaded(true)
+  }, 1000)
+
   const skyddsmasker = response.map((data) => {
     const {
       products: { cat, product_pictures, description },
@@ -24,12 +31,14 @@ const ProductItems = ({ response, options }) => {
           <div className={`${styles.item_container}`}>
             <Link href={`/produkter/${data.slug}`}>
               <>
-                <Image
-                  src={product_pictures[0]?.url || placeholder}
-                  width={400}
-                  height={400}
-                  alt={'Produktbild'}
-                />
+                <LoadingSkeleton>
+                  <Image
+                    src={product_pictures[0]?.url || placeholder}
+                    width={400}
+                    height={400}
+                    alt={'Produktbild'}
+                  />
+                </LoadingSkeleton>
               </>
               <>
                 {rendered && <h2>{rendered}</h2>}
@@ -62,12 +71,14 @@ const ProductItems = ({ response, options }) => {
           <div className={`${styles.item_container}`}>
             <Link href={`/produkter/${data.slug}`}>
               <div>
-                <Image
-                  src={product_pictures[0]?.url || placeholder}
-                  width={400}
-                  height={400}
-                  alt={'Produktbild'}
-                />
+                <LoadingSkeleton>
+                  <Image
+                    src={product_pictures[0]?.url || placeholder}
+                    width={400}
+                    height={400}
+                    alt={'Produktbild'}
+                  />
+                </LoadingSkeleton>
               </div>
               <div>
                 {rendered && <h2>{rendered}</h2>}
@@ -101,12 +112,14 @@ const ProductItems = ({ response, options }) => {
           <div className={`${styles.item_container}`}>
             <Link href={`/produkter/${data.slug}`}>
               <>
-                <Image
-                  src={product_pictures[0]?.url || placeholder}
-                  width={400}
-                  height={400}
-                  alt={'Produktbild'}
-                />
+                <LoadingSkeleton>
+                  <Image
+                    src={product_pictures[0]?.url || placeholder}
+                    width={400}
+                    height={400}
+                    alt={'Produktbild'}
+                  />
+                </LoadingSkeleton>
               </>
               <>
                 {rendered && <h2>{rendered}</h2>}

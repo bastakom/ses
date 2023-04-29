@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 import styles from './image.module.scss'
+import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 
 const ImageACF = ({
   sourceUrl,
@@ -22,13 +23,15 @@ const ImageACF = ({
         }}
       >
         <div className={`md:w-1/2 ${styles.__image__}`}>
-          <Image
-            src={sourceUrl}
-            width={800}
-            height={500}
-            alt={alt || 'image'}
-            quality={100}
-          />
+          <LoadingSkeleton>
+            <Image
+              src={sourceUrl}
+              width={800}
+              height={500}
+              alt={alt || 'image'}
+              quality={100}
+            />
+          </LoadingSkeleton>
         </div>
         <div className={`${styles.__content} md:w-1/2 pr-10 pl-10`}>
           <div className={styles.title__overhead}>

@@ -3,11 +3,12 @@ import { revalidate } from '../nyheter'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
-import { Accordion, Table } from '@mantine/core'
+import { Accordion, Skeleton, Table } from '@mantine/core'
 import { AiOutlinePlus } from 'react-icons/ai'
-import placeholder from '@/assets/images/placeholder.jpeg'
+import placeholder from '@/assets/images/placeholder.png'
 import styles from './slugprodukter.module.scss'
 import Image from 'next/image'
+import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 
 const NewsPage = ({ response, locale, resProducts }) => {
   revalidate
@@ -28,9 +29,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
 
         return (
           <>
-            <div
-              className={`${styles.pagination} md:ml-10 mt-1 flex gap-2`}
-            >
+            <div className={`${styles.pagination} md:ml-10 mt-1 flex gap-2`}>
               <Link href="/produkter">
                 {locale === 'sv' ? 'Produkter' : 'Products'}
               </Link>
@@ -43,62 +42,55 @@ const NewsPage = ({ response, locale, resProducts }) => {
               className="m-3 ml-auto mr-auto md:flex gap-10 max-w-7xl justify-center"
               key={index}
             >
-              <div
-                className={`${styles.carousel} md:w-6/12 uniq__carousel`}
-              >
-                <Carousel
-                  showStatus={false}
-                  showArrows={false}
-                  showIndicators={false}
-                  dynamicHeight={false}
-                  transitionTime={600}
-                >
-                  {data.products.product_pictures ? (
-                    data.products.product_pictures.map(
-                      (doc, index) => {
+              <div className={`${styles.carousel} md:w-6/12 uniq__carousel`}>
+                <LoadingSkeleton>
+                  <Carousel
+                    showStatus={false}
+                    showArrows={false}
+                    showIndicators={false}
+                    dynamicHeight={false}
+                    transitionTime={600}
+                    swipeable={false}
+                  >
+                    {data.products.product_pictures ? (
+                      data.products.product_pictures.map((doc, index) => {
                         return (
                           <div key={index}>
-                            <img
-                              className={styles.image}
-                              src={doc.url}
-                            />
+                            <img className={styles.image} src={doc.url} />
                           </div>
                         )
-                      }
-                    )
-                  ) : (
-                    <Image
-                      src={`${placeholder.src}`}
-                      className={styles.image}
-                      width={500}
-                      height={500}
-                      alt={'placeholder'}
-                    />
-                  )}
-                </Carousel>
+                      })
+                    ) : (
+                      <Image
+                        src={`${placeholder.src}`}
+                        className={styles.image}
+                        width={500}
+                        height={500}
+                        alt={'placeholder'}
+                      />
+                    )}
+                  </Carousel>
+                </LoadingSkeleton>
               </div>
 
               <div className={`${styles.content} md:w-6/12 p-5`}>
                 <h4>{cat}</h4>
-                <h2 className="md:text-4xl mb-5">
-                  {data.title.rendered}
-                </h2>
+                <h2 className="md:text-4xl mb-5">{data.title.rendered}</h2>
                 <div
                   className={styles.paragrah}
                   dangerouslySetInnerHTML={{
                     __html: description
                   }}
                 />
-                <div
-                  className={`mt-10 mb-10 ${styles.button__produkt}`}
-                >
+
+                <div className={`mt-10 mb-10 ${styles.button__produkt}`}>
                   <Link href="/kontakt">BESTÄLL</Link>
                 </div>
 
                 <div className={styles.accordion}>
                   {table ? (
                     <Accordion
-                    defaultValue='TEKNISK'
+                      defaultValue="TEKNISK"
                       chevron={<AiOutlinePlus size="1rem" />}
                       styles={{
                         chevron: {
@@ -119,10 +111,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
                             <tbody>
                               {table.map((item, index) => {
                                 return (
-                                  <tr
-                                    key={index}
-                                    style={{ width: '50%' }}
-                                  >
+                                  <tr key={index} style={{ width: '50%' }}>
                                     <td>{item.title}</td>
 
                                     {item.sub_information ? (
@@ -181,23 +170,21 @@ const NewsPage = ({ response, locale, resProducts }) => {
                               : null}
 
                             {marknadsforingsblad
-                              ? marknadsforingsblad.map(
-                                  (doc, index) => {
-                                    return (
-                                      <div
-                                        className={`flex flex-wrap items-center ${styles.links}`}
-                                        key={index}
+                              ? marknadsforingsblad.map((doc, index) => {
+                                  return (
+                                    <div
+                                      className={`flex flex-wrap items-center ${styles.links}`}
+                                      key={index}
+                                    >
+                                      <Link
+                                        href={`${doc.document.url}`}
+                                        target="_blank"
                                       >
-                                        <Link
-                                          href={`${doc.document.url}`}
-                                          target="_blank"
-                                        >
-                                          {doc.title}
-                                        </Link>
-                                      </div>
-                                    )
-                                  }
-                                )
+                                        {doc.title}
+                                      </Link>
+                                    </div>
+                                  )
+                                })
                               : null}
                           </div>
                         </Accordion.Panel>
@@ -222,15 +209,22 @@ const NewsPage = ({ response, locale, resProducts }) => {
                     .map((item, index) => {
                       return (
                         <Link href={item.slug} key={index}>
-                          <Image
-                            src={
-                              item.products?.product_pictures?.[0]
-                                ?.url
-                            }
-                            width={400}
-                            height={400}
-                            alt={'Produktbild'}
-                          />
+                          {item.products?.product_pictures?.[0]?.url ? (
+                            <Image
+                              src={item.products?.product_pictures?.[0]?.url}
+                              width={400}
+                              height={400}
+                              alt={'Produktbild'}
+                            />
+                          ) : (
+                            <Image
+                              src={`${placeholder.src}`}
+                              className={styles.image}
+                              width={500}
+                              height={500}
+                              alt={'placeholder'}
+                            />
+                          )}
                         </Link>
                       )
                     })}
