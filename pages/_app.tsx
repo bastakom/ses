@@ -8,6 +8,7 @@ import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { useMediaQuery } from '@mantine/hooks'
 import DrawerHeader from '@/components/Template/Header/Drawer'
+import { AnimatePresence } from 'framer-motion'
 import '@/styles/global.scss'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -34,7 +35,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </>
       ) : null}
       {/* <PageTransition /> */}
-      <Component {...pageProps} key={router.pathname} />
+      <AnimatePresence mode="wait">
+        <Component {...pageProps} key={router.pathname} />
+      </AnimatePresence>
       {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
     </MantineProvider>
   )

@@ -61,6 +61,10 @@
     }
   }
 
+  .active {
+    color: $subtitle !important;
+  }
+
   .items {
     @include breakpoint(small) {
       flex-direction: column;

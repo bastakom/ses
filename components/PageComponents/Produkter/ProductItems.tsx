@@ -4,15 +4,9 @@ import styles from './productitems.module.scss'
 import Image from 'next/image'
 import placeholder from '@/assets/images/placeholder.png'
 import Layout from '@/components/Template/Layout/Layout'
-import { useState } from 'react'
 import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 
 const ProductItems = ({ response, options }) => {
-  const [loading, isLoaded] = useState(false)
-  setTimeout(() => {
-    isLoaded(true)
-  }, 1000)
-
   const skyddsmasker = response.map((data) => {
     const {
       products: { cat, product_pictures, description },
@@ -160,7 +154,7 @@ const ProductItems = ({ response, options }) => {
               <p> {options.skyddsmasker}</p>
             </div>
             <div
-              className={`flex gap-5 md:items-start ml-5 items-center md:flex-wrap flex-col mt-10 mb-10 md:flex-row`}
+              className={`flex gap-5 md:items-start ml-5 mr-5 items-center md:flex-wrap flex-col mt-10 mb-10 md:flex-row`}
             >
               {skyddsmasker}
             </div>
@@ -174,7 +168,7 @@ const ProductItems = ({ response, options }) => {
               <p> {options.tillbehor}</p>
             </div>
             <div
-              className={`flex gap-5 md:items-start ml-5 items-center md:flex-wrap flex-col mt-10 mb-10 md:flex-row`}
+              className={`flex gap-5 md:items-start ml-5 mr-5 items-center md:flex-wrap flex-col mt-10 mb-10 md:flex-row`}
             >
               {tillbehor}
             </div>
@@ -188,7 +182,7 @@ const ProductItems = ({ response, options }) => {
               <p> {options.skyddsdrakter}</p>
             </div>
             <div
-              className={`flex gap-5 md:items-start ml-5 items-center md:flex-wrap flex-col mt-10 mb-10 md:flex-row`}
+              className={`flex gap-5 md:items-start ml-5 mr-5 items-center md:flex-wrap flex-col mt-10 mb-10 md:flex-row`}
             >
               {skyddsdrakter}
             </div>

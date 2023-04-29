@@ -2,13 +2,15 @@ import Logo from 'assets/svg/logo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import styles from './header.module.scss'
 import sweden from '@/assets/images/swedenx.png'
 import english from '@/assets/images/englishx.png'
+
+import styles from './header.module.scss'
 
 const Header = ({ options, newMenu }) => {
   const { locale: activeLocale, locales, asPath, locale } = useRouter()
   const availableLocales = locales.filter((locale) => locale !== activeLocale)
+  const router = useRouter()
 
   const menuToMap =
     locale === 'en' ? newMenu.menu__english_ : newMenu.menu_items
@@ -31,19 +33,23 @@ const Header = ({ options, newMenu }) => {
             const {
               menu_item: {
                 url: { url, target },
-                icon,
                 label
               }
             } = items
 
+            const isActive =
+              router.asPath.replace(/\/$/, '') === url.replace(/\/$/, '')
+            console.log('url:', url, 'asPath:', router.asPath)
+            console.log(isActive)
             return (
               <div key={index}>
                 <Link href={url || `/`} target={target} className={`flex`}>
                   <span
-                    className={`px-2 align-middle items-center flex ${styles.href}`}
+                    className={`px-2 align-middle items-center flex ${
+                      styles.href
+                    } ${isActive ? styles.active : ''}`}
                   >
                     {label}
-                    {icon === '1' ? <span className="text-2xl"></span> : null}
                   </span>
                 </Link>
               </div>

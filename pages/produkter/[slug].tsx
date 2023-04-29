@@ -1,20 +1,27 @@
 import Link from 'next/link'
 import { revalidate } from '../nyheter'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
-import { Accordion, Skeleton, Table } from '@mantine/core'
+import { Accordion, Table } from '@mantine/core'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 import placeholder from '@/assets/images/placeholder.png'
-import styles from './slugprodukter.module.scss'
 import Image from 'next/image'
 import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
+import styles from './slugprodukter.module.scss'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { AnimationSettings } from '@/components/Template/AnimationSettings'
 
 const NewsPage = ({ response, locale, resProducts }) => {
   revalidate
+
+  const router = useRouter()
+  const { slug } = router.query
+
   const data = response.map((data) => data)
   return (
-    <div>
+    <motion.div {...AnimationSettings}>
       {...data.map((data, index) => {
         const {
           products: {
@@ -205,7 +212,10 @@ const NewsPage = ({ response, locale, resProducts }) => {
               <div className="md:flex gap-10">
                 {resProducts &&
                   resProducts
-                    .filter((item) => item.products.cat === cat)
+                    .filter(
+                      (item) => item.products.cat === cat && item.slug !== slug
+                    )
+                    .slice(0, 3)
                     .map((item, index) => {
                       return (
                         <Link href={item.slug} key={index}>
@@ -220,8 +230,8 @@ const NewsPage = ({ response, locale, resProducts }) => {
                             <Image
                               src={`${placeholder.src}`}
                               className={styles.image}
-                              width={500}
-                              height={500}
+                              width={400}
+                              height={400}
                               alt={'placeholder'}
                             />
                           )}
@@ -233,7 +243,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
           </>
         )
       })}
-    </div>
+    </motion.div>
   )
 }
 

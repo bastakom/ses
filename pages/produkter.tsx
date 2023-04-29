@@ -1,5 +1,4 @@
 import { getProdukter } from '@/graphql/PostTypes/produkter'
-import Link from 'next/link'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
 import ProductItems from '@/components/PageComponents/Produkter/ProductItems'
 
