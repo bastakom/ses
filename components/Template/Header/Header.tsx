@@ -39,8 +39,7 @@ const Header = ({ options, newMenu }) => {
 
             const isActive =
               router.asPath.replace(/\/$/, '') === url.replace(/\/$/, '')
-            console.log('url:', url, 'asPath:', router.asPath)
-            console.log(isActive)
+
             return (
               <div key={index}>
                 <Link href={url || `/`} target={target} className={`flex`}>

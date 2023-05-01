@@ -1,0 +1,17 @@
+.container {
+    float: left;
+    flex-direction: column;
+  .header {
+    display: flex;
+    img {
+      height: 500px;
+    }
+  }
+
+  .content {
+    column-count: 2;
+    p {
+      padding-bottom: 20px;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+@import '@/styles/theme';
+@import '@/styles/mixins';
+
+.container {
+  border-bottom: 2px solid black;
+  padding-bottom: 60px;
+  margin-bottom: 50px;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    max-width: 260px;
+    border: 2px solid #000;
+
+    p {
+      font-size: 12px;
+      padding: 5px 15px;
+      font-family: $font-family-heading;
+      text-transform: capitalize;
+      letter-spacing: 1.2px;
+
+      &:nth-child(2) {
+        border-left: 2px solid #000;
+      }
+    }
+    h3 {
+      font-size: 15px;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 5px 15px;
+      border-top: 2px solid #000;
+      color: $subtitle;
+      letter-spacing: 1.5px;
+    }
+  }
+  .title {
+    color: $secondary;
+    font-family: $font-family-heading;
+    padding: 8px 10px;
+    border: 2px solid $text-footer;
+    text-align: center;
+    letter-spacing: 1.5px;
+    font-size: $footerContact;
+    h3 {
+      background: #e8d49e;
+      padding: 0px 5px;
+    }
+  }
+
+  .content {
+    max-width: 600px;
+
+    h2 {
+      font-size: $h2;
+      font-weight: bold;
+      letter-spacing: 4.48px;
+      margin-bottom: 20px;
+      @include breakpoint(small) {
+        font-size: 20px;
+      }
+    }
+
+    a {
+      font-size: 18px;
+      font-family: 'EB Garamond', sans-serif;
+      border-bottom: 1px solid gold;
+      padding-bottom: 5px;
+      font-style: italic;
+    }
+  }
+
+  .html {
+    margin-bottom: 50px;
+    p {
+      font-size: 22px;
+      letter-spacing: 0px;
+      font-family: $font-family-heading;
+    }
+  }
+
+  .image {
+    display: flex;
+    justify-content: flex-end;
+    img {
+      min-height: 481px;
+      object-fit: cover;
+    }
+  }
+}

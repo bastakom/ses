@@ -1,21 +1,43 @@
 import Layout from '@/components/Template/Layout/Layout'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
+import styles from './nyhet.module.scss'
+import Image from 'next/image'
 
 export const revalidate = 10
 
 const NewsPage = ({ response }) => {
   const data = response.map((data) => data)
+
   return (
     <Layout>
       {...data.map((data, index) => {
+        const {
+          title: { rendered },
+          content: { rendered: content },
+          acf: { picture }
+        } = data
+
         return (
-          <div className="m-5 w-8/12" key={index}>
-            <h2 className="text-4xl mb-5">{data.title.rendered}</h2>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: data.content.rendered
-              }}
-            />
+          <div key={index} className={`flex flex-wrap ${styles.container}`}>
+            <div>
+              <div className={styles.header}>
+                <div className="flex flex-wrap">
+                  <h2 className="text-4xl mb-5">{rendered}</h2>
+                  <div
+                    className={styles.content}
+                    dangerouslySetInnerHTML={{
+                      __html: content
+                    }}
+                  />
+                </div>
+                <Image
+                  src={picture}
+                  alt="Picture of the post"
+                  width={500}
+                  height={500}
+                />
+              </div>
+            </div>
           </div>
         )
       })}

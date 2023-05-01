@@ -1,0 +1,63 @@
+@import '@/styles/theme';
+@import '@/styles/mixins';
+
+.content {
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  @include breakpoint(small) {
+    border-left: none;
+    padding: 20px;
+  }
+
+  a {
+    font-size: 18px;
+    font-family: 'EB Garamond', sans-serif;
+    border-bottom: 1px solid gold;
+    padding-bottom: 5px;
+    font-style: italic;
+  }
+
+  h2 {
+    font-size: $h2;
+    letter-spacing: 3.08px;
+    font-weight: bold;
+    padding: 20px 0;
+    @include breakpoint(small) {
+      font-size: 20px;
+    }
+  }
+
+  .date {
+    padding: 20px 0;
+    span {
+      margin: 10px 0;
+      text-transform: uppercase;
+      font-size: $footerContact;
+      letter-spacing: 1.5px;
+
+      &:nth-child(1) {
+        border-right: 2px solid #000;
+        padding-right: 10px;
+        color: $subtitle;
+      }
+      &:nth-child(2) {
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.odd {
+  border-left: 2px solid #000;
+  padding-left: 50px;
+
+  @include breakpoint(small) {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+.even {
+  padding-right: 20px;
+}
