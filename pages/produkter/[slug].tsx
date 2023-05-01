@@ -11,7 +11,6 @@ import Image from 'next/image'
 import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 import styles from './slugprodukter.module.scss'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { AnimationSettings } from '@/components/Template/AnimationSettings'
 
 const NewsPage = ({ response, locale, resProducts }) => {
   revalidate
@@ -21,7 +20,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
 
   const data = response.map((data) => data)
   return (
-    <motion.div {...AnimationSettings}>
+    <div>
       {...data.map((data, index) => {
         const {
           products: {
@@ -243,7 +242,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
           </>
         )
       })}
-    </motion.div>
+    </div>
   )
 }
 
