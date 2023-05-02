@@ -138,7 +138,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
             case 'contact_form': {
               const { title, content } = data
               return (
-                <>
+                <div key={index}>
                   <HeaderText
                     title={title}
                     content={content || null}
@@ -146,7 +146,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                     height="60"
                   />
                   <Form locale={locale} bg={data.bg} />
-                </>
+                </div>
               )
             }
 

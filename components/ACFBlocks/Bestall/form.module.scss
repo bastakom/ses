@@ -1,0 +1,283 @@
+@import '@/styles/theme';
+@import '@/styles/mixins';
+
+.form_container {
+  background-repeat: no-repeat;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 50px;
+
+  .form {
+    margin: 100px 0;
+    display: flex;
+    gap: 20px;
+    min-width: 1000px;
+    flex-direction: column;
+    color: $accent;
+
+    @include breakpoint(medium) {
+      min-width: auto;
+    }
+    @include breakpoint(small) {
+      min-width: 300px;
+    }
+
+    .foretag {
+      border-bottom: 1px solid $accent;
+      padding: 0 20px;
+      padding-bottom: 20px;
+      align-items: center;
+      display: flex;
+      gap: 40px;
+      input {
+        width: 80%;
+      }
+
+      @include breakpoint(small) {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0;
+        border-bottom: 0;
+
+        input {
+          border-bottom: 1px solid white;
+          width: 100%;
+        }
+
+        label {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .namn_efternamn {
+      border-bottom: 1px solid $accent;
+      align-items: center;
+      display: flex;
+      gap: 40px;
+      padding: 0 20px;
+      padding-bottom: 20px;
+      @include breakpoint(small) {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border-bottom: 0;
+        gap: 0;
+
+        input {
+          border-bottom: 1px solid white;
+          width: 100%;
+        }
+
+        label {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .email_phone {
+      border-bottom: 1px solid $accent;
+      align-items: center;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      padding-bottom: 20px;
+
+      @include breakpoint(small) {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border-bottom: 0;
+        gap: 0;
+
+        input {
+          border-bottom: 1px solid white;
+          width: 100%;
+        }
+
+        label {
+          margin-top: 20px;
+        }
+      }
+      .email {
+        width: 55%;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        @include breakpoint(small) {
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+        }
+        input {
+          width: 80%;
+          @include breakpoint(small) {
+            width: 100%;
+          }
+        }
+      }
+
+      .phone {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        @include breakpoint(small) {
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+        }
+      }
+    }
+
+    .checkbox {
+      margin: 30px 0;
+      .rubrik {
+        margin-bottom: 25px;
+        label {
+          color: $subtitle;
+        }
+      }
+
+      .checkbox_group {
+        display: flex;
+        gap: 3rem;
+
+        @include breakpoint(small) {
+          flex-wrap: wrap;
+          input {
+            width: 100%;
+          }
+        }
+
+        input {
+          border: 1px solid white;
+        }
+
+        label {
+          color: $accent;
+          font-family: $font-family-heading;
+          margin-top: 0px;
+        }
+      }
+    }
+
+    .message {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      label {
+        max-width: 150px;
+      }
+      textarea {
+        padding: 30px;
+      }
+    }
+    // global
+
+    textarea {
+      border: 1px solid $accent;
+      background: transparent;
+      min-height: 250px;
+    }
+
+    label {
+      color: $subtitle;
+      text-transform: uppercase;
+      font-size: $formLabel;
+      font-weight: normal;
+      letter-spacing: 1.2px;
+      margin-top: 5px;
+    }
+
+    input,
+    textarea {
+      color: $accent;
+      background: transparent;
+      letter-spacing: 2.2px;
+      font-size: 22px;
+      font-family: $font-family-heading;
+
+      &:focus {
+        outline: none;
+      }
+
+      @include breakpoint(small) {
+        font-size: 16px;
+        padding: 10px 0;
+      }
+    }
+
+    .agree {
+      input {
+        border: 1px solid white;
+      }
+      label {
+        margin-top: 0;
+        color: $accent;
+        font-family: $font-family-heading;
+      }
+    }
+
+    button {
+      margin-top: 50px;
+      font-family: $font-family-href;
+      text-transform: uppercase;
+      color: $bg-button-text;
+      letter-spacing: 1.2px;
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+      font-size: 12px;
+      font-weight: normal;
+      padding: 20px;
+      background: $bg-button;
+
+      &:hover {
+        background: $bg-button-hover;
+      }
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    color: $accent;
+  }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: $accent;
+  }
+}
+
+.checkbox__product {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+
+  @include breakpoint(small) {
+    flex-wrap: wrap;
+    input {
+      width: 100%;
+    }
+  }
+
+  input {
+    border: 1px solid white;
+    align-items: center;
+  }
+
+  label {
+    color: $accent;
+    font-size: 18px !important;
+    margin-top: 0px;
+  }
+}
