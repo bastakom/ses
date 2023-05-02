@@ -25,8 +25,17 @@ const LatestItem: FC<Props> = ({ data }) => {
             day: 'numeric'
           })
 
+          const {
+            title: { rendered },
+            slug,
+            acf: { cat, picture }
+          } = item
+
           return (
-            <div key={index} className={`${styles.container} md:flex p-5 md:p-0 `}>
+            <div
+              key={index}
+              className={`${styles.container} md:flex p-5 md:p-0 `}
+            >
               <div className="md:w-6/12 gap-5 flex-col flex">
                 <div>
                   <div className={`${styles.header}`}>
@@ -34,21 +43,21 @@ const LatestItem: FC<Props> = ({ data }) => {
                       <p>senaste nytt</p>
                       <p>{formattedDate}</p>
                     </div>
-                    <h3>{item.acf.cat}</h3>
+                    <h3>{cat}</h3>
                   </div>
                 </div>
                 <div className={styles.content}>
-                  <h2>{item.title.rendered}</h2>
+                  <h2>{rendered}</h2>
                   <div
                     className={styles.html}
                     dangerouslySetInnerHTML={{ __html: limitedDescription }}
                   />
-                  <Link href={`/nyheter/${item.slug}`}>Läs mer</Link>
+                  <Link href={`/nyheter/${slug}`}>Läs mer</Link>
                 </div>
               </div>
 
               <div className={`${styles.image} md:w-6/12 pt-10 md:pt-0`}>
-                <Image src={item.acf.picture} width={481} height={431} alt="" />
+                <Image src={picture} width={481} height={431} alt="" />
               </div>
             </div>
           )

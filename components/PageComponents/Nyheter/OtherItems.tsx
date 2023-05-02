@@ -11,6 +11,12 @@ const OtherItems = ({ data, index }) => {
 
   const isOdd = index % 2 === 0 ? false : true
 
+  const {
+    title: { rendered },
+    slug,
+    acf: { cat }
+  } = data
+
   return (
     <div className={`${styles.content} flex flex-col`}>
       <div
@@ -19,12 +25,12 @@ const OtherItems = ({ data, index }) => {
         }`}
       >
         <div className={`${styles.date}`}>
-          <span>{data.acf.cat}</span>
+          <span>{cat}</span>
           <span>{formattedDate}</span>
         </div>
 
-        <h2>{data.title.rendered}</h2>
-        <Link key={index} href={`nyheter/${data.slug}`}>
+        <h2>{rendered}</h2>
+        <Link key={index} href={`nyheter/${slug}`}>
           Läs mer
         </Link>
       </div>

@@ -6,7 +6,9 @@ export default function LoadingSkeleton({ children }) {
 
   useEffect(() => {
     const waitForContent = async () => {
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      })
     }
 
     waitForContent()

@@ -139,7 +139,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
               const { title, content } = data
               return (
                 <>
-                  <HeaderText title={title} content={content || null} />
+                  <HeaderText title={title} content={content || null} align='items-center' height="50" />
                   <Form locale={locale} bg={data.bg} />
                 </>
               )
