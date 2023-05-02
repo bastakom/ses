@@ -9,7 +9,6 @@ import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { useMediaQuery } from '@mantine/hooks'
 import DrawerHeader from '@/components/Template/Header/Drawer'
-import { AnimatePresence } from 'framer-motion'
 import '@/styles/global.scss'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -17,14 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   const matches = useMediaQuery('(min-width: 56.25em)')
 
-  // Add that code to _app.tsx / _app.jsx
-
   const routeChange = () => {
-    // Temporary fix to avoid flash of unstyled content
-    // during route transitions. Keep an eye on this
-    // issue and remove this code when resolved:
-    // https://github.com/vercel/next.js/issues/17464
-
     const tempFix = () => {
       const allStyleElems = document.querySelectorAll('style[media="x"]')
       allStyleElems.forEach((elem) => {
@@ -56,10 +48,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </>
       ) : null}
       <PageTransition />
-      {/* FiX ANIMATE PRESENCE ON TOP  */}
-      <AnimatePresence mode="wait" initial={false}>
-        <Component {...pageProps} key={router.pathname} />
-      </AnimatePresence>
+      <Component {...pageProps} key={router.pathname} />
       {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
     </MantineProvider>
   )

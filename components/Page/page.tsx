@@ -17,7 +17,7 @@ revalidate
 const Page = ({ flexibleContent, locale }) => {
   return (
     <motion.div {...AnimationSettings}>
-      <Suspense fallback={<Skeleton height={500} mt={6} width="100%" />}>
+      <Suspense fallback={<Skeleton height={800} mt={6} width="100%" />}>
         <ACFBlockRender flexibleContent={flexibleContent} locale={locale} />
       </Suspense>
     </motion.div>

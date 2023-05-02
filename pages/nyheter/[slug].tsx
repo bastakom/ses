@@ -3,6 +3,7 @@ import { getOptions } from '@/graphql/Templates/FETCHOptions'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './nyhet.module.scss'
+import placeholder from '@/assets/images/placeholder.png'
 
 export const revalidate = 10
 
@@ -54,7 +55,7 @@ const NewsPage = ({ response }) => {
 
                     <Image
                       className="md:w-6/12 flex"
-                      src={picture}
+                      src={picture ? picture : placeholder}
                       alt="Picture of the post"
                       width={500}
                       height={500}

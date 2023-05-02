@@ -11,6 +11,7 @@ import Image from 'next/image'
 import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 import styles from './slugprodukter.module.scss'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { AnimationSettings } from '@/components/Template/AnimationSettings'
 
 const NewsPage = ({ response, locale, resProducts }) => {
   revalidate
@@ -34,7 +35,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
         } = data
 
         return (
-          <>
+          <motion.div {...AnimationSettings}>
             <div className={`${styles.pagination} md:ml-10 mt-1 flex gap-2`}>
               <Link href="/produkter">
                 {locale === 'sv' ? 'Produkter' : 'Products'}
@@ -239,7 +240,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
                     })}
               </div>
             </div>
-          </>
+          </motion.div>
         )
       })}
     </div>
