@@ -59,7 +59,9 @@ const ImageACF = ({
           />
           {button && (
             <div className={`mt-10 button`}>
-              <Link href={button.url}>{button.title}</Link>
+              <Link href={button.url}>
+                {button.title}
+              </Link>
             </div>
           )}
         </div>
