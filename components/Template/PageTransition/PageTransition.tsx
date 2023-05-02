@@ -7,7 +7,7 @@ const PageTransition = () => {
   useEffect(() => {
     setTimeout(() => {
       notVisable(true)
-    }, 4000)
+    }, 2000)
   })
 
   return (
@@ -18,14 +18,16 @@ const PageTransition = () => {
             layout
             initial={{ opacity: 1 }}
             animate={{
-              scale: 1.5,
-              opacity: 0
+              opacity: 0,
             }}
-            transition={{ delay: 2, duration: 1 }}
+            transition={{ delay: 1.5, duration: 0.5 }}
             exit={{ opacity: 0 }}
             className={`${styles.loader} loaded`}
           >
-            <svg
+            <motion.svg
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              transition={{ delay: 1.5 }}
               xmlns="http://www.w3.org/2000/svg"
               width={'250'}
               height={'250'}
@@ -80,11 +82,11 @@ const PageTransition = () => {
                   pathLength: 0,
                   transition: {
                     ease: 'linear',
-                    duration: 1.5,
+                    duration: 1.5
                   }
                 }}
               />
-            </svg>
+            </motion.svg>
           </motion.div>
         </AnimatePresence>
       ) : null}
