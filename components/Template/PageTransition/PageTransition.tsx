@@ -18,7 +18,7 @@ const PageTransition = () => {
             layout
             initial={{ opacity: 1 }}
             animate={{
-              opacity: 0,
+              opacity: 0
             }}
             transition={{ delay: 1.5, duration: 0.5 }}
             exit={{ opacity: 0 }}

@@ -15,7 +15,7 @@ import { AnimatePresence } from 'framer-motion'
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
-  const matches = useMediaQuery('(min-width: 56.25em)')
+  const matches = useMediaQuery('(min-width: 920px)')
 
   const routeChange = () => {
     const tempFix = () => {
@@ -29,6 +29,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   Router.events.on('routeChangeComplete', routeChange)
   Router.events.on('routeChangeStart', routeChange)
+
+  const handleEvent = () => {
+    const header = document.getElementById('header')
+    header.style.top = '0px'
+  }
+
+  Router.events.on('routeChangeComplete', handleEvent)
 
   Progress()
 

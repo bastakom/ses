@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react'
 import { useMediaQuery } from '@mantine/hooks'
 
 const Header = ({ options, newMenu }) => {
-  const [navbar, setNavbar] = useState(false)
   const { locale: activeLocale, locales, asPath, locale } = useRouter()
   const availableLocales = locales.filter((locale) => locale !== activeLocale)
   const matches = useMediaQuery('(min-width: 56.25em)')
@@ -21,7 +20,7 @@ const Header = ({ options, newMenu }) => {
 
   function handleWheelEvent(event) {
     const header = document.getElementById('header')
-    if (header && event.deltaY > 0 && matches) {
+    if (header && event.deltaY > 10 && matches) {
       header.style.top = '-100px'
     } else if (header && event.deltaY < 0 && matches) {
       header.style.top = '0px'
@@ -39,7 +38,7 @@ const Header = ({ options, newMenu }) => {
   return (
     <div style={{ background: 'white' }} className={`py-10`}>
       <div
-        className={`${styles.navigation} ${navbar ? 'nav activated' : 'nav'}`}
+        className={`${styles.navigation} nav`}
         style={{ transition: 'top 0.2s' }}
         id="header"
       >
