@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     <br />
     ${
       agree === true
-        ? `<p style="color: #555;">${name} har godkänt att personuppgiftera spara på ett lagenligt sätt</p>`
+        ? `<p style="color: #555;">${name} har godkänt att personuppgifterna spara på ett lagenligt sätt</p>`
         : ''
     }
   </div>

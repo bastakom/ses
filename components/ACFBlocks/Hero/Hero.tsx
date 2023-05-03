@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 import styles from './hero.module.scss'
+import Link from 'next/link'
 
 const Hero = ({
   image,
@@ -12,7 +13,9 @@ const Hero = ({
   justify,
   noContent,
   imageVideo,
-  padding
+  padding,
+  firstBtn,
+  secBtn
 }) => {
   const textAlign =
     justify === 'start'
@@ -65,6 +68,12 @@ const Hero = ({
               className={styles.content}
             />
           ) : null}
+          <div className={styles.buttons}>
+            {firstBtn ? (
+              <Link href={`${firstBtn.url}`}>{firstBtn.title}</Link>
+            ) : null}
+            {secBtn ? <Link href={`${secBtn.url}`}>{secBtn.title}</Link> : null}
+          </div>
         </div>
       ) : null}
     </div>

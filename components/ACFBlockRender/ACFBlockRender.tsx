@@ -24,12 +24,15 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 presentation_info,
                 settings,
                 video,
-                padding
+                padding,
+                first_button,
+                second_button
               } = data
-
               return (
                 <>
                   <Hero
+                    firstBtn={first_button}
+                    secBtn={second_button}
                     height={settings.cover_height}
                     key={id}
                     noContent={settings.content__no_content}

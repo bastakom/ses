@@ -297,7 +297,7 @@ export default function Contact({ locale, bg }) {
         </div>
 
         <div className={styles.message}>
-          <label htmlFor="message">BESKRIV KORTFATTAT DITT ÄRENDE.</label>
+          <label htmlFor="message">BESKRIV DITT ÄRENDE.</label>
           <textarea
             id="message"
             name="message"
@@ -308,8 +308,7 @@ export default function Contact({ locale, bg }) {
 
         <div className={styles.agree}>
           <Checkbox
-            label="JAG GODKÄNNER ATT MINA PERSONUPPGIFTER SPARAS PÅ ETT
-              LAGENLIGT SÄTT"
+            label={`Jag godkänner att SES Protection sparar och hanterar mina personuppgifter i enlighet med dataskyddsförordningen GDPR.`}
             color="dark"
             defaultChecked={formData.agree}
             checked={formData.agree}

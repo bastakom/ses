@@ -57,3 +57,43 @@
     }
   }
 }
+
+.buttons {
+  margin-top: 50px;
+
+  @include breakpoint(small) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a {
+    color: white;
+    margin: 20px 10px 0 10px;
+    padding: 15px 20px;
+    font-weight: normal;
+    letter-spacing: 1.2px;
+    transition: 0.2s ease-in-out;
+
+    @include breakpoint(small) {
+      width: 250px;
+    }
+
+    &:nth-child(1) {
+      background: #263568;
+      border: 2px solid #263568;
+      &:hover {
+        background: $bg-button-hover;
+        border-color: $bg-button-hover;
+      }
+    }
+
+    &:nth-child(2) {
+      border: 2px solid white;
+      &:hover {
+        background: $bg-button-hover;
+        border-color: $bg-button-hover;
+      }
+    }
+  }
+}

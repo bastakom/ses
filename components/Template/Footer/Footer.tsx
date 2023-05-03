@@ -39,7 +39,6 @@ const Footer = ({ options }) => {
                   menu_item: { title, url, target }
                 } = item
 
-                console.log(title)
                 return (
                   <Link href={url} target={target} key={index}>
                     {title}
@@ -54,7 +53,6 @@ const Footer = ({ options }) => {
                   menu_item: { title, url, target }
                 } = item
 
-                console.log(title)
                 return (
                   <Link href={url} target={target} key={index}>
                     {title}

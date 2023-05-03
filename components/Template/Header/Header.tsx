@@ -7,37 +7,34 @@ import english from '@/assets/images/englishx.png'
 
 import styles from './header.module.scss'
 import { useEffect, useState } from 'react'
+import { useMediaQuery } from '@mantine/hooks'
 
 const Header = ({ options, newMenu }) => {
   const [navbar, setNavbar] = useState(false)
   const { locale: activeLocale, locales, asPath, locale } = useRouter()
   const availableLocales = locales.filter((locale) => locale !== activeLocale)
+  const matches = useMediaQuery('(min-width: 56.25em)')
   const router = useRouter()
 
   const menuToMap =
     locale === 'en' ? newMenu.menu__english_ : newMenu.menu_items
 
-  const changeBackground = () => {
-    if (window.scrollY >= 66) {
-      setNavbar(true)
-    } else {
-      setNavbar(false)
+  function handleWheelEvent(event) {
+    const header = document.getElementById('header')
+    if (header && event.deltaY > 0 && matches) {
+      header.style.top = '-100px'
+    } else if (header && event.deltaY < 0 && matches) {
+      header.style.top = '0px'
     }
   }
 
-  document.addEventListener('wheel', function (event) {
-    const header = document.getElementById('header')
-    if (event.deltaY > 0) {
-      header.style.top = '-100px'
-    } else {
-      header.style.top = '0px'
-    }
-  })
+  if (!matches) {
+    window.removeEventListener('wheel', handleWheelEvent)
+  } else {
+    window.addEventListener('wheel', handleWheelEvent)
+  }
 
-  useEffect(() => {
-    changeBackground()
-    window.addEventListener('scroll', changeBackground)
-  })
+  // To remove the event listener
 
   return (
     <div style={{ background: 'white' }} className={`py-10`}>

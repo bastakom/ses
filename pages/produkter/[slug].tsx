@@ -6,12 +6,12 @@ import { Accordion, Table } from '@mantine/core'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import { AnimationSettings } from '@/components/Template/AnimationSettings'
 import placeholder from '@/assets/images/placeholder.png'
 import Image from 'next/image'
 import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 import styles from './slugprodukter.module.scss'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { AnimationSettings } from '@/components/Template/AnimationSettings'
 
 const NewsPage = ({ response, locale, resProducts }) => {
   revalidate
