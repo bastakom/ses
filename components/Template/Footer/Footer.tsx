@@ -17,7 +17,6 @@ const Footer = ({ options }) => {
   } = options
 
   const { locale } = useRouter()
-  const router = useRouter()
 
   return (
     <footer className={`${styles.footer} pt-7`}>
@@ -61,10 +60,12 @@ const Footer = ({ options }) => {
               })}
             </div>
           )}
-          <div className={`${styles.socials} flex gap-2`}>
-            <p>Följ oss</p>
-            <Socials socials={options.contact_info} />
-          </div>
+          {options.contact_info.Socials.linkedin && (
+            <div className={`${styles.socials} flex gap-2`}>
+              <p>Följ oss</p>
+              <Socials socials={options.contact_info} />
+            </div>
+          )}
         </div>
         <div className="flex flex-wrap justify-center gap-5 md:gap-20 md:h-32">
           <div
