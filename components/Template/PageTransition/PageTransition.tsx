@@ -74,7 +74,7 @@ const PageTransition = () => {
               <motion.path
                 d="M27.5 0A27.5 27.5 0 1055 27.5 27.489 27.489 0 0027.5 0zm0 52.57A25.07 25.07 0 1152.57 27.5 25.066 25.066 0 0127.5 52.57z"
                 data-name="Path 104"
-                fill="orange"
+                fill="#dcb95d"
                 strokeWidth="2.5"
                 stroke="#fff"
                 initial={{ pathLength: 1 }}

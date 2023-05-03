@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Socials from './Socials'
 import styles from './footer.module.scss'
 import Logo from 'assets/svg/logo'
+import { useRouter } from 'next/router'
 
 const Footer = ({ options }) => {
   const {
@@ -14,6 +15,9 @@ const Footer = ({ options }) => {
       technical_information: { email, name, phone }
     }
   } = options
+
+  const { locale } = useRouter()
+  const router = useRouter()
 
   return (
     <footer className={`${styles.footer} pt-7`}>
@@ -28,12 +32,14 @@ const Footer = ({ options }) => {
           </div>
           <Logo width="55" height="55" />
           <h2 className="">{options?.site__title || null}</h2>
-          {options.menu ? (
+          {locale === 'sv' ? (
             <div className={`${styles.navigator}`}>
-              {options?.menu.map((item, index) => {
+              {options?.menu.menu.map((item, index) => {
                 const {
                   menu_item: { title, url, target }
                 } = item
+
+                console.log(title)
                 return (
                   <Link href={url} target={target} key={index}>
                     {title}
@@ -41,7 +47,22 @@ const Footer = ({ options }) => {
                 )
               })}
             </div>
-          ) : null}
+          ) : (
+            <div className={`${styles.navigator}`}>
+              {options?.menu.menu_english.map((item, index) => {
+                const {
+                  menu_item: { title, url, target }
+                } = item
+
+                console.log(title)
+                return (
+                  <Link href={url} target={target} key={index}>
+                    {title}
+                  </Link>
+                )
+              })}
+            </div>
+          )}
           <div className={`${styles.socials} flex gap-2`}>
             <p>Följ oss</p>
             <Socials socials={options.contact_info} />

@@ -6,6 +6,12 @@
 }
 
 .navigation {
+  z-index: 99;
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+
   .navigator {
     border-top: 1px solid #000000;
     border-bottom: 1px solid #000000;
