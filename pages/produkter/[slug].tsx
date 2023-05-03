@@ -97,8 +97,9 @@ const NewsPage = ({ response, locale, resProducts }) => {
                 <div className={styles.accordion}>
                   {table ? (
                     <Accordion
-                      defaultValue="TEKNISK"
+                      multiple={true}
                       chevron={<AiOutlinePlus size="1rem" />}
+                      defaultValue={['TEKNISK']}
                       styles={{
                         chevron: {
                           '&[data-rotate]': {
