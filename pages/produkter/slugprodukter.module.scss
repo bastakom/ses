@@ -79,6 +79,13 @@
     ul {
       list-style-type: disc;
       margin-left: 15px;
+      font-family: $font-family-heading;
+      font-size: $smallest_header;
+
+      li {
+        font-family: $font-family-heading;
+        font-size: $smallest_header;
+      }
     }
   }
 }
