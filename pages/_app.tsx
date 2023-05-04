@@ -9,14 +9,12 @@ import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { useMediaQuery } from '@mantine/hooks'
 import DrawerHeader from '@/components/Template/Header/Drawer'
-import GoogleAnalytics from '@bradgarropy/next-google-analytics/dist/types/components/GoogleAnalytics/GoogleAnalytics'
 
 import '@/styles/global.scss'
 import Script from 'next/script'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
-
   const matches = useMediaQuery('(min-width: 920px)')
 
   const routeChange = () => {
@@ -54,7 +52,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-ET09GB0K4F');
-    `}
+        `}
       </Script>
       <MantineProvider>
         <Notifications />
