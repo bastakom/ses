@@ -54,10 +54,10 @@ const ProductItems = ({ response, options }) => {
     } = data
 
     const maxLength = 120
-    let limitedDescription = description.substring(0, maxLength)
-    if (description.length > maxLength) {
-      limitedDescription += '...'
-    }
+    let limitedDescription =
+      description.length <= maxLength
+        ? description
+        : description.substring(0, maxLength).trim() + '...'
 
     return (
       <>
@@ -78,7 +78,9 @@ const ProductItems = ({ response, options }) => {
                 {rendered && <h2>{rendered}</h2>}
                 <div
                   style={{ maxWidth: 400 }}
-                  dangerouslySetInnerHTML={{ __html: limitedDescription }}
+                  dangerouslySetInnerHTML={{
+                    __html: limitedDescription
+                  }}
                 />
               </div>
             </Link>

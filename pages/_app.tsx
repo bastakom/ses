@@ -56,9 +56,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </>
       ) : null}
       <PageTransition />
-      <AnimatePresence mode="wait" initial={false}>
+      {/* <AnimatePresence mode="wait" initial={false}> */}
         <Component {...pageProps} key={router.pathname} />
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
       {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
     </MantineProvider>
   )

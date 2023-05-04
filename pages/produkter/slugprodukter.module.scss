@@ -55,6 +55,7 @@
     text-transform: uppercase;
     margin-bottom: 20px;
   }
+
   h2 {
     font-family: $font-family-href;
     font-size: $h2;
@@ -73,6 +74,11 @@
       font-family: $font-family-heading;
       font-size: $smallest_header;
       margin-bottom: 20px;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 15px;
     }
   }
 }
