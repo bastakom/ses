@@ -6,10 +6,12 @@ import LatestItem from '@/components/PageComponents/Nyheter/LatestItem'
 import Layout from '@/components/Template/Layout/Layout'
 import OtherItems from '@/components/PageComponents/Nyheter/OtherItems'
 import HeaderText from '@/components/Template/HeaderText/HeaderText'
+import { useRouter } from 'next/router'
 
 export const revalidate = 10
 
 const Home = ({ response, latest }) => {
+  const { locale } = useRouter()
   return (
     <div className="md:py-20 py-5" style={{ background: '#f5f5f5' }}>
       <Layout>
@@ -20,6 +22,13 @@ const Home = ({ response, latest }) => {
             height="15"
           />
         </div>
+        {response.length === 0 && (
+          <div className={`text-2xl`}>
+            {locale === 'sv'
+              ? 'För tillfället finns det inga nyheter!'
+              : 'At the moment there is no news!'}
+          </div>
+        )}
         <LatestItem data={latest} />
         <div className="md:flex md:flex-wrap ">
           {response.map((data, index) => {
