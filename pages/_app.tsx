@@ -9,8 +9,10 @@ import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { useMediaQuery } from '@mantine/hooks'
 import DrawerHeader from '@/components/Template/Header/Drawer'
+import GoogleAnalytics from '@bradgarropy/next-google-analytics/dist/types/components/GoogleAnalytics/GoogleAnalytics'
+
 import '@/styles/global.scss'
-import { AnimatePresence } from 'framer-motion'
+import Script from 'next/script'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -40,26 +42,42 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   Progress()
 
   return (
-    <MantineProvider>
-      <Notifications />
-      {pageProps?.options ? (
-        <>
-          {matches ? (
-            <Header options={pageProps?.options} newMenu={pageProps?.options} />
-          ) : null}
-          {!matches ? (
-            <DrawerHeader
-              options={pageProps?.options}
-              newMenu={pageProps?.options}
-            />
-          ) : null}
-        </>
-      ) : null}
-      <PageTransition />
-      {/* <AnimatePresence mode="wait" initial={false}> */}
+    <>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-ET09GB0K4F"
+      />
+
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ET09GB0K4F');
+    `}
+      </Script>
+      <MantineProvider>
+        <Notifications />
+        {pageProps?.options ? (
+          <>
+            {matches ? (
+              <Header
+                options={pageProps?.options}
+                newMenu={pageProps?.options}
+              />
+            ) : null}
+            {!matches ? (
+              <DrawerHeader
+                options={pageProps?.options}
+                newMenu={pageProps?.options}
+              />
+            ) : null}
+          </>
+        ) : null}
+        <PageTransition />
         <Component {...pageProps} key={router.pathname} />
-      {/* </AnimatePresence> */}
-      {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
-    </MantineProvider>
+        {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
+      </MantineProvider>
+    </>
   )
 }

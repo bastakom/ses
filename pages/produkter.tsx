@@ -3,7 +3,6 @@ import { getOptions } from '@/graphql/Templates/FETCHOptions'
 import ProductItems from '@/components/PageComponents/Produkter/ProductItems'
 
 const Home = ({ response, options }) => {
-  console.log(response)
   return (
     <div>
       <ProductItems response={response} options={options} />
