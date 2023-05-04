@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Accordion } from '../ACFBlocks/Accordion/Accordion'
 import CTA from '../ACFBlocks/CTA/CTA'
 import Form from '../ACFBlocks/Form/Form'
@@ -149,6 +150,26 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                     height="60"
                   />
                   <Form locale={locale} bg={data.bg} />
+                </div>
+              )
+            }
+
+            case 'order_form': {
+              const { title, content } = data
+              return (
+                <div key={index}>
+                  <HeaderText
+                    title={title}
+                    content={content || null}
+                    align="items-center"
+                    height="40"
+                  />
+                  <div
+                    className="button flex justify-center pb-10"
+                    style={{ marginTop: '-50px', background: '#f5f5f5' }}
+                  >
+                    <Link href="/kontakt#form">BESTÄLL HÄR</Link>
+                  </div>
                 </div>
               )
             }

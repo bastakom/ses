@@ -149,6 +149,7 @@ export default function Contact({ locale, bg }) {
     <div
       style={{ backgroundImage: `url(${bg})` }}
       className={styles.form_container}
+      id="form"
     >
       <Head>
         <title>Kontakta oss</title>

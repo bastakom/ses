@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styles from './headertext.module.scss'
 
 interface Props {
-  title: string
+  title?: string
   content?: string
   height?: string
   align?: string
@@ -15,9 +15,11 @@ const HeaderText: FC<Props> = ({ title, content, height, align }) => {
       className={`${styles.container} flex flex-col ${align} gap-10`}
       style={{ height: `${height}vh` }}
     >
-      <div className={`${styles.title}`}>
-        <h3>{title}</h3>
-      </div>
+      {title && (
+        <div className={`${styles.title}`}>
+          <h3>{title}</h3>
+        </div>
+      )}
       <p
         className="max-w-3xl text-center"
         dangerouslySetInnerHTML={{ __html: content }}
