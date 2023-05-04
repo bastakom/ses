@@ -252,6 +252,7 @@ export default function Contact({ locale, bg }) {
             radius="none"
             size="xs"
             onChange={handleChange}
+            required
           />
         </div>
 

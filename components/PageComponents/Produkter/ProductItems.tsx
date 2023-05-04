@@ -145,7 +145,7 @@ const ProductItems = ({ response, options }) => {
             <a href="#tillbehör"># Tillbehör</a>
           </li>
           <li>
-            <a href="#skyddsdräkter"># skyddsdrakter</a>
+            <a href="#skyddsdräkter"># skyddsdräkter</a>
           </li>
         </ul>
 
