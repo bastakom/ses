@@ -95,19 +95,19 @@ const NewsPage = ({ response, locale, resProducts }) => {
                 </div>
 
                 <div className={styles.accordion}>
-                  {table ? (
-                    <Accordion
-                      multiple={true}
-                      chevron={<AiOutlinePlus size="1rem" />}
-                      defaultValue={['TEKNISK']}
-                      styles={{
-                        chevron: {
-                          '&[data-rotate]': {
-                            transform: 'rotate(45deg)'
-                          }
+                  <Accordion
+                    multiple={true}
+                    chevron={<AiOutlinePlus size="1rem" />}
+                    defaultValue={['TEKNISK']}
+                    styles={{
+                      chevron: {
+                        '&[data-rotate]': {
+                          transform: 'rotate(45deg)'
                         }
-                      }}
-                    >
+                      }
+                    }}
+                  >
+                    {table && (
                       <Accordion.Item value="TEKNISK">
                         <Accordion.Control>
                           {locale === 'sv'
@@ -138,26 +138,14 @@ const NewsPage = ({ response, locale, resProducts }) => {
                           </Table>
                         </Accordion.Panel>
                       </Accordion.Item>
-                      <Accordion.Item value="BESTÄLLNINGSINFORMATION">
-                        <Accordion.Control>
-                          {locale === 'sv'
-                            ? 'BESTÄLLNINGSINFORMATION'
-                            : 'ORDERING INFORMATION'}
-                        </Accordion.Control>
-                        <Accordion.Panel>
-                          <div
-                            className={styles.ordering__information}
-                            dangerouslySetInnerHTML={{
-                              __html: ordering_information
-                            }}
-                          />
-                        </Accordion.Panel>
-                      </Accordion.Item>
-                      <Accordion.Item value="MANUALER">
-                        <Accordion.Control>
-                          {locale === 'sv' ? 'MANUALER' : 'MANUALS'}
-                        </Accordion.Control>
-                        <Accordion.Panel>
+                    )}
+
+                    <Accordion.Item value="MANUALER">
+                      <Accordion.Control>
+                        {locale === 'sv' ? 'MANUALER' : 'MANUALS'}
+                      </Accordion.Control>
+                      <Accordion.Panel>
+                        {produktblad || marknadsforingsblad ? (
                           <div>
                             {produktblad
                               ? produktblad.map((doc, index) => {
@@ -195,14 +183,19 @@ const NewsPage = ({ response, locale, resProducts }) => {
                                 })
                               : null}
                           </div>
-                        </Accordion.Panel>
-                      </Accordion.Item>
-                    </Accordion>
-                  ) : null}
+                        ) : (
+                          'Kommer inom kort'
+                        )}
+                      </Accordion.Panel>
+                    </Accordion.Item>
+                  </Accordion>
                 </div>
               </div>
             </div>
-            <div
+
+            {/*  ----------- Not using function yet  --------------*/}
+
+            {/* <div
               className={`flex max-w-7xl m-auto flex-col mt-10 ${styles.related__products}`}
             >
               {locale === 'sv' ? (
@@ -240,7 +233,7 @@ const NewsPage = ({ response, locale, resProducts }) => {
                       )
                     })}
               </div>
-            </div>
+            </div> */}
           </motion.div>
         )
       })}

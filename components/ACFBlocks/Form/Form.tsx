@@ -2,10 +2,11 @@ import { useState } from 'react'
 import Head from 'next/head'
 import { notifications } from '@mantine/notifications'
 import { MdOutlineDone, MdErrorOutline } from 'react-icons/md'
-import { Checkbox, Group } from '@mantine/core'
+import { Checkbox, Group, Radio } from '@mantine/core'
 import styles from './form.module.scss'
 
 export default function Contact({ locale, bg }) {
+  const [value, setValue] = useState('Övrigt')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,40 +14,26 @@ export default function Contact({ locale, bg }) {
     surname: '',
     phone: '',
     foretag: '',
-    agree: false,
-    ovrigt: false,
-    karriar: false,
-    produkter: false,
-    samarbete: false,
-    bestallning: false
+    radio: '',
+    agree: false
   })
 
+  const onOptionChange = (e) => {
+    const { name } = e.target
+    setFormData({ ...formData, radio: name })
+  }
+
   const handleChange = (e) => {
-    const { name, checked } = e.target
-    if (e.target.type === 'checkbox') {
-      setFormData({ ...formData, [name]: checked })
-    } else {
-      setFormData({ ...formData, [name]: e.target.value })
-    }
+    const { name } = e.target
+
+    setFormData({ ...formData, [name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const {
-      name,
-      email,
-      message,
-      phone,
-      surname,
-      foretag,
-      agree,
-      ovrigt,
-      karriar,
-      produkter,
-      samarbete,
-      bestallning
-    } = formData
+    const { name, email, message, phone, surname, foretag, agree, radio } =
+      formData
 
     notifications.show({
       title: 'Skickar meddelande',
@@ -69,11 +56,7 @@ export default function Contact({ locale, bg }) {
           phone,
           foretag,
           agree,
-          ovrigt,
-          karriar,
-          produkter,
-          samarbete,
-          bestallning
+          radio
         })
       })
 
@@ -85,12 +68,8 @@ export default function Contact({ locale, bg }) {
           surname: '',
           phone: '',
           foretag: '',
-          bestallning: false,
-          agree: false,
-          ovrigt: false,
-          karriar: false,
-          produkter: false,
-          samarbete: false
+          radio: '',
+          agree: false
         })
         notifications.show({
           title: 'Tack för ditt meddelande',
@@ -238,66 +217,23 @@ export default function Contact({ locale, bg }) {
             <label>VAD GÄLLER DITT ÄRENDE /</label>
           </div>
           <div className={styles.checkbox_group}>
-            <Checkbox
-              label="BESTÄLLNING"
-              labelPosition="left"
-              color="dark"
-              value={`${formData.bestallning}`}
-              name="bestallning"
-              radius="none"
-              checked={formData.bestallning}
-              size="xs"
-              onChange={handleChange}
-            />
-            <Checkbox
-              labelPosition="left"
-              label="PRODUKTER"
-              color="dark"
-              value={`${formData.produkter}`}
-              checked={formData.produkter}
-              name="produkter"
-              radius="none"
-              size="xs"
-              onChange={handleChange}
-            />
-            <Checkbox
-              labelPosition="left"
-              label="SAMARBETE"
-              color="dark"
-              value={`${formData.samarbete}`}
-              checked={formData.samarbete}
-              name="samarbete"
-              radius="none"
-              size="xs"
-              onChange={handleChange}
-            />
-            <Checkbox
-              label="KARRIÄR"
-              labelPosition="left"
-              color="dark"
-              value={`${formData.karriar}`}
-              checked={formData.karriar}
-              name="karriar"
-              radius="none"
-              size="xs"
-              onChange={handleChange}
-            />
-            <Checkbox
-              label="ÖVRIGT"
-              labelPosition="left"
-              color="dark"
-              value={`${formData.ovrigt}`}
-              checked={formData.ovrigt}
-              name="ovrigt"
-              radius="none"
-              size="xs"
-              onChange={handleChange}
-            />
+            <Radio.Group>
+              <Group mt="xs" onChange={onOptionChange}>
+                <Radio
+                  name="BESTÄLLNING"
+                  value="BESTÄLLNING"
+                  label="BESTÄLLNING"
+                />
+                <Radio value="PRODUKTER" label="PRODUKTER" name="PRODUKTER" />
+                <Radio value="SAMARBETE" label="SAMARBETE" name="SAMARBETE" />
+                <Radio value="ÖVRIGT" label="ÖVRIGT" name="ÖVRIGT" />
+              </Group>
+            </Radio.Group>
           </div>
         </div>
 
         <div className={styles.message}>
-          <label htmlFor="message">BESKRIV DITT ÄRENDE.</label>
+          <label htmlFor="message">BESKRIV DITT ÄRENDE /</label>
           <textarea
             id="message"
             name="message"

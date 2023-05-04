@@ -152,9 +152,6 @@
 
         @include breakpoint(small) {
           flex-wrap: wrap;
-          input {
-            width: 100%;
-          }
         }
 
         input {

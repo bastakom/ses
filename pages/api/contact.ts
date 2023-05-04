@@ -1,20 +1,8 @@
 import nodemailer from 'nodemailer'
 
 export default async function handler(req, res) {
-  const {
-    name,
-    email,
-    message,
-    surname,
-    phone,
-    foretag,
-    agree,
-    ovrigt,
-    karriar,
-    produkter,
-    samarbete,
-    bestallning
-  } = req.body
+  const { name, email, message, surname, phone, foretag, agree, radio } =
+    req.body
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -35,11 +23,7 @@ export default async function handler(req, res) {
 
     <h3>Ärendet gäller: </h3>
 
-    ${ovrigt === true ? `<p style="color: #555;">Övrigt</p>` : ''}
-    ${karriar === true ? `<p style="color: #555;">Kärriar</p>` : ''}
-    ${produkter === true ? `<p style="color: #555;">Produkter</p>` : ''}
-    ${samarbete === true ? `<p style="color: #555;">Samarbete</p>` : ''}
-    ${bestallning === true && `<p style="color: #555;">Bestallning</p>`}
+    ${radio ? `<p style="color: #555;">${radio}</p>` : 'no choice'}
 
     <h3>Meddelande</h3>
     <p style="color: #555;">${message}</p>
