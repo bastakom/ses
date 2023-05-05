@@ -162,11 +162,11 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                     title={title}
                     content={content || null}
                     align="items-center"
-                    height="40"
+                    height="60"
                   />
                   <div
                     className="button flex justify-center pb-10"
-                    style={{ marginTop: '-50px', background: '#f5f5f5' }}
+                    style={{ marginTop: '-10px', background: '#f5f5f5', paddingBottom: '150px' }}
                   >
                     <Link href="/kontakt#form">BESTÄLL HÄR</Link>
                   </div>
