@@ -16,7 +16,6 @@ class MyDocument extends Document {
             id="Cookiebot"
             src="https://consent.cookiebot.com/uc.js"
             data-cbid="54a96287-0a8e-4874-9434-a6d52758b612"
-            data-blockingmode="auto"
             type="text/javascript"
           ></script>
           <script
