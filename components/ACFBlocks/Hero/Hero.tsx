@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 import styles from './hero.module.scss'
 import Link from 'next/link'
+import { Skeleton } from '@mantine/core'
 
 const Hero = ({
   image,
@@ -46,7 +47,15 @@ const Hero = ({
             position: 'relative'
           }}
         >
-          <Image src={image} fill alt="" loading="eager" />
+          <Image
+            src={image}
+            fill
+            alt=""
+            loading="lazy"
+            priority={true}
+            quality={100}
+            placeholder="blur"
+          />
           <div className={styles.__overlay} />
         </div>
       ) : (

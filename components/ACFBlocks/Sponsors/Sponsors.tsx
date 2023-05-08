@@ -17,6 +17,7 @@ const Sponsors = ({ title, galleri }) => {
               height={100}
               alt={''}
               key={index}
+              priority={true}
             />
           )
         })}
