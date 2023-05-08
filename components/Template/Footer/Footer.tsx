@@ -67,7 +67,7 @@ const Footer = ({ options }) => {
             </div>
           )}
         </div>
-        <div className="flex flex-wrap justify-center gap-5 md:gap-20 md:h-32">
+        <div className="flex flex-wrap justify-center gap-5 md:gap-20 md:h-32 mt-10">
           <div
             className={`${styles.footer__info} flex justify-center flex-col items-center`}
           >
