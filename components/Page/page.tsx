@@ -23,7 +23,6 @@ const Page = ({ flexibleContent, locale }) => {
       ? 'SES PROTECTION'
       : flexibleContent[0].title.rendered
 
-  console.log(router.pathname, Yoast)
   return (
     <motion.div {...AnimationSettings}>
       <Head>

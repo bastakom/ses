@@ -31,7 +31,6 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 second_button
               } = data
 
-              console.log(head_title)
               return (
                 <>
                   <Hero
