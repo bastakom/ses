@@ -16,9 +16,7 @@ module.exports = {
     imageSizes: [16, 32, 48, 64, 96], // Adjust according to your needs
     // Set cache control headers for images
     headers: {
-      'Cache-Control':
-        'public, max-age=180, s-maxage=180, stale-while-revalidate=180'
-    }
+      'Cache-Control': 'public, max-age=31536000, immutable',
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
