@@ -24,11 +24,12 @@ const ImageACF = ({
       >
         <div className={`md:w-1/2 ${styles.__image__}`}>
           <LoadingSkeleton>
-            <img
+            <Image
               src={sourceUrl}
               width={800}
               height={500}
               alt={alt || 'image'}
+              priority={true}
             />
           </LoadingSkeleton>
         </div>

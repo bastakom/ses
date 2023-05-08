@@ -54,7 +54,6 @@ const Hero = ({
             loading="eager"
             priority={true}
             quality={100}
-            placeholder="blur"
           />
           <div className={styles.__overlay} />
         </div>
