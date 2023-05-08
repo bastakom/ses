@@ -9,12 +9,13 @@ import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { useMediaQuery } from '@mantine/hooks'
 import DrawerHeader from '@/components/Template/Header/Drawer'
+import { useEffect, useState } from 'react'
+import Script from 'next/script'
 
 import '@/styles/global.scss'
-import Script from 'next/script'
-import Head from 'next/head'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const [show, setShow] = useState(false)
   const router = useRouter()
   const matches = useMediaQuery('(min-width: 920px)')
 
@@ -27,6 +28,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     }
     tempFix()
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(true)
+    }, 1000)
+  })
 
   Router.events.on('routeChangeComplete', routeChange)
   Router.events.on('routeChangeStart', routeChange)
@@ -59,7 +66,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Notifications />
         {pageProps?.options ? (
           <>
-            {matches ? (
+            {matches && show ? (
               <Header
                 options={pageProps?.options}
                 newMenu={pageProps?.options}
@@ -75,8 +82,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         ) : null}
         <PageTransition />
         <Component {...pageProps} key={router.pathname} />
-        {pageProps?.options ? <Footer options={pageProps?.options} /> : null}
       </MantineProvider>
+      {show && pageProps?.options ? (
+        <Footer options={pageProps?.options} />
+      ) : null}
     </>
   )
 }
