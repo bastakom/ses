@@ -32,9 +32,7 @@ const AccordionItem = ({ title, content, IconColor }) => {
 
   function toggleAccordion() {
     setActive((prevState) => !prevState)
-    setHeight(
-      active ? '0px' : `${contentSpace.current.scrollHeight}px`
-    )
+    setHeight(active ? '0px' : `${contentSpace.current.scrollHeight}px`)
     setRotate(
       active
         ? 'transform duration-700 ease'
@@ -45,13 +43,12 @@ const AccordionItem = ({ title, content, IconColor }) => {
   return (
     <div className={`flex flex-col border-b-2 ${styles.accordion}`}>
       <button
+        name="accordion"
         className="py-3 box-border appearance-none cursor-pointer focus:outline-none flex items-center justify-between"
         onClick={toggleAccordion}
       >
         {title && (
-          <p className="inline-block text-footnote light text-2xl">
-            {title}
-          </p>
+          <p className="inline-block text-footnote light text-2xl">{title}</p>
         )}
         <div
           className={`${rotate} inline-block`}

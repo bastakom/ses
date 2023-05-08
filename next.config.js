@@ -1,21 +1,6 @@
 const path = require('path')
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  async headers() {
-    return [
-      {
-        // This works, and returns appropriate Response headers:
-        source: '/(.*).jpg',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value:
-              'public, max-age=180, s-maxage=180, stale-while-revalidate=180'
-          }
-        ]
-      }
-    ]
-  },
+
+module.exports = {
   reactStrictMode: true,
 
   i18n: {
@@ -25,11 +10,17 @@ const nextConfig = {
   },
   trailingSlash: true,
   images: {
-    domains: [process.env.WP_IMAGES_URL]
+    domains: [process.env.WP_IMAGES_URL],
+    loader: 'default',
+    deviceSizes: [320, 420, 768, 1024, 1200], // Adjust according to your needs
+    imageSizes: [16, 32, 48, 64, 96], // Adjust according to your needs
+    // Set cache control headers for images
+    headers: {
+      'Cache-Control':
+        'public, max-age=180, s-maxage=180, stale-while-revalidate=180'
+    }
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
   }
 }
-
-module.exports = nextConfig

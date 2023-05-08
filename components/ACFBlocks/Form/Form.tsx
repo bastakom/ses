@@ -257,7 +257,9 @@ export default function Contact({ locale, bg }) {
           />
         </div>
 
-        <button type="submit">{locale === 'sv' ? 'Skicka' : 'Send'}</button>
+        <button name="submit" type="submit">
+          {locale === 'sv' ? 'Skicka' : 'Send'}
+        </button>
       </form>
     </div>
   )
