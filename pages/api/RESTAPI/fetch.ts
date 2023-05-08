@@ -7,7 +7,7 @@ export const getFlexibleContent = async (currentLang, uriWithSlash) => {
     `${
       process.env.NEXT_PUBLIC_WP_URL
     }${currentLang}/wp-json/wp/v2/pages?template=flexible&slug=${uriWithSlash}&_=${Date.now()}`,
-    { headers: { 'cache-control': 'no-cache' } }
+    { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } }
   )
   const flexibleContent = await flexibleContentData.json()
   return flexibleContent
