@@ -28,7 +28,7 @@
       font-weight: bold;
       max-width: 500px;
       @include breakpoint(small) {
-       max-width: 100%;
+        max-width: 100%;
       }
     }
 
@@ -126,5 +126,13 @@
     a {
       font-size: 18px;
     }
+  }
+}
+
+.imageContainer {
+  position: absolute;
+  width: 100%;
+  img {
+    position: relative !important;
   }
 }
