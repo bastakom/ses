@@ -15,7 +15,8 @@ const Hero = ({
   imageVideo,
   padding,
   firstBtn,
-  secBtn
+  secBtn,
+  headTitle
 }) => {
   const textAlign =
     justify === 'start'
@@ -59,6 +60,7 @@ const Hero = ({
         <div
           className={`absolute z-10 ${styles.image__info} text-${textAlign}`}
         >
+          <h3>{headTitle}</h3>
           <h1>{title}</h1>
           <h2>{subtitle}</h2>
           {content ? (

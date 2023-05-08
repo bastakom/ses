@@ -37,10 +37,19 @@
       max-width: 100%;
     }
 
+    h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: $subtitle;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
     h1 {
       font-family: $font-family-paragraph;
       font-weight: bolder;
       font-size: 42px;
+      margin-bottom: 20px;
       letter-spacing: 5.88px;
       color: $bg-hero-text;
 
@@ -64,7 +73,7 @@
 }
 
 .buttons {
-  margin-top: 50px;
+  margin-top: 70px;
 
   @include breakpoint(small) {
     display: flex;

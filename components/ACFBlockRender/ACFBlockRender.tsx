@@ -19,6 +19,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
             case 'hero': {
               const {
                 id,
+                head_title,
                 image,
                 title,
                 sub_title,
@@ -29,9 +30,12 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 first_button,
                 second_button
               } = data
+
+              console.log(head_title)
               return (
                 <>
                   <Hero
+                    headTitle={head_title}
                     firstBtn={first_button}
                     secBtn={second_button}
                     height={settings.cover_height}
@@ -166,7 +170,11 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                   />
                   <div
                     className="button flex justify-center pb-10"
-                    style={{ marginTop: '-10px', background: '#f5f5f5', paddingBottom: '150px' }}
+                    style={{
+                      marginTop: '-10px',
+                      background: '#f5f5f5',
+                      paddingBottom: '150px'
+                    }}
                   >
                     <Link href="/kontakt#form">BESTÄLL HÄR</Link>
                   </div>
