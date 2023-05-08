@@ -51,7 +51,7 @@ const Hero = ({
             src={image}
             fill
             alt=""
-            loading="lazy"
+            loading="eager"
             priority={true}
             quality={100}
             placeholder="blur"
