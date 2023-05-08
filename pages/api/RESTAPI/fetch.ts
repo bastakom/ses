@@ -2,14 +2,12 @@ import { revalidate } from '@/pages/nyheter'
 
 revalidate
 
-export const getFlexibleContent = async (
-  currentLang,
-  uriWithSlash
-) => {
+export const getFlexibleContent = async (currentLang, uriWithSlash) => {
   const flexibleContentData = await fetch(
     `${
       process.env.NEXT_PUBLIC_WP_URL
-    }${currentLang}/wp-json/wp/v2/pages?template=flexible&slug=${uriWithSlash}&_=${Date.now()}`
+    }${currentLang}/wp-json/wp/v2/pages?template=flexible&slug=${uriWithSlash}&_=${Date.now()}`,
+    { headers: { 'cache-control': 'no-cache' } }
   )
   const flexibleContent = await flexibleContentData.json()
   return flexibleContent

@@ -12,14 +12,10 @@ module.exports = {
   images: {
     domains: [process.env.WP_IMAGES_URL],
     loader: 'default',
-    deviceSizes: [320, 420, 768, 1024, 1200], // Adjust according to your needs
-    imageSizes: [16, 32, 48, 64, 96], // Adjust according to your needs
-    // Set cache control headers for images
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable'
-    },
-    sassOptions: {
-      includePaths: [path.join(__dirname, 'styles')]
-    }
+    deviceSizes: [320, 420, 768, 1024, 1200],
+    imageSizes: [16, 32, 48, 64, 96]
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')]
   }
 }
