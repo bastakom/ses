@@ -23,7 +23,7 @@ const Home = ({ response, latest }) => {
           />
         </div>
         {response.length === 0 && (
-          <div className={`text-2xl`}>
+          <div className={`text-2xl nonews`}>
             {locale === 'sv'
               ? 'För tillfället finns det inga nyheter!'
               : 'At the moment there is no news!'}

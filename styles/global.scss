@@ -6,7 +6,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+html,
+body {
   scroll-behavior: smooth;
 }
 
@@ -187,4 +188,8 @@ td {
 
 .nav {
   background: white;
+}
+
+.nonews {
+  font-family: $font-family-heading;
 }

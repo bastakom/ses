@@ -29,6 +29,7 @@ const Hero = ({
   return (
     <div
       className={`${styles.cover} justify-${justify}`}
+      id={imageVideo === '1' && 'video'}
       style={{
         paddingLeft: `${padding.p_left}px`,
         paddingRight: `${padding.p_right}px`,
@@ -48,7 +49,7 @@ const Hero = ({
           <div className={styles.__overlay} />
         </div>
       ) : (
-        <div className="container mx-auto ">
+        <div className="container mx-auto">
           <video controls muted className="w-full">
             <source src={video} type="video/mp4" />
           </video>
