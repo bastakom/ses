@@ -12,12 +12,11 @@ import Image from 'next/image'
 import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkeleton'
 import styles from './slugprodukter.module.scss'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import Head from 'next/head'
+import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 
-const NewsPage = ({ response, locale, resProducts }) => {
+const NewsPage = ({ response, locale }) => {
   revalidate
-
-  const router = useRouter()
-  const { slug } = router.query
 
   const data = response.map((data) => data)
   return (
@@ -29,13 +28,27 @@ const NewsPage = ({ response, locale, resProducts }) => {
             cat,
             description,
             table,
-            produktblad,
-            ordering_information
+            produktblad
           }
         } = data
 
+        const maxLength = 120
+        let limitedDescription = description.substring(0, maxLength)
+        if (description.length > maxLength) {
+          limitedDescription += '...'
+        }
+
+        const strippedDescription = limitedDescription.replace(
+          /(<([^>]+)>)/gi,
+          ''
+        )
+
         return (
           <motion.div {...AnimationSettings}>
+            <Head>
+              <title>{data.title.rendered}</title>
+              <meta name="description" content={strippedDescription} />
+            </Head>
             <div className={`${styles.pagination} md:ml-10 mt-1 flex gap-2`}>
               <Link href="/produkter">
                 {locale === 'sv' ? 'Produkter' : 'Products'}

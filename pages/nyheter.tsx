@@ -7,6 +7,7 @@ import Layout from '@/components/Template/Layout/Layout'
 import OtherItems from '@/components/PageComponents/Nyheter/OtherItems'
 import HeaderText from '@/components/Template/HeaderText/HeaderText'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 export const revalidate = 10
 
@@ -14,6 +15,10 @@ const Home = ({ response, latest }) => {
   const { locale } = useRouter()
   return (
     <div className="md:py-20 py-5" style={{ background: '#f5f5f5' }}>
+      <Head>
+        <title>Nyheter</title>
+        <meta name="description" content="våra senaste nyheter!" />
+      </Head>
       <Layout>
         <div className="pl-5 md:pl-0">
           <HeaderText

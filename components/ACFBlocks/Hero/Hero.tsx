@@ -46,7 +46,7 @@ const Hero = ({
             position: 'relative'
           }}
         >
-          <Image src={image} fill alt="" quality="100" />
+          <Image src={image} fill alt="" />
           <div className={styles.__overlay} />
         </div>
       ) : (

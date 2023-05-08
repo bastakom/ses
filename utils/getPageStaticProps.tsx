@@ -8,9 +8,7 @@ revalidate
 
 export const getPageStaticProps = async (context) => {
   const { locale } = context
-  const uri = context.params?.slug
-    ? `/${context.params.slug.join('/')}/`
-    : '/'
+  const uri = context.params?.slug ? `/${context.params.slug.join('/')}/` : '/'
 
   const currentLang = locale === 'sv' ? '' : locale
   const uriWithSlash = uri === '/' ? 'hem' : uri
@@ -18,10 +16,7 @@ export const getPageStaticProps = async (context) => {
   const options = await getOptions()
   const nyheter = await getNyheter(locale)
   const response = await getProdukter(locale)
-  const flexibleContent = await getFlexibleContent(
-    currentLang,
-    uriWithSlash
-  )
+  const flexibleContent = await getFlexibleContent(currentLang, uriWithSlash)
 
   return {
     props: {

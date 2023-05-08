@@ -12,6 +12,7 @@ import DrawerHeader from '@/components/Template/Header/Drawer'
 
 import '@/styles/global.scss'
 import Script from 'next/script'
+import Head from 'next/head'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
