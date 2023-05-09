@@ -19,6 +19,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const matches = useMediaQuery('(min-width: 920px)')
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (router.pathname === '/login') {
+        window.location.replace('http://ses.dev-bk.se/')
+      }
+    }, 2000)
+  }, [router.pathname])
+
   const routeChange = () => {
     const tempFix = () => {
       const allStyleElems = document.querySelectorAll('style[media="x"]')
