@@ -22,7 +22,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setTimeout(() => {
       if (router.pathname === '/login') {
-        window.location.replace('http://ses.dev-bk.se/')
+        window.location.replace('https://ses.admin-login.se/')
       }
     }, 2000)
   }, [router.pathname])
