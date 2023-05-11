@@ -1,0 +1,58 @@
+@import '@/styles/theme';
+
+.form {
+  input {
+    font-weight: normal;
+    letter-spacing: 1.2px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  label {
+    font-weight: normal;
+    letter-spacing: 1.2px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  .bastall__table {
+    th,
+    td {
+      padding: 10px;
+      font-family: $font-family-href;
+      font-weight: normal;
+      letter-spacing: 1.2px;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    h2 {
+      color: $subtitle;
+      text-transform: uppercase;
+      font-size: $formLabel;
+      font-weight: normal;
+      letter-spacing: 1.2px;
+      margin-top: 5px;
+    }
+  }
+
+  .button {
+    font-family: $font-family-href;
+    text-transform: uppercase;
+    color: $bg-button-text;
+    max-width: 200px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 10px 20px;
+    background: $bg-button;
+
+    &:hover {
+      background: $bg-button-hover;
+    }
+  }
+}
