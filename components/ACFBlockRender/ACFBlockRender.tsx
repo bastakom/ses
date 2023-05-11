@@ -9,6 +9,7 @@ import Sponsors from '../ACFBlocks/Sponsors/Sponsors'
 import Column from '../Column/Column'
 import HeaderText from '../Template/HeaderText/HeaderText'
 import Layout from '../Template/Layout/Layout'
+import Bestall from '../ACFBlocks/Bestall/Bestall'
 
 const ACFBlockRender = ({ flexibleContent, locale }) => {
   return (
@@ -175,7 +176,8 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                       paddingBottom: '150px'
                     }}
                   >
-                    <Link href="/kontakt#form">BESTÄLL HÄR</Link>
+                    {/* <Link href="/kontakt#form">BESTÄLL HÄR</Link> */}
+                    <Bestall />
                   </div>
                 </div>
               )
