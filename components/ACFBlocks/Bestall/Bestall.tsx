@@ -28,6 +28,49 @@ const Bestall = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    const hasEmptyFields = Object.keys(selectedProdukts).some((productId) => {
+      const productValue = selectedProdukts[productId]
+      const enhetValue = selectedEnhet[productId]
+      const minBestallningValue = selectedMinBestallning[productId]
+      const bestallAntalValue = selectedBestallAntal[productId]
+
+      return (
+        productValue === '' ||
+        productValue === undefined ||
+        enhetValue === '' ||
+        enhetValue === undefined ||
+        minBestallningValue === '' ||
+        minBestallningValue === undefined ||
+        bestallAntalValue === '' ||
+        bestallAntalValue === undefined
+      )
+    })
+
+    if (hasEmptyFields) {
+      notifications.show({
+        title: 'Fyll i nödvändig fält',
+        message: 'Du har missat att fylla i något fält.',
+        icon: <MdErrorOutline />,
+        color: 'red',
+        styles: (theme) => ({
+          root: {
+            backgroundColor: theme.colors.white,
+            borderColor: theme.colors.white,
+
+            '&::before': { backgroundColor: theme.black }
+          },
+
+          title: { color: theme.black },
+          description: { color: theme.black },
+          closeButton: {
+            color: theme.black,
+            '&:hover': { backgroundColor: theme.colors.white }
+          }
+        })
+      })
+      return
+    }
+
     notifications.show({
       title: 'Skickar meddelande',
       message: 'Var god vänta...',
@@ -176,12 +219,19 @@ const Bestall = () => {
 
       setSelectedEnhet((prevSelectedEnhet) => ({
         ...prevSelectedEnhet,
-        [productId]: ''
+        [productId]:
+          updatedSelectedProdukts[productId] ===
+            'CBRN F2 Storlek 1 – 5 st/pk' ||
+          updatedSelectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk'
+            ? '2'
+            : '1'
       }))
+
       setSelectedMinBestallning((prevSelectedMinBestallning) => ({
         ...prevSelectedMinBestallning,
         [productId]: 'PK'
       }))
+
       setSelectedBestallAntal((prevSelectedBestallAntal) => ({
         ...prevSelectedBestallAntal,
         [productId]: '1'
@@ -192,7 +242,6 @@ const Bestall = () => {
   }
 
   const getEnhetOptions = (productId) => {
-    // Define the options based on the selected Produkt
     if (
       selectedProdukts[productId] === 'CBRN F2 Storlek 1 – 5 st/pk' ||
       selectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk'
@@ -214,7 +263,15 @@ const Bestall = () => {
     }
   }
 
-  console.log(Object.keys(selectedProdukts))
+  const selectedDefaultValue = (productId) => {
+    if (selectedProdukts[productId] === 'CBRN F2 Storlek 1 – 5 st/pk') {
+      return '2'
+    } else {
+      return '1'
+    }
+  }
+
+  console.log(selectedEnhet)
 
   return (
     <div className="flex flex-col">
@@ -235,6 +292,7 @@ const Bestall = () => {
               name="produkt"
               label="Produkt"
               placeholder="Välj produkt"
+              required
               data={[
                 {
                   value: 'CBRN F2 Storlek 1 – 5 st/pk',
@@ -265,6 +323,7 @@ const Bestall = () => {
                 name="enhet"
                 placeholder="Välj Enhet"
                 label="Enhet"
+                defaultValue={selectedDefaultValue(product.id)}
                 required
                 data={getEnhetOptions(product.id)}
                 value={selectedEnhet[product.id]}
@@ -292,6 +351,7 @@ const Bestall = () => {
                 label="Beställ Antal"
                 placeholder="Välj Antal"
                 name="antal"
+                defaultValue="1"
                 data={[
                   { value: '1', label: '1' },
                   { value: '2', label: '2' },
@@ -310,13 +370,7 @@ const Bestall = () => {
             </div>
           </div>
         ))}
-        <button
-          className={styles.button}
-          type="button"
-          onClick={addProductField}
-        >
-          Lägg till produkt
-        </button>
+
         {Object.keys(selectedProdukts).length > 0 ? (
           <div className={`summary mt-20 ${styles.bastall__table}`}>
             <h2 className="mb-10"> DIN BESTÄLLNING /</h2>
@@ -342,11 +396,20 @@ const Bestall = () => {
             </table>
           </div>
         ) : null}
-        {Object.keys(selectedProdukts).length > 0 ? (
-          <button type="submit" name="submit" className={styles.button}>
-            Beställ
+        <div className="fixed bottom-5 flex justify-center gap-5 w-full left-0 right-5  ">
+          <button
+            className={styles.button}
+            type="button"
+            onClick={addProductField}
+          >
+            Lägg till produkt
           </button>
-        ) : null}
+          {Object.keys(selectedProdukts).length > 0 ? (
+            <button type="submit" name="submit" className={styles.button}>
+              Beställ
+            </button>
+          ) : null}
+        </div>
       </form>
     </div>
   )
