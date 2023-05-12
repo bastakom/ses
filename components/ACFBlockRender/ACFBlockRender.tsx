@@ -64,8 +64,12 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 context: { button, bg },
                 sub_title,
                 title,
-                p_size
+                p_size,
+                button_english,
+                text_english
               } = data
+
+              console.log(button_english)
 
               return (
                 <div
@@ -74,6 +78,9 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 >
                   <Layout key={id} full={full_width}>
                     <ImageACF
+                      button_english={button_english}
+                      text_english={text_english}
+                      locale={locale}
                       p_size={p_size}
                       sourceUrl={image}
                       alt={altText}

@@ -12,7 +12,10 @@ const ImageACF = ({
   rowReverse,
   button,
   subtitle,
-  p_size
+  p_size,
+  button_english,
+  text_english,
+  locale
 }) => {
   return (
     <>
@@ -50,17 +53,30 @@ const ImageACF = ({
               <h3>{title}</h3>
             </div>
           </div>
-          <div
-            style={{ fontSize: `${p_size}px` }}
-            dangerouslySetInnerHTML={{
-              __html: ToAbsoluteUrl(content)
-            }}
-            className={styles.content}
-          />
-          {button && (
-            <div className={`mt-10 button`}>
-              <Link href={button.url}>{button.title}</Link>
-            </div>
+            <div
+              style={{ fontSize: `${p_size}px` }}
+              dangerouslySetInnerHTML={{
+                __html: ToAbsoluteUrl(content)
+              }}
+              className={styles.content}
+            />
+
+          {locale === 'sv' ? (
+            <>
+              {button && (
+                <div className={`mt-10 button`}>
+                  <Link href={button.url}>{button.title}</Link>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {button_english ? (
+                <div className={`mt-10 button`}>
+                  <Link href={button.url}>{button_english}</Link>
+                </div>
+              ) : null}
+            </>
           )}
         </div>
       </div>

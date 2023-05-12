@@ -31,7 +31,7 @@ const Hero = ({
   return (
     <div
       className={`${styles.cover} justify-${justify}`}
-      id={imageVideo === '1' && 'video'}
+      id={imageVideo === '1' ? 'video' : null}
       style={{
         paddingLeft: `${padding.p_left}px`,
         paddingRight: `${padding.p_right}px`,

@@ -20,8 +20,8 @@ const CTA = ({ repeater, title, subtitle, bg, center }) => {
           center === '1' ? `${styles.content__center}` : null
         }`}
       >
-        {subtitle && <h3>{subtitle}</h3>}
-        {title && <h2>{title}</h2>}
+        {subtitle ? <h3>{subtitle}</h3> : null}
+        {title ? <h2>{title}</h2> : null}
         <div className={`flex gap-32 ${styles.repeater}`}>
           {repeater ? (
             <>
@@ -34,11 +34,11 @@ const CTA = ({ repeater, title, subtitle, bg, center }) => {
                         __html: item.content
                       }}
                     />
-                    {item.button && (
+                    {item.button ? (
                       <div className={`mt-5 ${styles.url__link}`}>
                         <Link href={item.button.url}>{item.button.title}</Link>
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 )
               })}
