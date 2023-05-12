@@ -69,8 +69,6 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 text_english
               } = data
 
-              console.log(button_english)
-
               return (
                 <div
                   className="w-full pt-10 pb-10"
