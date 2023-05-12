@@ -93,10 +93,11 @@ const Bestall = () => {
       })
 
       if (res.ok) {
-        setSelectedBestallAntal('')
-        setSelectedMinBestallning('')
-        setSelectedEnhet('')
-        setSelectedProdukts('')
+        setSelectedBestallAntal({})
+        setSelectedMinBestallning({})
+        setSelectedEnhet({})
+        setSelectedProdukts({})
+        setTableSummary([])
 
         notifications.show({
           title: 'Tack för ditt meddelande',
@@ -186,7 +187,6 @@ const Bestall = () => {
         [productId]: value
       }
 
-      // Update table summary data
       setTableSummary((prevTableSummary) => {
         const productIndex = prevTableSummary.findIndex(
           (item) => item.id === productId
@@ -271,7 +271,7 @@ const Bestall = () => {
     }
   }
 
-  console.log(selectedEnhet)
+  console.log(selectedProdukts)
 
   return (
     <div className="flex flex-col">
@@ -292,7 +292,6 @@ const Bestall = () => {
               name="produkt"
               label="Produkt"
               placeholder="Välj produkt"
-              required
               data={[
                 {
                   value: 'CBRN F2 Storlek 1 – 5 st/pk',
@@ -324,7 +323,6 @@ const Bestall = () => {
                 placeholder="Välj Enhet"
                 label="Enhet"
                 defaultValue={selectedDefaultValue(product.id)}
-                required
                 data={getEnhetOptions(product.id)}
                 value={selectedEnhet[product.id]}
                 onChange={(value) =>
@@ -370,6 +368,13 @@ const Bestall = () => {
             </div>
           </div>
         ))}
+        <button
+          className={styles.button}
+          type="button"
+          onClick={addProductField}
+        >
+          Lägg till produkt
+        </button>
 
         {Object.keys(selectedProdukts).length > 0 ? (
           <div className={`summary mt-20 ${styles.bastall__table}`}>
@@ -396,20 +401,12 @@ const Bestall = () => {
             </table>
           </div>
         ) : null}
-        <div className="fixed bottom-5 flex justify-center gap-5 w-full left-0 right-5  ">
-          <button
-            className={styles.button}
-            type="button"
-            onClick={addProductField}
-          >
-            Lägg till produkt
+
+        {Object.keys(selectedProdukts).length > 0 ? (
+          <button type="submit" name="submit" className={styles.button}>
+            Beställ
           </button>
-          {Object.keys(selectedProdukts).length > 0 ? (
-            <button type="submit" name="submit" className={styles.button}>
-              Beställ
-            </button>
-          ) : null}
-        </div>
+        ) : null}
       </form>
     </div>
   )
