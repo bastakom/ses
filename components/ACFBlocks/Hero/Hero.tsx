@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 import styles from './hero.module.scss'
 import Link from 'next/link'
-import { Skeleton } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 
 const Hero = ({
   image,
@@ -28,6 +28,8 @@ const Hero = ({
       ? 'center'
       : null
 
+  const matches = useMediaQuery('(min-width: 375px)')
+
   return (
     <div
       className={`${styles.cover} justify-${justify}`}
@@ -42,7 +44,7 @@ const Hero = ({
         <div
           className={styles.hero__container}
           style={{
-            height: `${height}vh`,
+            height: `${!matches ? '100' : height}vh`,
             width: '100%',
             position: 'relative'
           }}

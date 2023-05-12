@@ -1,16 +1,18 @@
 import Link from 'next/link'
 import styles from './cta.module.scss'
 import Image from 'next/image'
+import { useMediaQuery } from '@mantine/hooks'
 
 const CTA = ({ repeater, title, subtitle, bg, center }) => {
+  const matches = useMediaQuery('(min-width: 375px)')
   return (
     <div
       className={`h-screen flex flex-col justify-center bg-cover ${
         bg ? 'items-center' : `${styles.mixins}`
       } ${bg ? styles.with__background : styles.without__background}`}
-      // style={{ backgroundImage: `url(${bg})` }}
+      style={matches ? { backgroundImage: `url(${bg})` } : null}
     >
-      {bg && (
+      {bg && !matches && (
         <div className={`${styles.imageContainer}`}>
           <Image src={bg} fill alt="" />
         </div>
