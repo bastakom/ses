@@ -3,7 +3,7 @@ import styles from './cta.module.scss'
 import Image from 'next/image'
 import { useMediaQuery } from '@mantine/hooks'
 
-const CTA = ({ repeater, title, subtitle, bg, center }) => {
+const CTA = ({ repeater, title, subtitle, bg, center, locale }) => {
   const matches = useMediaQuery('(min-width: 375px)')
   return (
     <div
@@ -33,12 +33,19 @@ const CTA = ({ repeater, title, subtitle, bg, center }) => {
                     <h4>{item.title}</h4>
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: item.content
+                        __html:
+                          locale === 'sv'
+                            ? item.content
+                            : item.content_engelska || item.content
                       }}
                     />
                     {item.button && (
                       <div className={`mt-5 ${styles.url__link}`}>
-                        <Link href={item.button.url}>{item.button.title}</Link>
+                        <Link href={item.button.url}>
+                          {locale === 'sv'
+                            ? item.button.title
+                            : item.button_engelska || item.button.title}
+                        </Link>
                       </div>
                     )}
                   </div>
