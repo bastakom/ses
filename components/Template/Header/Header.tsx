@@ -89,6 +89,7 @@ const Header = ({ options, newMenu }) => {
                     href={asPath}
                     locale={locale}
                     className={styles.lang}
+                    scroll={false}
                   >
                     <div className={`flex `}>
                       {locale === 'en' ? (
