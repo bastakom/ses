@@ -10,7 +10,7 @@ const CTA = ({ repeater, title, subtitle, bg, center }) => {
       className={`h-screen flex flex-col justify-center bg-cover ${
         bg ? 'items-center' : `${styles.mixins}`
       } ${bg ? styles.with__background : styles.without__background}`}
-      style={matches ? { backgroundImage: `url(${bg})` } : null}
+      style={matches && bg ? { backgroundImage: `url(${bg})` } : {}}
     >
       {bg && !matches && (
         <div className={`${styles.imageContainer}`}>
