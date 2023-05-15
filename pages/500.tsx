@@ -1,5 +1,3 @@
-import { getPageStaticProps } from '../utils/getPageStaticProps'
-
 const Error = () => {
   return (
     <div className="h-screen">
@@ -15,5 +13,3 @@ const Error = () => {
 }
 
 export default Error
-
-export const getStaticProps = getPageStaticProps
