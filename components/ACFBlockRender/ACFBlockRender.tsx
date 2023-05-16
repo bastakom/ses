@@ -171,24 +171,28 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
             }
 
             case 'order_form': {
-              const { title, content } = data
+              const { title, content, content_engelska } = data
               return (
                 <div key={index}>
                   <HeaderText
                     title={title}
-                    content={content || null}
+                    content={
+                      locale === 'sv' ? content : content_engelska || content
+                    }
                     align="items-center"
                     height="60"
                   />
                   <div
                     className="button flex justify-center pb-10"
                     style={{
-                      marginTop: '-10px',
+                      marginTop: '-30px',
                       background: '#f5f5f5',
-                      paddingBottom: '150px'
+                      paddingBottom: '50px'
                     }}
                   >
-                    <Link href="/kontakt#form">BESTÄLL HÄR</Link>
+                    <Link href="/kontakt#form">
+                      {locale === 'sv' ? 'BESTÄLL HÄR' : 'ORDER HERE'}
+                    </Link>
                   </div>
                 </div>
               )
