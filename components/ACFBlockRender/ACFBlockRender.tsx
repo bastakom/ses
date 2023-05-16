@@ -29,12 +29,17 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 video,
                 padding,
                 first_button,
-                second_button
+                second_button,
+                second_button_engelska,
+                first_button_engelska
               } = data
 
               return (
                 <>
                   <Hero
+                    locale={locale}
+                    firstBtn_engelska={first_button_engelska}
+                    secondBtn_engelska={second_button_engelska}
                     headTitle={head_title}
                     firstBtn={first_button}
                     secBtn={second_button}
@@ -62,10 +67,11 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 settings__image_text,
                 full_width,
                 altText,
-                context: { button, bg },
+                context: { button, bg, button_eng },
                 sub_title,
                 title,
-                p_size
+                p_size,
+                english_text
               } = data
 
               return (
@@ -75,6 +81,8 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 >
                   <Layout key={id} full={full_width}>
                     <ImageACF
+                      english_text={english_text}
+                      locale={locale}
                       p_size={p_size}
                       sourceUrl={image}
                       alt={altText}
@@ -83,6 +91,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                       subtitle={sub_title}
                       rowReverse={settings__image_text}
                       button={button}
+                      button_eng={button_eng}
                     />
                   </Layout>
                 </div>
@@ -107,13 +116,14 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
             }
 
             case 'quote': {
-              const { quote_person, Content, button } = data
+              const { quote_person, Content, content_engelska } = data
               return (
                 <Layout key={index}>
                   <Quote
+                    locale={locale}
                     person={quote_person}
                     content={Content}
-                    button={button}
+                    content_engelska={content_engelska}
                   />
                 </Layout>
               )
@@ -124,6 +134,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                 data
               return (
                 <CTA
+                  locale={locale}
                   center={center}
                   key={index}
                   subtitle={sub_title}
@@ -144,12 +155,14 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
             }
 
             case 'contact_form': {
-              const { title, content } = data
+              const { title, content, content_engelska } = data
               return (
                 <div key={index}>
                   <HeaderText
                     title={title}
-                    content={content || null}
+                    content={
+                      locale === 'sv' ? content : content_engelska || content
+                    }
                     align="items-center"
                     height="60"
                   />

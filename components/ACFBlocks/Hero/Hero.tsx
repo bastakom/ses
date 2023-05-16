@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 import styles from './hero.module.scss'
 import Link from 'next/link'
-import { Skeleton } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 
 const Hero = ({
   image,
@@ -17,7 +17,10 @@ const Hero = ({
   padding,
   firstBtn,
   secBtn,
-  headTitle
+  headTitle,
+  firstBtn_engelska,
+  secondBtn_engelska,
+  locale
 }) => {
   const textAlign =
     justify === 'start'
@@ -27,6 +30,8 @@ const Hero = ({
       : 'center'
       ? 'center'
       : null
+
+  const matches = useMediaQuery('(min-width: 375px)')
 
   return (
     <div
@@ -42,7 +47,7 @@ const Hero = ({
         <div
           className={styles.hero__container}
           style={{
-            height: `${height}vh`,
+            height: `${!matches ? '100' : height}vh`,
             width: '100%',
             position: 'relative'
           }}
@@ -81,9 +86,19 @@ const Hero = ({
           ) : null}
           <div className={styles.buttons}>
             {firstBtn ? (
-              <Link href={`${firstBtn.url}`}>{firstBtn.title}</Link>
+              <Link href={`${firstBtn.url}`}>
+                {locale === 'sv'
+                  ? firstBtn.title
+                  : firstBtn_engelska || firstBtn.title}
+              </Link>
             ) : null}
-            {secBtn ? <Link href={`${secBtn.url}`}>{secBtn.title}</Link> : null}
+            {secBtn ? (
+              <Link href={`${secBtn.url}`}>
+                {locale === 'sv'
+                  ? secBtn.title
+                  : secondBtn_engelska || secBtn.title}
+              </Link>
+            ) : null}
           </div>
         </div>
       ) : null}

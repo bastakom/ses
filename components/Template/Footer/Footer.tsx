@@ -68,26 +68,33 @@ const Footer = ({ options }) => {
           )}
         </div>
         <div className="flex flex-wrap justify-center gap-5 md:gap-20 md:my-20 mt-10">
-          <div
-            className={`${styles.footer__info} flex justify-center flex-col items-center`}
-          >
-            <h2 className="pb-2">TECHNICAL INFORMATION</h2>
-            <div className={`${styles.contanct__info} flex gap-2`}>
-              <h3>{email}</h3>
-              <h3>{name}</h3>
-              <h3>{phone}</h3>
+          {email && (
+            <div
+              className={`${styles.footer__info} flex justify-center flex-col items-center`}
+            >
+              <h2 className="pb-2 uppercase mb-2">
+                {locale === 'sv' ? 'Operativ chef' : 'Chief Operating Officer'}
+              </h2>
+              <div className={`${styles.contanct__info} flex gap-2`}>
+                <h3>{email}</h3>
+                <h3>{name}</h3>
+                <h3>{phone}</h3>
+              </div>
             </div>
-          </div>
-          <div
-            className={`${styles.footer__info} flex justify-center flex-col items-center `}
-          >
-            <h2 className="pb-2">PRESIDENT</h2>
-            <div className={`${styles.contanct__info} flex gap-2`}>
-              <h3>{presidentEmail}</h3>
-              <h3>{presidentName}</h3>
-              <h3>{presidentPhone}</h3>
+          )}
+
+          {presidentEmail && (
+            <div
+              className={`${styles.footer__info} flex justify-center flex-col items-center `}
+            >
+              <h2 className="pb-2">PRESIDENT</h2>
+              <div className={`${styles.contanct__info} flex gap-2`}>
+                <h3>{presidentEmail}</h3>
+                <h3>{presidentName}</h3>
+                <h3>{presidentPhone}</h3>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 

@@ -1,21 +1,13 @@
-import React from 'react'
+import { getPageStaticProps } from './utils/getPageStaticProps'
 
 const ErrorPage = () => {
   return (
-    <div>
-      <h1>Page Not Found</h1>
+    <div className="bg-white">
+      <h1 style={{ color: 'black' }}>Page Not Found</h1>
     </div>
   )
 }
 
-export const getServersideProps = async () => {
-  const options = await getOptions()
-
-  return {
-    props: {
-      options
-    }
-  }
-}
-
 export default ErrorPage
+
+export const getStaticProps = getPageStaticProps

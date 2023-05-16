@@ -156,7 +156,9 @@ export default function Contact({ locale, bg }) {
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.foretag}>
-          <label htmlFor="name">Företag /</label>
+          <label htmlFor="name">
+            {locale === 'sv' ? 'Företag /' : 'Business /'}
+          </label>
           <input
             type="text"
             id="foretag"
@@ -167,7 +169,9 @@ export default function Contact({ locale, bg }) {
           />
         </div>
         <div className={styles.namn_efternamn}>
-          <label htmlFor="name">Förnamn /</label>
+          <label htmlFor="name">
+            {locale === 'sv' ? 'Förnamn /' : 'First name /'}
+          </label>
           <input
             type="text"
             id="name"
@@ -177,7 +181,9 @@ export default function Contact({ locale, bg }) {
             required
           />
 
-          <label htmlFor="email">Efternamn /</label>
+          <label htmlFor="email">
+            {locale === 'sv' ? 'Efternamn /' : 'Surname /'}
+          </label>
           <input
             type="surname"
             id="surname"
@@ -201,7 +207,9 @@ export default function Contact({ locale, bg }) {
             />
           </div>
           <div className={styles.phone}>
-            <label htmlFor="phone">Telefon /</label>
+            <label htmlFor="phone">
+              {locale === 'sv' ? 'Telefon /' : 'Phone /'}
+            </label>
             <input
               type="phone"
               id="phone"
@@ -214,7 +222,11 @@ export default function Contact({ locale, bg }) {
 
         <div className={styles.checkbox}>
           <div className={styles.rubrik}>
-            <label>VAD GÄLLER DITT ÄRENDE /</label>
+            <label>
+              {locale === 'sv'
+                ? 'VAD GÄLLER DITT ÄRENDE? /'
+                : 'WHAT IS YOUR CASE ABOUT? /'}
+            </label>
           </div>
           <div className={styles.checkbox_group}>
             <Radio.Group>
@@ -222,18 +234,34 @@ export default function Contact({ locale, bg }) {
                 <Radio
                   name="BESTÄLLNING"
                   value="BESTÄLLNING"
-                  label="BESTÄLLNING"
+                  label={`${locale === 'sv' ? 'BESTÄLLNING' : 'ORDERING'}`}
                 />
-                <Radio value="PRODUKTER" label="PRODUKTER" name="PRODUKTER" />
-                <Radio value="SAMARBETE" label="SAMARBETE" name="SAMARBETE" />
-                <Radio value="ÖVRIGT" label="ÖVRIGT" name="ÖVRIGT" />
+                <Radio
+                  value="PRODUKTER"
+                  label={`${locale === 'sv' ? 'PRODUKTER' : 'PRODUCTS'}`}
+                  name="PRODUKTER"
+                />
+                <Radio
+                  value="SAMARBETE"
+                  label={`${locale === 'sv' ? 'SAMARBETE' : 'COOPERATION'}`}
+                  name="SAMARBETE"
+                />
+                <Radio
+                  value="ÖVRIGT"
+                  label={`${locale === 'sv' ? 'ÖVRIGT' : 'OTHER'}`}
+                  name="ÖVRIGT"
+                />
               </Group>
             </Radio.Group>
           </div>
         </div>
 
         <div className={styles.message}>
-          <label htmlFor="message">BESKRIV DITT ÄRENDE /</label>
+          <label htmlFor="message">
+            {locale === 'sv'
+              ? 'BESKRIV DITT ÄRENDE /'
+              : 'DESCRIBE YOUR ERRAND /'}
+          </label>
           <textarea
             id="message"
             name="message"
@@ -244,7 +272,11 @@ export default function Contact({ locale, bg }) {
 
         <div className={styles.agree}>
           <Checkbox
-            label={`Jag godkänner att SES Protection sparar och hanterar mina personuppgifter i enlighet med dataskyddsförordningen GDPR.`}
+            label={`${
+              locale === 'sv'
+                ? 'Jag godkänner att SES Protection sparar och hanterar mina personuppgifter i enlighet med dataskyddsförordningen GDPR.'
+                : 'I agree that SES Protection saves and handles my personal data in accordance with the data protection regulation GDPR.'
+            }`}
             color="dark"
             defaultChecked={formData.agree}
             checked={formData.agree}
