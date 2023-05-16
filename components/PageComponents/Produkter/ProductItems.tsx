@@ -13,12 +13,15 @@ const ProductItems = ({ response, options }) => {
   const SV = locale === 'sv'
   const skyddsmasker = response.map((data) => {
     const {
-      products: { cat, product_pictures, description },
+      products: { cat, product_pictures, description, description_engelska },
       title: { rendered }
     } = data
 
     const maxLength = 120
-    let limitedDescription = description.substring(0, maxLength)
+    let limitedDescription = SV
+      ? description.substring(0, maxLength)
+      : description_engelska?.substring(0, maxLength) ||
+        description.substring(0, maxLength)
     if (description.length > maxLength) {
       limitedDescription += '...'
     }
@@ -53,15 +56,19 @@ const ProductItems = ({ response, options }) => {
   })
   const tillbehor = response.map((data) => {
     const {
-      products: { cat, product_pictures, description },
+      products: { cat, product_pictures, description, description_engelska },
       title: { rendered }
     } = data
 
     const maxLength = 120
-    let limitedDescription =
-      description.length <= maxLength
-        ? description
-        : description.substring(0, maxLength).trim() + '...'
+    let limitedDescription = SV
+      ? description.substring(0, maxLength)
+      : description_engelska?.substring(0, maxLength) ||
+        description.substring(0, maxLength)
+
+    if (description.length > maxLength) {
+      limitedDescription += '...'
+    }
 
     return (
       <>
@@ -96,16 +103,19 @@ const ProductItems = ({ response, options }) => {
 
   const skyddsdrakter = response.map((data) => {
     const {
-      products: { cat, product_pictures, description },
+      products: { cat, product_pictures, description, description_engelska },
       title: { rendered }
     } = data
 
     const maxLength = 120
-    let limitedDescription = description.substring(0, maxLength)
+    let limitedDescription = SV
+      ? description.substring(0, maxLength)
+      : description_engelska?.substring(0, maxLength) ||
+        description.substring(0, maxLength)
+
     if (description.length > maxLength) {
       limitedDescription += '...'
     }
-
     return (
       <>
         {cat === 'skyddsdräkter' ? (
