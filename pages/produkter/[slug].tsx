@@ -236,7 +236,9 @@ const NewsPage = ({ response, locale }) => {
                               : null}
                           </div>
                         ) : (
-                          'Kommer inom kort'
+                          <>
+                            {locale === 'sv' ? 'Kommer snart' : 'Coming soon'}
+                          </>
                         )}
                       </Accordion.Panel>
                     </Accordion.Item>
