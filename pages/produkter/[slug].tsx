@@ -13,7 +13,6 @@ import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkelet
 import styles from './slugprodukter.module.scss'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Head from 'next/head'
-import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 
 const NewsPage = ({ response, locale }) => {
   revalidate
@@ -178,7 +177,7 @@ const NewsPage = ({ response, locale }) => {
                                           __html:
                                             locale === 'sv'
                                               ? item.information
-                                              : item.information_engelska ||
+                                              : item.content_english ||
                                                 item.information
                                         }}
                                       />
