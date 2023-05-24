@@ -191,14 +191,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                       paddingBottom: '50px'
                     }}
                   >
-<<<<<<< HEAD
-                    {/* <Link href="/kontakt#form">BESTÄLL HÄR</Link> */}
                     <Bestall />
-=======
-                    <Link href="/kontakt#form">
-                      {locale === 'sv' ? 'BESTÄLL HÄR' : 'ORDER HERE'}
-                    </Link>
->>>>>>> main
                   </div>
                 </div>
               )
