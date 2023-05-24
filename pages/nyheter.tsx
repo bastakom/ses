@@ -22,7 +22,7 @@ const Home = ({ response, latest }) => {
       <Layout>
         <div className="pl-5 md:pl-0">
           <HeaderText
-            title={'NYHETER'}
+            title={locale === 'sv' ? 'NYHETER' : 'NEWS'}
             align={'place-items-start'}
             height="15"
           />
@@ -31,7 +31,7 @@ const Home = ({ response, latest }) => {
           <div className={`text-2xl nonews`}>
             {locale === 'sv'
               ? 'För tillfället finns det inga nyheter!'
-              : 'At the moment there is no news!'}
+              : 'There is no news available at the moment.'}
           </div>
         )}
         <LatestItem data={latest} />

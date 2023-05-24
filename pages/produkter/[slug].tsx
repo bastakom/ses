@@ -13,7 +13,6 @@ import LoadingSkeleton from '@/components/Template/LoadingSkeleton/LoadingSkelet
 import styles from './slugprodukter.module.scss'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Head from 'next/head'
-import { ToAbsoluteUrl } from 'utils/ToAbsoluteUrl'
 
 const NewsPage = ({ response, locale }) => {
   revalidate
@@ -28,7 +27,8 @@ const NewsPage = ({ response, locale }) => {
             cat,
             description,
             table,
-            produktblad
+            produktblad,
+            description_engelska
           }
         } = data
 
@@ -43,6 +43,21 @@ const NewsPage = ({ response, locale }) => {
           ''
         )
 
+        const skyddsSv =
+          cat === 'skyddsmasker' && locale === 'sv' && 'Skyddsmasker'
+        const skyddsEng =
+          cat === 'skyddsmasker' && locale === 'en' && 'Protective masks'
+
+        const tillbehorSV =
+          cat === 'tillbehör' && locale === 'sv' && 'Tillbehör'
+        const tillbehorEng =
+          cat === 'tillbehör' && locale === 'en' && 'Accessories'
+
+        const skyddsdrakterSV =
+          cat === 'skyddsdräkter' && locale === 'sv' && 'Skyddsdräkter'
+        const skyddsdrakterEng =
+          cat === 'skyddsdräkter' && locale === 'en' && 'Protective suits'
+
         return (
           <motion.div {...AnimationSettings}>
             <Head>
@@ -54,7 +69,14 @@ const NewsPage = ({ response, locale }) => {
                 {locale === 'sv' ? 'Produkter' : 'Products'}
               </Link>
               {'>'}
-              <Link href={`/produkter/#${cat}`}>{cat}</Link>
+              <Link href={`/produkter/#${cat}`}>
+                {skyddsSv ||
+                  skyddsEng ||
+                  tillbehorSV ||
+                  tillbehorEng ||
+                  skyddsdrakterSV ||
+                  skyddsdrakterEng}
+              </Link>
               {'>'}
               <a>{data.title.rendered}</a>
             </div>
@@ -94,17 +116,29 @@ const NewsPage = ({ response, locale }) => {
               </div>
 
               <div className={`${styles.content} md:w-6/12 p-5`}>
-                <h4>{cat}</h4>
+                <h4>
+                  {skyddsSv ||
+                    skyddsEng ||
+                    tillbehorSV ||
+                    tillbehorEng ||
+                    skyddsdrakterSV ||
+                    skyddsdrakterEng}
+                </h4>
                 <h2 className="md:text-4xl mb-5">{data.title.rendered}</h2>
                 <div
                   className={styles.paragrah}
                   dangerouslySetInnerHTML={{
-                    __html: description
+                    __html:
+                      locale === 'sv'
+                        ? description
+                        : description_engelska || description
                   }}
                 />
 
                 <div className={`mt-10 mb-10 ${styles.button__produkt}`}>
-                  <Link href="/kontakt">BESTÄLL</Link>
+                  <Link href="/kontakt">
+                    {locale === 'sv' ? 'BESTÄLL' : 'ORDER'}
+                  </Link>
                 </div>
 
                 <div className={styles.accordion}>
@@ -140,7 +174,11 @@ const NewsPage = ({ response, locale }) => {
                                     ) : (
                                       <td
                                         dangerouslySetInnerHTML={{
-                                          __html: item.information
+                                          __html:
+                                            locale === 'sv'
+                                              ? item.information
+                                              : item.content_english ||
+                                                item.information
                                         }}
                                       />
                                     )}
@@ -197,7 +235,9 @@ const NewsPage = ({ response, locale }) => {
                               : null}
                           </div>
                         ) : (
-                          'Kommer inom kort'
+                          <>
+                            {locale === 'sv' ? 'Kommer snart' : 'Coming soon'}
+                          </>
                         )}
                       </Accordion.Panel>
                     </Accordion.Item>
