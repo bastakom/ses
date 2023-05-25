@@ -4,10 +4,14 @@ export default async function handler(req, res) {
   const {
     name,
     email,
+    message,
+    phone,
+    surname,
+    foretag,
+    orgnr,
     selectedProdukts,
     selectedBestallAntal,
-    selectedMinBestallning,
-    selectedEnhet
+    selectedMinBestallning
   } = req.body
 
   const transporter = nodemailer.createTransport({
@@ -18,28 +22,33 @@ export default async function handler(req, res) {
     }
   })
 
-  const tableRows = Object.entries(selectedProdukts).map(([productId, value]) => {
-    const enhet = selectedEnhet[productId]
-    const minBestallning = selectedMinBestallning[productId]
-    const bestallAntal = selectedBestallAntal[productId]
-    return `
+  const tableRows = Object.entries(selectedProdukts)
+    .map(([productId, value]) => {
+      const minBestallning = selectedMinBestallning[productId]
+      const bestallAntal = selectedBestallAntal[productId]
+      return `
       <tr>
         <td>${value}</td>
-        <td>${enhet}</td>
         <td>${minBestallning}</td>
         <td>${bestallAntal}</td>
       </tr>
-    `;
-  }).join('');
+    `
+    })
+    .join('')
 
   const messageBody = `
     <div style="background-color: #f9f9f9; padding: 20px;">
-      <table style="width:100%;">
+    <h4>Ny beställning från ${name} ${surname}</h4>
+    <h4>E-post: ${email}</h4>
+    <h4>Organisationsnummer: ${orgnr}</h4>
+    <h4>Företag: ${foretag}</h4>
+    <h4>Telefon: ${phone}</h4>
+    ${message ? `<p>Meddelande: ${message}</p>` : ''}
+      <table style="width:100%; margin-top:50px;">
         <thead>
           <tr style="text-align:left;">
             <th>Produkt</th>
             <th>Enhet</th>
-            <th>Min beställning</th>
             <th>Beställt Antal</th>
           </tr>
         </thead>
