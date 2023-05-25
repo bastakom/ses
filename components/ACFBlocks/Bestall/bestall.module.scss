@@ -42,9 +42,21 @@
       color: #000000;
     }
 
+    tr {
+      @include breakpoint(small) {
+        display: flex;
+        gap: 30px;
+      }
+    }
+
     td {
       font-size: 18px;
       font-family: $font-family-heading;
+      @include breakpoint(small) {
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+      }
     }
 
     th {
@@ -87,6 +99,7 @@
     display: flex;
     gap: 40px;
     margin: 30px 0 50px 0;
+    border-radius: 0;
 
     input {
       border: none;
@@ -96,12 +109,13 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      border-bottom: 0;
-      gap: 0;
-
+      padding: 0 10px;
+      gap: 10px;
+      border: none;
       input {
-        border-bottom: 1px solid white;
-        width: 100%;
+        border-bottom: 1px solid black;
+        width: 300px;
+        border-radius: 0;
       }
     }
   }
@@ -114,24 +128,27 @@
 
     input {
       border: none;
+      @include breakpoint(small) {
+        border-bottom: 1px solid black;
+      }
     }
 
     @include breakpoint(small) {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      border-bottom: 0;
-      gap: 0;
+      gap: 10px;
+      border: none;
+      padding: 0 10px;
 
       input {
-        border-bottom: 1px solid white;
-        width: 100%;
+        border-bottom: 1px solid black;
+        width: 300px;
       }
     }
   }
 
   .email_phone {
-    border-bottom: 1px solid $accent;
     align-items: center;
     display: flex;
     align-items: center;
@@ -145,12 +162,12 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      border-bottom: 0;
+      border: none;
       gap: 0;
 
       input {
-        border-bottom: 1px solid white;
-        width: 100%;
+        border-bottom: 1px solid black;
+        width: 300px;
       }
     }
     .email {
@@ -163,15 +180,16 @@
         width: 100%;
         flex-direction: column;
         align-items: flex-start;
-        gap: 0;
-      }
-      input {
-        width: 80%;
-        border: none;
-        @include breakpoint(small) {
-          width: 100%;
+        gap: 10px;
+        border-bottom: none;
+        padding: 0 10px;
+
+        input {
+          width: 300px;
+          border-bottom: 1px solid black;
         }
       }
+
     }
 
     .phone {
@@ -183,6 +201,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0;
+        padding: 0 10px;
       }
     }
   }
@@ -222,9 +241,16 @@
     font-family: $font-family-heading;
     font-size: 22px;
   }
+
+  @include breakpoint(small) {
+    padding: 0 10px;
+  }
 }
 
 .agree {
+  @include breakpoint(small) {
+    padding: 0 10px;
+  }
   input {
     margin: 0;
     padding: 0;
@@ -235,4 +261,7 @@
   font-size: 32px;
   font-weight: bold;
   letter-spacing: 4.48px;
+  @include breakpoint(small) {
+    font-size: 18px;
+  }
 }

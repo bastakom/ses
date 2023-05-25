@@ -377,7 +377,7 @@ const Bestall = () => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col p-5 md:p-0">
       <h2 className={`text-center mb-20 ${styles.bestall_head}`}>
         {locale === 'sv' ? 'BESTÄLLNINGSFORMULÄR' : 'ORDER FORM'}
       </h2>
@@ -385,8 +385,8 @@ const Bestall = () => {
         className={`flex flex-col gap-10 ${styles.form}`}
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-col items-center mb-10">
-          <div className="w-8/12 ">
+        <div className="flex flex-col md:items-center mb-10">
+          <div className="md:w-8/12 ">
             {products.map((product) => (
               <div key={product.id} className="pb-10">
                 {product.id > 1 ? (
@@ -431,7 +431,7 @@ const Bestall = () => {
                   value={selectedProdukts[product.id]}
                   onChange={(value) => handleProduktChange(value, product.id)}
                 />
-                <div className={`flex gap-5 mt-5`}>
+                <div className={`flex flex-col md:flex-row gap-5 mt-5`}>
                   <Select
                     rightSection={<MdKeyboardArrowDown />}
                     radius="none"
@@ -497,7 +497,7 @@ const Bestall = () => {
                 </div>
               </div>
             ))}
-            <div className={`flex justify-end mt-10`}>
+            <div className={`flex justify-center md:justify-end mt-10`}>
               <button
                 className={styles.add_product_button}
                 type="button"
