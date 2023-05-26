@@ -21,7 +21,7 @@ const HeaderText: FC<Props> = ({ title, content, height, align }) => {
         </div>
       )}
       <p
-        className="max-w-3xl text-center"
+        className={`max-w-3xl text-center ${styles.content}`}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </div>

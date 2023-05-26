@@ -22,3 +22,17 @@
     font-family: $font-family-heading;
   }
 }
+
+.content {
+  a {
+    font-family: $font-family-heading;
+    font-size: 22px;
+    font-weight: normal;
+    color: #94969c;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      opacity: 1;
+      color: $subtitle;
+    }
+  }
+}
