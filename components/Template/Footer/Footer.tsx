@@ -20,6 +20,7 @@ const Footer = ({ options }) => {
 
   return (
     <footer className={`${styles.footer} pt-7`}>
+      <div className={`${styles.line_break} mx-10 my-10`} />
       <div className={` w-full flex flex-col justify-around`}>
         <div className="flex justify-around text-white gap-10 w-full p-10 flex-col items-center">
           <div className={styles.header__line}>

@@ -6,6 +6,10 @@
   background: $bg-footer;
   margin-top: 50px;
 
+  .line_break {
+    border-top: 0.5px solid $text-footer;
+  }
+
   .navigator {
     display: flex;
     justify-content: space-between;
