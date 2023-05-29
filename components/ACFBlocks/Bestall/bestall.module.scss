@@ -1,0 +1,267 @@
+@import '@/styles/mixins';
+@import '@/styles/theme';
+
+.form {
+  width: 900px;
+  @include breakpoint(small) {
+    width: 100%;
+  }
+  input {
+    font-weight: normal;
+    font-family: $font-family-href;
+    letter-spacing: 1.2px;
+    margin-top: 5px;
+    font-size: 12px;
+    border: 1px solid #404040;
+    padding: 20px 15px;
+
+    &:focus-visible {
+      border: 1px solid black;
+    }
+  }
+
+  label {
+    font-weight: normal;
+    letter-spacing: 1.2px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .bastall__table {
+    table {
+      border: none;
+    }
+    th,
+    td {
+      padding: 10px 0;
+      font-weight: normal;
+      letter-spacing: 1.2px;
+      font-size: 14px;
+      color: #000000;
+    }
+
+    tr {
+      @include breakpoint(small) {
+        display: flex;
+        gap: 30px;
+      }
+    }
+
+    td {
+      font-size: 18px;
+      font-family: $font-family-heading;
+      @include breakpoint(small) {
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+      }
+    }
+
+    th {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      font-family: $font-family-href;
+      opacity: 0.35;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      font-size: $formLabel;
+      font-weight: normal;
+      letter-spacing: 1.2px;
+      margin-top: 5px;
+    }
+  }
+
+  .button {
+    font-family: $font-family-href;
+    text-transform: uppercase;
+    color: $bg-button-text;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 10px 20px;
+    background: $bg-button;
+
+    &:hover {
+      background: $bg-button-hover;
+    }
+  }
+
+  .foretag {
+    border-bottom: 1px solid black;
+    align-items: center;
+    display: flex;
+    gap: 40px;
+    margin: 30px 0 50px 0;
+    border-radius: 0;
+
+    input {
+      border: none;
+    }
+
+    @include breakpoint(small) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0 10px;
+      gap: 10px;
+      border: none;
+      input {
+        border-bottom: 1px solid black;
+        width: 300px;
+        border-radius: 0;
+      }
+    }
+  }
+
+  .namn_efternamn {
+    border-bottom: 1px solid black;
+    align-items: center;
+    display: flex;
+    gap: 40px;
+
+    input {
+      border: none;
+      @include breakpoint(small) {
+        border-bottom: 1px solid black;
+      }
+    }
+
+    @include breakpoint(small) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+      border: none;
+      padding: 0 10px;
+
+      input {
+        border-bottom: 1px solid black;
+        width: 300px;
+      }
+    }
+  }
+
+  .email_phone {
+    align-items: center;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+
+    input {
+      border: none;
+    }
+
+    @include breakpoint(small) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      border: none;
+      gap: 0;
+
+      input {
+        border-bottom: 1px solid black;
+        width: 300px;
+      }
+    }
+    .email {
+      width: 55%;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      @include breakpoint(small) {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        border-bottom: none;
+        padding: 0 10px;
+
+        input {
+          width: 300px;
+          border-bottom: 1px solid black;
+        }
+      }
+
+    }
+
+    .phone {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      @include breakpoint(small) {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+.input {
+  input {
+    padding: 0 0 10px 0;
+    margin-top: -10px;
+    font-size: 22px;
+    font-family: $font-family-heading;
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}
+
+.add_product_button {
+  padding: 10px 15px;
+  background: white;
+  border: 2px solid #404040;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 12px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  label {
+    font-size: 12px;
+  }
+  textarea {
+    border: 1px solid #404040;
+    min-height: 300px;
+    padding: 20px;
+    font-family: $font-family-heading;
+    font-size: 22px;
+  }
+
+  @include breakpoint(small) {
+    padding: 0 10px;
+  }
+}
+
+.agree {
+  @include breakpoint(small) {
+    padding: 0 10px;
+  }
+  input {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.bestall_head {
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 4.48px;
+  @include breakpoint(small) {
+    font-size: 18px;
+  }
+}

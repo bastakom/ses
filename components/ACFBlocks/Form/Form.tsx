@@ -6,7 +6,6 @@ import { Checkbox, Group, Radio } from '@mantine/core'
 import styles from './form.module.scss'
 
 export default function Contact({ locale, bg }) {
-  const [value, setValue] = useState('Övrigt')
   const [formData, setFormData] = useState({
     name: '',
     email: '',

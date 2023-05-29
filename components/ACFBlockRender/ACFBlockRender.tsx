@@ -9,6 +9,7 @@ import Sponsors from '../ACFBlocks/Sponsors/Sponsors'
 import Column from '../Column/Column'
 import HeaderText from '../Template/HeaderText/HeaderText'
 import Layout from '../Template/Layout/Layout'
+import Bestall from '../ACFBlocks/Bestall/Bestall'
 
 const ACFBlockRender = ({ flexibleContent, locale }) => {
   return (
@@ -180,19 +181,10 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                       locale === 'sv' ? content : content_engelska || content
                     }
                     align="items-center"
-                    height="60"
+                    height="40"
                   />
-                  <div
-                    className="button flex justify-center pb-10"
-                    style={{
-                      marginTop: '-30px',
-                      background: '#f5f5f5',
-                      paddingBottom: '50px'
-                    }}
-                  >
-                    <Link href="/kontakt#form">
-                      {locale === 'sv' ? 'BESTÄLL HÄR' : 'ORDER HERE'}
-                    </Link>
+                  <div className="button flex justify-center pb-10 mt-10 mb-44">
+                    <Bestall />
                   </div>
                 </div>
               )

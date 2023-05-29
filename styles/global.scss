@@ -184,6 +184,12 @@ td {
   }
 }
 
+.mantine-58ia6o:disabled,
+.mantine-58ia6o[data-disabled] {
+  background-color: white !important;
+  color: #000000 !important;
+  border: 1px solid #000000;
+}
 // navigator
 
 .nav {
@@ -192,4 +198,20 @@ td {
 
 .nonews {
   font-family: $font-family-heading;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+
+#orgnr {
+  font-family: $font-family-href;
 }
