@@ -62,7 +62,7 @@ export default async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: `No-reply form ${new Date().toISOString()} <sentemailform@gmail.com>`,
-      to: 'philip@bastakompisar.se',
+      to: 'order@sesinteg.com',
       subject: `New message from ${name} (${email})`,
       html: messageBody
     })
