@@ -181,7 +181,7 @@ const ACFBlockRender = ({ flexibleContent, locale }) => {
                       locale === 'sv' ? content : content_engelska || content
                     }
                     align="items-center"
-                    height="40"
+                    height="60"
                   />
                   <div className="button flex justify-center pb-10 mt-10 mb-44">
                     <Bestall />
