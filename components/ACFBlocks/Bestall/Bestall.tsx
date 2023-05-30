@@ -302,14 +302,17 @@ const Bestall = () => {
         [productId]:
           updatedSelectedProdukts[productId] ===
             'CBRN F2 Storlek 1 – 5 st/pk' ||
-          updatedSelectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk'
+          updatedSelectedProdukts[productId] ===
+            'CBRN F2 Storlek 2 – 5 st/pk' ||
+          updatedSelectedProdukts[productId] === 'CBRN F2 Size 1 – 5 pcs/pkg' ||
+          updatedSelectedProdukts[productId] === 'CBRN F2 Size 2 – 5 pcs/pkg'
             ? '2'
             : '1'
       }))
 
       setSelectedMinBestallning((prevSelectedMinBestallning) => ({
         ...prevSelectedMinBestallning,
-        [productId]: 'PAKET'
+        [productId]: locale === 'sv' ? 'PAKET' : 'PACKAGE'
       }))
 
       setSelectedBestallAntal((prevSelectedBestallAntal) => ({
@@ -317,7 +320,10 @@ const Bestall = () => {
         [productId]:
           updatedSelectedProdukts[productId] ===
             'CBRN F2 Storlek 1 – 5 st/pk' ||
-          updatedSelectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk'
+          updatedSelectedProdukts[productId] ===
+            'CBRN F2 Storlek 2 – 5 st/pk' ||
+          updatedSelectedProdukts[productId] === 'CBRN F2 Size 1 – 5 pcs/pkg' ||
+          updatedSelectedProdukts[productId] === 'CBRN F2 Size 2 – 5 pcs/pkg'
             ? '2'
             : '1'
       }))
@@ -329,52 +335,89 @@ const Bestall = () => {
   const getEnhetOptions = (productId) => {
     if (
       selectedProdukts[productId] === 'CBRN F2 Storlek 1 – 5 st/pk' ||
-      selectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk'
+      selectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk' ||
+      selectedProdukts[productId] === 'CBRN F2 Size 1 – 5 pcs/pkg' ||
+      selectedProdukts[productId] === 'CBRN F2 Size 2 – 5 pcs/pkg'
     ) {
-      return [{ value: '2', label: '2 ST' }]
+      return [{ value: '2', label: sv ? '2 ST' : '2 PCS' }]
     } else {
-      return [{ value: '1', label: '1 ST' }]
+      return [{ value: '1', label: sv ? '1 ST' : '1 PCS' }]
     }
   }
   const getOrderOptions = (productId) => {
     if (
       selectedProdukts[productId] === 'CBRN F2 Storlek 1 – 5 st/pk' ||
-      selectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk'
+      selectedProdukts[productId] === 'CBRN F2 Storlek 2 – 5 st/pk' ||
+      selectedProdukts[productId] === 'CBRN F2 Size 1 – 5 pcs/pkg' ||
+      selectedProdukts[productId] === 'CBRN F2 Size 2 – 5 pcs/pkg'
     ) {
       return [
-        { value: '2', label: '2 ST' },
-        { value: '3', label: '3 ST' },
-        { value: '4', label: '4 ST' },
-        { value: '5', label: '5 ST' },
-        { value: '6', label: '6 ST' },
-        { value: '7', label: '7 ST' },
-        { value: '8', label: '8 ST' },
-        { value: '9', label: '9 ST' },
-        { value: '10', label: '10 ST' }
+        { value: '2', label: sv ? '2 ST' : '2 PCS' },
+        { value: '3', label: sv ? '3 ST' : '3 PCS' },
+        { value: '4', label: sv ? '4 ST' : '4 PCS' },
+        { value: '5', label: sv ? '5 ST' : '5 PCS' },
+        { value: '6', label: sv ? '6 ST' : '6 PCS' },
+        { value: '7', label: sv ? '7 ST' : '7 PCS' },
+        { value: '8', label: sv ? '8 ST' : '8 PCS' },
+        { value: '9', label: sv ? '9 ST' : '9 PCS' },
+        { value: '10', label: sv ? '10 ST' : '10 PCS' }
       ]
     } else {
       return [
-        { value: '1', label: '1 ST' },
-        { value: '2', label: '2 ST' },
-        { value: '3', label: '3 ST' },
-        { value: '4', label: '4 ST' },
-        { value: '5', label: '5 ST' },
-        { value: '6', label: '6 ST' },
-        { value: '7', label: '7 ST' },
-        { value: '8', label: '8 ST' },
-        { value: '9', label: '9 ST' },
-        { value: '10', label: '10 ST' }
+        { value: '1', label: sv ? '1 ST' : '1 PCS' },
+        { value: '2', label: sv ? '2 ST' : '2 PCS' },
+        { value: '3', label: sv ? '3 ST' : '3 PCS' },
+        { value: '4', label: sv ? '4 ST' : '4 PCS' },
+        { value: '5', label: sv ? '5 ST' : '5 PCS' },
+        { value: '6', label: sv ? '6 ST' : '6 PCS' },
+        { value: '7', label: sv ? '7 ST' : '7 PCS' },
+        { value: '8', label: sv ? '8 ST' : '8 PCS' },
+        { value: '9', label: sv ? '9 ST' : '9 PCS' },
+        { value: '10', label: sv ? '10 ST' : '10 PCS' }
       ]
     }
   }
 
   const selectedDefaultValue = (productId) => {
     if (selectedProdukts[productId] === 'CBRN F2 Storlek 1 – 5 st/pk') {
-      return '2 ST'
+      return sv ? '2 ST' : '2 PCS'
     } else {
-      return '1 ST'
+      return sv ? '1 ST' : '1 PCS'
     }
   }
+
+  const sv = locale === 'sv'
+
+  const data = [
+    {
+      value: sv ? 'CBRN F2 Storlek 1 – 5 st/pk' : 'CBRN F2 Size 1 – 5 pcs/pkg',
+      label: sv ? 'CBRN F2 Storlek 1 – 5 st/pk' : 'CBRN F2 Size 1 – 5 pcs/pkg'
+    },
+    {
+      value: sv ? 'CBRN F2 Storlek 2 – 5 st/pk' : 'CBRN F2 Size 2 – 5 pcs/pkg',
+      label: sv ? 'CBRN F2 Storlek 2 – 5 st/pk' : 'CBRN F2 Size 2 – 5 pcs/pkg'
+    },
+    {
+      value: sv
+        ? 'Filter OF 90 NBC – 60 st/pk'
+        : 'Filter OF 90 NBC – 60 pcs/pkg',
+      label: sv
+        ? 'Filter OF 90 NBC – 60 st/pk'
+        : 'Filter OF 90 NBC – 60 pcs/pkg'
+    },
+    {
+      value: sv
+        ? 'Filter OF 90S NBC – 60 st/pk'
+        : 'Filter OF 90S NBC – 60 pcs/pkg',
+      label: sv
+        ? 'Filter OF 90S NBC – 60 st/pk'
+        : 'Filter OF 90S NBC – 60 pcs/pkg'
+    },
+    {
+      value: sv ? 'Filter PF 10 – 60 st/pk' : 'Filter PF 10 – 60 pcs/pkg',
+      label: sv ? 'Filter PF 10 – 60 st/pk' : 'Filter PF 10 – 60 pcs/pkg'
+    }
+  ]
 
   return (
     <div className="flex flex-col p-5 md:p-0">
@@ -406,28 +449,7 @@ const Bestall = () => {
                   placeholder={
                     locale === 'sv' ? '- VÄLJ PRODUKT ' : '- SELECT PRODUCT'
                   }
-                  data={[
-                    {
-                      value: 'CBRN F2 Storlek 1 – 5 st/pk',
-                      label: 'CBRN F2 Storlek 1 – 5 st/pk'
-                    },
-                    {
-                      value: 'CBRN F2 Storlek 2 – 5 st/pk',
-                      label: 'CBRN F2 Storlek 2 – 5 st/pk'
-                    },
-                    {
-                      value: 'Filter OF 90 NBC – 60 st/pk',
-                      label: 'Filter OF 90 NBC – 60 st/pk'
-                    },
-                    {
-                      value: 'Filter OF 90S NBC – 60 st/pk',
-                      label: 'Filter OF 90S NBC – 60 st/pk'
-                    },
-                    {
-                      value: 'Filter PF 10 – 60 st/pk',
-                      label: 'Filter PF 10 – 60 st/pk'
-                    }
-                  ]}
+                  data={data}
                   value={selectedProdukts[product.id]}
                   onChange={(value) => handleProduktChange(value, product.id)}
                 />
@@ -441,7 +463,7 @@ const Bestall = () => {
                     defaultValue="PAKET"
                     data={[
                       {
-                        value: 'PAKET',
+                        value: sv ? 'PAKET' : 'PACKAGE',
                         label: `${locale === 'sv' ? 'PAKET' : 'PACKAGE'}`
                       }
                     ]}
@@ -525,9 +547,9 @@ const Bestall = () => {
                   </thead>
                   <tbody>
                     {Object.entries(selectedProdukts).map(
-                      ([productId, value]) => (
+                      ([productId, label]) => (
                         <tr key={productId} className="border-b-2">
-                          <td>{value}</td>
+                          <td>{label}</td>
                           <td>{selectedMinBestallning[productId]}</td>
                           <td>{selectedBestallAntal[productId]}</td>
                         </tr>
