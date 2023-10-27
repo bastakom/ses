@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { revalidate } from '../nyheter'
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
 import { Carousel } from 'react-responsive-carousel'
 import { Accordion, Table } from '@mantine/core'
@@ -14,9 +13,10 @@ import styles from './slugprodukter.module.scss'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Head from 'next/head'
 
+const revalidate = 0
+
 const NewsPage = ({ response, locale }) => {
   revalidate
-
   const data = response.map((data) => data)
   return (
     <div>
@@ -245,48 +245,6 @@ const NewsPage = ({ response, locale }) => {
                 </div>
               </div>
             </div>
-
-            {/*  ----------- Not using function yet  --------------*/}
-
-            {/* <div
-              className={`flex max-w-7xl m-auto flex-col mt-10 ${styles.related__products}`}
-            >
-              {locale === 'sv' ? (
-                <h3>RELATERADE PRODUKTER</h3>
-              ) : (
-                <h3>RELATED PRODUCTS</h3>
-              )}
-              <div className="md:flex gap-10">
-                {resProducts &&
-                  resProducts
-                    .filter(
-                      (item) => item.products.cat === cat && item.slug !== slug
-                    )
-                    .slice(0, 3)
-                    .map((item, index) => {
-                      return (
-                        <Link href={item.slug} key={index}>
-                          {item.products?.product_pictures?.[0]?.url ? (
-                            <Image
-                              src={item.products?.product_pictures?.[0]?.url}
-                              width={400}
-                              height={400}
-                              alt={'Produktbild'}
-                            />
-                          ) : (
-                            <Image
-                              src={`${placeholder.src}`}
-                              className={styles.image}
-                              width={400}
-                              height={400}
-                              alt={'placeholder'}
-                            />
-                          )}
-                        </Link>
-                      )
-                    })}
-              </div>
-            </div> */}
           </motion.div>
         )
       })}
@@ -296,9 +254,7 @@ const NewsPage = ({ response, locale }) => {
 
 export const getStaticPaths = async () => {
   const data = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_WP_URL
-    }/wp-json/wp/v2/produkter?_fields=slug&_=${Date.now()}`,
+    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/produkter?_fields=slug}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
   const slugData = await data.json()
