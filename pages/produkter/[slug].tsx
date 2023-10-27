@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import { getOptions } from '@/graphql/Templates/FETCHOptions'
 import { Carousel } from 'react-responsive-carousel'
 import { Accordion, Table } from '@mantine/core'
@@ -254,7 +255,9 @@ const NewsPage = ({ response, locale }) => {
 
 export const getStaticPaths = async () => {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/produkter?_fields=slug}`,
+    `${
+      process.env.NEXT_PUBLIC_WP_URL
+    }/wp-json/wp/v2/produkter?_fields=slug&_=${Date.now()}`,
     { headers: { 'cache-control': 'no-cache' } }
   )
   const slugData = await data.json()
@@ -278,8 +281,8 @@ export const getStaticProps = async ({ params, locale }) => {
       process.env.NEXT_PUBLIC_WP_URL
     }${correctLocale}/wp-json/wp/v2/produkter?slug=${
       params.slug
-    }&_=${Date.now()}`,
-    { headers: { 'cache-control': 'no-cache' } }
+    }&_=${Date.now()}`
+    // { headers: { 'cache-control': 'no-cache' } }
   )
 
   const resAllProducts = await fetch(

@@ -21,7 +21,7 @@ const Page = ({ flexibleContent, locale }) => {
   const Yoast =
     router.pathname === '/'
       ? 'SES PROTECTION'
-      : flexibleContent[0].title.rendered
+      : flexibleContent[0]?.title?.rendered
 
   return (
     <motion.div {...AnimationSettings}>
