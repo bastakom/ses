@@ -73,7 +73,11 @@ const Footer = ({ options }) => {
             <div
               className={`${styles.footer__info} flex justify-center flex-col items-center`}
             >
-              <h2 className="pb-2 uppercase mb-2">PRESIDENT</h2>
+              <h2 className="pb-2 uppercase mb-2">
+                {locale === 'sv'
+                  ? 'Försäljnings- och marknadschef'
+                  : 'Sales and marketing manager'}
+              </h2>
               <div className={`${styles.contanct__info} flex gap-2`}>
                 <h3>{email}</h3>
                 <h3>{name}</h3>
