@@ -210,7 +210,7 @@ const NewsPage = ({ response, locale }) => {
                                         href={`${doc.document}`}
                                         target="_blank"
                                       >
-                                        {doc.title}
+                                        <span>{doc.title}</span>
                                       </Link>
                                     </div>
                                   )
@@ -227,6 +227,7 @@ const NewsPage = ({ response, locale }) => {
                                       <Link
                                         href={`${doc.document.url}`}
                                         target="_blank"
+                                        className="font-light"
                                       >
                                         {doc.title}
                                       </Link>
@@ -258,6 +259,7 @@ const NewsPage = ({ response, locale }) => {
                                   <Link
                                     href={`${doc.document.url}`}
                                     target="_blank"
+                                    className="font-light"
                                   >
                                     {doc.title}
                                   </Link>
