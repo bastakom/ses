@@ -147,7 +147,6 @@ const NewsPage = ({ response, locale }) => {
                   <Accordion
                     multiple={true}
                     chevron={<AiOutlinePlus size="1rem" />}
-                    defaultValue={['TEKNISK']}
                     styles={{
                       chevron: {
                         '&[data-rotate]': {
