@@ -26,6 +26,7 @@ const NewsPage = ({ response, locale }) => {
           products: {
             marknadsforingsblad,
             cat,
+            cetrifikat,
             description,
             table,
             produktblad,
@@ -242,6 +243,32 @@ const NewsPage = ({ response, locale }) => {
                         )}
                       </Accordion.Panel>
                     </Accordion.Item>
+                    {cetrifikat ? (
+                      <Accordion.Item value="CERTIFIKAT">
+                        <Accordion.Control>
+                          {locale === 'sv' ? 'CERTIFIKAT' : 'CERTIFICATE'}
+                        </Accordion.Control>
+                        <Accordion.Panel>
+                          <div>
+                            {cetrifikat.map((doc, index) => {
+                              return (
+                                <div
+                                  className={`flex flex-wrap items-center ${styles.links}`}
+                                  key={index}
+                                >
+                                  <Link
+                                    href={`${doc.document.url}`}
+                                    target="_blank"
+                                  >
+                                    {doc.title}
+                                  </Link>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </Accordion.Panel>
+                      </Accordion.Item>
+                    ) : null}
                   </Accordion>
                 </div>
               </div>
@@ -282,7 +309,6 @@ export const getStaticProps = async ({ params, locale }) => {
     }${correctLocale}/wp-json/wp/v2/produkter?slug=${
       params.slug
     }&_=${Date.now()}`
-    // { headers: { 'cache-control': 'no-cache' } }
   )
 
   const resAllProducts = await fetch(
