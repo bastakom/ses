@@ -101,6 +101,8 @@
         font-family: $font-family-heading;
         padding: 5px 10px;
         font-size: $footerContact;
+        min-width: 230px;
+        text-align: center;
 
         @include breakpoint(small) {
           border: none;

@@ -12,6 +12,7 @@ const Footer = ({ options }) => {
         name: presidentName,
         phone: presidentPhone
       },
+      saljare: { email: saljareEmail, name: saljareName, phone: saljarePhone },
       technical_information: { email, name, phone }
     }
   } = options
@@ -68,7 +69,7 @@ const Footer = ({ options }) => {
             </div>
           )}
         </div>
-        <div className="flex flex-wrap justify-center gap-5 md:gap-20 md:my-20 mt-10">
+        <div className="flex flex-wrap justify-center gap-5 md:gap-20 md:my-20 mt-10 items-start">
           {email && (
             <div
               className={`${styles.footer__info} flex justify-center flex-col items-center`}
@@ -82,6 +83,11 @@ const Footer = ({ options }) => {
                 <h3>{email}</h3>
                 <h3>{name}</h3>
                 <h3>{phone}</h3>
+              </div>
+              <div className={`${styles.contanct__info} flex gap-2`}>
+                <h3>{saljareEmail}</h3>
+                <h3>{saljareName}</h3>
+                <h3>{saljarePhone}</h3>
               </div>
             </div>
           )}
@@ -104,9 +110,7 @@ const Footer = ({ options }) => {
       </div>
 
       <div className={`flex md:justify-end items-center justify-center`}>
-        <p className={`${styles.copywrite__}`}>
-          © SES PROTECTION/SES GROUP
-        </p>
+        <p className={`${styles.copywrite__}`}>© SES PROTECTION/SES GROUP</p>
       </div>
     </footer>
   )
