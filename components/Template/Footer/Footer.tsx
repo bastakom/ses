@@ -76,7 +76,7 @@ const Footer = ({ options }) => {
             >
               <h2 className="pb-2 uppercase mb-2">
                 {locale === 'sv'
-                  ? 'Försäljnings- och marknadschef's
+                  ? 'Försäljnings- och marknadschef'
                   : 'Sales and marketing manager'}
               </h2>
               <div className={`${styles.contanct__info} flex gap-2`}>
@@ -107,9 +107,7 @@ const Footer = ({ options }) => {
             </div>
           )}
         </div>
-      </div>
-
-      {/* // Footer */}
+      </div>s
       <div className={`flex md:justify-end items-center justify-center`}>
         <p className={`${styles.copywrite__}`}>© SES PROTECTION/SES GROUP</p>
       </div>
