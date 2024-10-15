@@ -107,8 +107,7 @@ const Footer = ({ options }) => {
             </div>
           )}
         </div>
-      </div>
-      {/* Footer */}
+      </div>s
       <div className={`flex md:justify-end items-center justify-center`}>
         <p className={`${styles.copywrite__}`}>© SES PROTECTION/SES GROUP</p>
       </div>
