@@ -84,6 +84,11 @@ const Footer = ({ options }) => {
                 <h3>{name}</h3>
                 <h3>{phone}</h3>
               </div>
+              <h2 className="pb-2 uppercase mb-2 mt-10">
+                {locale === 'sv'
+                  ? 'Teknisk säljare'
+                  : 'TECHNICAL SALESMAN'}
+              </h2>
               <div className={`${styles.contanct__info} flex gap-2`}>
                 <h3>{saljareEmail}</h3>
                 <h3>{saljareName}</h3>
