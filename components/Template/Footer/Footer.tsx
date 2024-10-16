@@ -18,7 +18,7 @@ const Footer = ({ options }) => {
   } = options
 
   const { locale } = useRouter()
-
+  //FOOTER
   return (
     <footer className={`${styles.footer} pt-7`}>
       <div className={`${styles.line_break} mx-10 my-10`} />
@@ -85,9 +85,7 @@ const Footer = ({ options }) => {
                 <h3>{phone}</h3>
               </div>
               <h2 className="pb-2 uppercase mb-2 mt-10">
-                {locale === 'sv'
-                  ? 'Teknisk säljare'
-                  : 'TECHNICAL SALESMAN'}
+                {locale === 'sv' ? 'Teknisk säljare' : 'TECHNICAL SALESMAN'}
               </h2>
               <div className={`${styles.contanct__info} flex gap-2`}>
                 <h3>{saljareEmail}</h3>
@@ -112,7 +110,8 @@ const Footer = ({ options }) => {
             </div>
           )}
         </div>
-      </div>s
+      </div>
+      s
       <div className={`flex md:justify-end items-center justify-center`}>
         <p className={`${styles.copywrite__}`}>© SES PROTECTION/SES GROUP</p>
       </div>
