@@ -206,12 +206,21 @@ const NewsPage = ({ response, locale }) => {
                                       className={`flex flex-wrap items-center ${styles.links}`}
                                       key={index}
                                     >
-                                      <Link
-                                        href={`${doc.document}`}
-                                        target="_blank"
-                                      >
-                                        <span>{doc.title}</span>
-                                      </Link>
+                                      {locale === 'sv' ? (
+                                        <Link
+                                          href={`${doc.document}`}
+                                          target="_blank"
+                                        >
+                                          <span>{doc.title}</span>
+                                        </Link>
+                                      ) : (
+                                        <Link
+                                          href={`${doc.document_en}`}
+                                          target="_blank"
+                                        >
+                                          <span>{doc.title}</span>
+                                        </Link>
+                                      )}
                                     </div>
                                   )
                                 })
