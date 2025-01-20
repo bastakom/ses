@@ -191,7 +191,7 @@ const NewsPage = ({ response, locale }) => {
                         </Accordion.Panel>
                       </Accordion.Item>
                     )}
-
+                    
                     <Accordion.Item value="MANUALER">
                       <Accordion.Control>
                         {locale === 'sv' ? 'MANUALER' : 'MANUALS'}
